@@ -1,0 +1,31 @@
+/***FOOTER***/
+body{
+  	font-family: "Open Sans", sans-serif;
+  	background: #2ba3d4;
+  	padding: 0;
+	margin: 0;
+}
+
+.container{
+  	text-align: center;
+  	padding: 10px;
+}
+
+.sectionIntro{
+	background: #2ba3d4;
+	color: white;
+	height: 200px;
+}
+
+.sectionTeaser{
+	background: #FFF;
+  	padding-bottom: 20px;
+  	height: 500px;
+  	box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.sectionFooter{
+	background: #222;
+  	color: #fff;
+}
+
