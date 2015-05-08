@@ -1,31 +1,128 @@
-/***FOOTER***/
-body{
-  	font-family: "Open Sans", sans-serif;
-  	background: #2ba3d4;
-  	padding: 0;
+/****INITIALISATION DES PRINCIPALES BALISES****/
+h1,h2,h3,h4,h5,h6,div,p,li,a,ul,body,section{
+	list-style: none;
+	text-decoration: none;
+	padding: 0;
 	margin: 0;
 }
 
+h1{
+	font-size: 40px;
+}
+
+h5{
+	font-size: 12px;
+}
+
+body{
+  	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  	background: #AAA;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
 .container{
-  	text-align: center;
-  	padding: 10px;
+	width: 1000px;
+  	margin-left: auto;
+  	margin-right: auto;
 }
 
-.sectionIntro{
-	background: #2ba3d4;
-	color: white;
-	height: 200px;
+input{
+	height: 20px;
+	font-size: 15px;
+	color: #AAA;
+	border-radius: 5px 5px 5px 5px;
+	padding-left: 5px;
+	border: 1px solid #ccd6dd;
 }
 
-.sectionTeaser{
+button{
+	font-size: 14px;
 	background: #FFF;
-  	padding-bottom: 20px;
-  	height: 500px;
+	color: #AAA;
+	border-radius: 5px 5px 5px 5px;
+	padding-left: 5px;
+	border: 1px solid #ccd6dd;
+}
+
+
+/****HEADER****/
+.header{
+	background: #AAA;
+	color: white;
+	height: 70px;
+	padding-bottom: 5px;
+}
+
+.header a{
+	color: white;
+}
+
+.container .logo, .container .connexion{
+	display: inline-block;
+}
+
+.container .logo{
+	width: 530px;
+	margin-left: 5px;
+}
+
+
+/****CORPS DU SITE****/
+.corps{
+	background: #FFF;
+  	padding-bottom: 50px;
+  	padding-top: 50px;
+  	height: 300px;
   	box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-.sectionFooter{
-	background: #222;
-  	color: #fff;
+.presentation{
+	width: 490px;
+	height: 300px;
+	border: 1px solid #ccd6dd;
+	border-radius: 15px 15px 15px 15px;
+  	box-shadow: 0 5px 5px rgba(0,0,0,0.2);
 }
 
+.presTitre{
+	height: 80px;
+	background: #AAA;
+	color: #FFF;
+	box-shadow: 0 0px 2px rgba(0,0,0,0.2);
+	text-align: center;
+	border-radius: 15px 15px 0px 0px;
+}
+
+.presentation h1{
+	font-size: 30px;
+	padding-top: 25px;
+}
+
+.presCorps{
+	padding: 54px 5px 54px 5px;
+	font-size: 14px;
+}
+
+.presFooter{
+	font-size: 10px;
+	color: #FFF;
+	background: #AAA;
+	text-align: center;
+	box-shadow: 2px 0px 0px 0px rgba(0,0,0,0.2);
+	padding: 5px;
+	border-radius: 0px 0px 15px 15px;
+}
+
+
+/****FOOTER****/
+.footer{
+	text-align: center;
+	background: #222;
+  	color: #fff;
+  	height: 50px;
+  	font-size: 10px;
+}
+.footer p{
+	padding-top: 20px;
+}
