@@ -1,138 +1,89 @@
-/****INITIALISATION DES PRINCIPALES BALISES****/
-h1,h2,h3,h4,h5,h6,div,p,li,a,ul,body,section{
-	list-style: none;
-	text-decoration: none;
-	padding: 0;
-	margin: 0;
+/*****INITIALISATION*****/
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
 }
 
 h1{
-	font-size: 40px;
+	font-size: 35px;
 }
 
-h5{
+p{
 	font-size: 12px;
 }
 
-body{
-  	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  	background: #AAA;
-  	margin-left: auto;
-  	margin-right: auto;
+[class*="col-"], footer {
+  //border: 2px solid black;
+  //border-radius: 6px;
+  text-align: center;
 }
 
-.container{
-	width: 1000px;
-  	margin-left: auto;
-  	margin-right: auto;
+.container {
+  padding-right: 1px;
+  padding-left: 1px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-input{
-	height: 20px;
-	font-size: 15px;
-	color: #AAA;
-	border-radius: 5px 5px 5px 5px;
-	padding-left: 5px;
-	border: 1px solid #ccd6dd;
-}
-
-button{
-	font-size: 14px;
-	background: #FFF;
-	color: #AAA;
-	border-radius: 5px 5px 5px 5px;
-	padding-left: 5px;
-	border: 1px solid #ccd6dd;
-}
-
-.center{
-	text-align: center;
-}
-
-
-/****HEADER****/
-.header{
-	background: #AAA;
+h1, h2, h3, h4, h5, ul, li, a, div, p, body {
+	margin: 0px;
+	padding: 0px;
 	color: white;
-	height: 70px;
-	padding-bottom: 5px;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-.header a{
-	color: white;
+.alignleft{
+	text-align: left;
 }
 
-.container .logo, .container .connexion{
-	display: inline-block;
+.size10{
+	font-size: 10px;
 }
 
-.container .logo{
-	width: 530px;
-	margin-left: 5px;
-}
-
-
-/****CORPS DU SITE****/
-.corps{
-	background: #FFF;
-  	padding-bottom: 50px;
-  	padding-top: 50px;
-  	height: 300px;
-  	box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.presentation{
-	width: 490px;
-	height: 300px;
-	border: 1px solid #ccd6dd;
-	border-radius: 15px 15px 15px 15px;
-  	box-shadow: 0 5px 5px rgba(0,0,0,0.2);
-  	display: inline-block;
-}
-
-.presTitre{
-	height: 80px;
+/*****HEADER*****/
+#header{
 	background: #AAA;
-	color: #FFF;
-	box-shadow: 0 0px 2px rgba(0,0,0,0.2);
-	text-align: center;
-	border-radius: 15px 15px 0px 0px;
+	height: 61	px;
 }
 
-.presentation h1{
-	font-size: 30px;
+#pseudo{
+	width: 223px;
+	margin-bottom: 3px;
+}
+
+/*****BODY*****/
+#inscription{
 	padding-top: 25px;
 }
 
-.presCorps{
-	padding: 54px 5px 54px 5px;
-	font-size: 14px;
+form{
+	border: 1px solid black;
+  	border-radius: 6px;
+  	background: #AAA;
+  	box-shadow: 0 2px 5px rgba(0,0,0,0.6);
+  	height: 290px;
 }
 
-.presFooter{
-	font-size: 10px;
-	color: #FFF;
-	background: #AAA;
-	text-align: center;
-	box-shadow: 2px 0px 0px 0px rgba(0,0,0,0.2);
-	padding: 5px;
-	border-radius: 0px 0px 15px 15px;
+#inscription legend{
+	margin-top: 10px;
+	padding-bottom: 10px;
+	color: white;
 }
 
-.presCorps input{
-	display: block;
-	margin: 4px;
-}
-
-
-/****FOOTER****/
-.footer{
-	text-align: center;
-	background: #222;
-  	color: #fff;
-  	height: 50px;
-  	font-size: 10px;
-}
-.footer p{
-	padding-top: 20px;
+#inscription button{
+	margin-bottom: 10px;
 }

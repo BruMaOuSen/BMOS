@@ -1,72 +1,59 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!--<link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-        <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
-        <link href="elusive-icons/css/elusive-icons.css" rel="stylesheet">
-        <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">-->
-
-        <link href="style.css" rel="stylesheet">
-        <title>Parking Project | Home</title>
+        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    	<link href="style.css" rel="stylesheet">
+    	<meta charset="utf-8">
+        <title>UPARK | Home</title>
     </head>
     <body>
-    	<!-- HEADER-->
-        <section class="header">
-            <div class="container">
-                <div class="logo">
-                	<a href="index.html" ><h1>UPARK</h1>
-        			<h5>les parkings de Lyon</h5></a>
+    	<div id="header">
+    		<div class="container">
+    			<div class="row">
+    				<div  class="col-md-4">
+    					<h1>UPARK</h1>
+    					<p>Les parkings de Lyon</p>
+    				</div>
+    				<div  class="col-md-offset-3 col-md-4">
+    					<input id="pseudo" type="text" placeholder="pseudo">
+    					<input id="password" type="password" placeholder="password">    					
+    					<button>Envoyer</button>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    	<div id="inscription">
+    		<div class="container">
+    			<div class="row">
+    				<form class="col-md-offset-1 col-md-4">
+  						<legend>Bienvenue chez UPARK</legend>
+					    <div class="alignleft">	
+					    	Ce site g&egrave;re l'ensemble des parkings UPARK de Lyon.
+							Une fois inscrit, vous pourrez alors g&eacute;rer vos diff&eacute;rents abonnements, r&eacute;server une place libre 
+							occasionnellement, r&eacute;server une place pour une p&eacute;riode donn&eacute;e.<br/><br/>
+	
+							Si vous n'&ecirc;tes pas encore inscrit, remplissez le formulaire d'inscription sur votre droite avant
+					    	de profiter de tous nos services.<br/><br/>	
+						</div>
+						<div class="size10">
+	    					UPARK vous remercie de la confiance que vous lui accordez.
+						</div>
+					</form> 
+    				<form class="col-md-offset-2 col-md-4">
+  						<legend>Inscrivez-vous!</legend>
+					    <div class="form-group">
+      						<input id="login" type="text" placeholder="pseudo" class="form-control">
+    					</div>
+					    <div class="form-group">
+      						<input id="motdepasse" type="password" placeholder="Choississez un mot de passe" class="form-control">
+    					</div>
+    					<div class="form-group">
+      						<input id="motdepasseverif" type="password" placeholder="Vérifier votre mot de passe" class="form-control">	
+      					</div>
+    					<button>Inscription</button>
+					</form>    				
 				</div>
-				<div class="connexion">
-					<input type="text" name="identifiant" placeholder="identifiant">
-					<input type="password" name="password" placeholder="mot de passe">
-		            <button type="submit">Connexion</button>              
-            	</div>
-            </div>
-        </section>
-        
-        <!-- CORPS DU SITE-->
-        <section class="corps">
-            <div class="container">
-            	<div class="presentation">
-					<div class="presTitre">
-            			<h1>Bienvenue chez UPARK<h1>
-					</div>
-					<div class="presCorps">
-						Ce site g&egrave;re l'ensemble des parkings UPARK de Lyon.
-						Une fois inscrit, vous pourrez alors g&eacute;rer vos diff&eacute;rents abonnements, r&eacute;server une place libre 
-						occasionnellement, r&eacute;server une place pour une p&eacute;riode donn&eacute;e.<br/><br/>
-						
-						Si vous n'&ecirc;tes pas encore inscrit, remplissez le formulaire d'inscription sur votre droite avant
-					    de profiter de tous nos services.	
-    				</div>
-    				<div class="presFooter">
-    					<p>UPARK vous remercie de la confiance que vous lui accordez.
-    				</div>
-            	</div>
-            	<div class="presentation">
-					<div class="presTitre">
-            			<h1>Inscrivez vous!<h1>
-					</div>
-					<div class="presCorps" class="center">
-						<input type="text" name="id" placeholder="identifiant">
-						<input type="password" name="pass" placeholder="mot de passe">
-						<input type="password" name="pass2" placeholder="R&eacute;p&eacute;ter le mot de passe">
-    				</div>
-    				<div class="presFooter">
-						<button type="submit">Je m'inscris</button>
-    				</div>
-            	</div>        
-            </div>
-        </section>
-        	
-        <!-- FOOTER-->
-        <section class="footer">
-            <div class="container">
-                <p>Propuls&eacute; par HTML / CSS / TwitterBootstrap / GitHub...
-	            Cr&eacute;&eacute; par une &eacute;quipe de 4 Clowns, on ne garde aucun droit sur ce projet ;-).</p>
-            </div>
-        </section>
+    		</div>
+    	</div>
     </body>
 </html>
