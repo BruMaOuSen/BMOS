@@ -24,7 +24,7 @@ p{
 	font-size: 12px;
 }
 
-[class*="col-"], footer {
+[class*="col-"]{
   //border: 2px solid black;
   //border-radius: 6px;
   text-align: center;
@@ -42,7 +42,7 @@ p{
 h1, h2, h3, h4, h5, ul, li, a, div, p, body {
 	margin: 0px;
 	padding: 0px;
-	color: white;
+	//color: white;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
@@ -56,7 +56,7 @@ h1, h2, h3, h4, h5, ul, li, a, div, p, body {
 
 /*****HEADER*****/
 #header{
-	background: #AAA;
+	background: #DDD;
 	height: 61	px;
 }
 
@@ -67,13 +67,13 @@ h1, h2, h3, h4, h5, ul, li, a, div, p, body {
 
 /*****BODY*****/
 #inscription{
-	padding-top: 25px;
+	padding-top: 100px;
 }
 
 form{
 	border: 1px solid black;
   	border-radius: 6px;
-  	background: #AAA;
+  	background: #DDD;
   	box-shadow: 0 2px 5px rgba(0,0,0,0.6);
   	height: 290px;
 }
@@ -81,9 +81,17 @@ form{
 #inscription legend{
 	margin-top: 10px;
 	padding-bottom: 10px;
-	color: white;
+	//color: white;
 }
 
 #inscription button{
 	margin-bottom: 10px;
+}
+
+/*****FOOTER*****/
+#footer{
+	margin-top: 100px;
+	height: 30px;
+	//background: #DDD;
+  	//border-radius: 6px;
 }
