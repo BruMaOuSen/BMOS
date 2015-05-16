@@ -46,8 +46,21 @@ h1, h2, h3, h4, h5, ul, li, a, div, p, body {
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-.alignleft{
-	text-align: left;
+a{
+	list-style: none;
+	text-decoration: none;
+	color: black;
+}
+
+a:hover{
+	color: white;
+	list-style: none;
+	text-decoration: none;
+	transition-duration: 1s;
+}
+
+.alignjustify{
+	text-align: justify;
 }
 
 .size10{
@@ -64,6 +77,7 @@ h1, h2, h3, h4, h5, ul, li, a, div, p, body {
 	width: 223px;
 	margin-bottom: 3px;
 }
+
 
 /*****BODY*****/
 #inscription{
