@@ -39,18 +39,18 @@
 	    					UPARK vous remercie de la confiance que vous lui accordez.
 						</div>
 					</form> 
-    				<form class="col-md-offset-2 col-md-4">
+    				<form class="col-md-offset-2 col-md-4" method="POST" action="creationutilisateur.php">
   						<legend>Inscrivez-vous!</legend>
 					    <div class="form-group">
-      						<input id="login" type="text" placeholder="pseudo" class="form-control">
+      						<input id="login" name="login" type="text" placeholder="pseudo" class="form-control">
     					</div>
 					    <div class="form-group">
-      						<input id="motdepasse" type="password" placeholder="Choississez un mot de passe" class="form-control">
+      						<input id="motdepasse"  name="motdepasse" type="password" placeholder="Choississez un mot de passe" class="form-control">
     					</div>
     					<div class="form-group">
       						<input id="motdepasseverif" type="password" placeholder="Vérifier votre mot de passe" class="form-control">	
       					</div>
-    					<button>Inscription</button>
+    					<button type="submit">Inscription</button>
 					</form>    				
 				</div>
     		</div>
