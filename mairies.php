@@ -1,6 +1,6 @@
 <?php
 	// Connexion, sélection de la base de données
-	$dbconn = pg_connect("host=localhost dbname=parkingProject user=admin password=admin")
+	$dbconn = pg_connect("host=localhost dbname=parkingProject user=admin1 password=admin")
     	or die('Connexion impossible : ' . pg_last_error());
 
 	// Exécution de la requête SQL

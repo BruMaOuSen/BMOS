@@ -144,4 +144,23 @@ CREATE TABLE Simple_a(
 );
 --méthode Setprice_sa qui calcule le prix d’une réservation à l’heure effecuée par un abonné : elle est fonction du nombre d’heure, de prix_h_zone ET du taux du réduction de l’abonné.
 
+-- CREATION DES BASES UTILISATEUR, ROLE ET PAGE POUR LA CONNEXION
+create table Role (
+	type_role varchar(50) PRIMARY KEY
+);
 
+create table utilisateur (
+	pseudo varchar(50) PRIMARY KEY NOT NULL,
+	mot_de_passe varchar(50),
+	type_user varchar(50) REFERENCES Role(type_role)
+);
+
+create table Page (
+	ID_page SERIAL PRIMARY KEY,
+	nom_page varchar(50) 
+);
+
+create table RolePage (
+	numero_page int REFERENCES Page(ID_page),
+	role_page varchar(50) REFERENCES Role(type_role)
+);
