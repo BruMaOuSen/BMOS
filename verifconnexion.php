@@ -20,25 +20,31 @@
     if ($donnees) {
     	// Paramètres de connexion à la base de données
 		$_SESSION['membreid']= $id;
-		
+		$_SESSION['authentification'] = TRUE;
+		$_SESSION['roleutil'] = $donnees['type_user'];
+				
         if($donnees['type_user']=="mairie")
         {
         	header("Location: mairies.php");
+        	$reponse->closeCursor();
         	exit;
         }
         else if($donnees['type_user']=="client")
         {
         	header("Location: client.php");
+        	$reponse->closeCursor();
         	exit;
         }
         else if($donnees['type_user']=="administrateur")
         {
         	header("Location: admin.php");
+        	$reponse->closeCursor();
         	exit;
         }
     } else {
         //$_SESSION["membre"] = FALSE;
         header("Location: index.php");
+        $reponse->closeCursor();
 		exit;
     }
 ?>

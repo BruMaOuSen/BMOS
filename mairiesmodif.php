@@ -19,10 +19,11 @@
 	}
 	$tarif = $_POST['prix'];
 	$zone = $_POST['zone'];
-	$bdd->exec("UPDATE zone SET $prixAChanger = $tarif WHERE nom_zone = '$zone'");
+	$reponse = $bdd->query("UPDATE zone SET $prixAChanger = $tarif WHERE nom_zone = '$zone'");
  	//$bdd->exec("UPDATE zone SET" .$prixAChanger. "=" .$_POST['prix']. "WHERE 
  	//			nom_zone LIKE" .$_POST['zone']"");
 	header("Location: mairies.php");
+	$reponse->closeCursor();
 	exit;
 ?>
 	

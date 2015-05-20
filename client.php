@@ -1,6 +1,15 @@
-<?php
-    // Script faisant appel aux sessions
-    session_start();
+<?php 
+	session_start();
+	if(!isset($_SESSION['authentification'])){
+		header("Location: index.php");	
+	}
+	else
+	{
+		if($_SESSION['roleutil']!='client'){
+			header("Location: index.php");
+			exit;		
+		}
+	}
 ?>
 <!DOCTYPE html>
 <html>

@@ -1,5 +1,15 @@
 <?php 
 	session_start();
+	if(!isset($_SESSION['authentification'])){
+		header("Location: index.php");	
+	}
+	else
+	{
+		if($_SESSION['roleutil']!='mairie' && $_SESSION['roleutil']!='administrateur'){
+			header("Location: index.php");
+			exit;		
+		}
+	}
 ?>
 
 <!DOCTYPE html>
@@ -16,10 +26,6 @@
 
 		<!--CORPS DE LA PAGE MAIRIE-->
 		<?php
-			// Connexion, sélection de la base de données
-			//$dbconn = pg_connect("host=localhost dbname=parkingProject user=admin password=admin")
-    		//			or die('Connexion impossible : ' . pg_last_error());
-
 			try
 			{
 				$bdd = new PDO('pgsql:host=localhost;dbname=parkingProject', 'admin', 'admin');
@@ -28,11 +34,6 @@
 			{
         		die('Erreur : ' . $e->getMessage());
 			}
-
-
-
-			// Exécution de la requête SQL
-			//$query = 'SELECT nom_zone, prix_h_zone, prix_m_zone FROM zone';
 			$reponse = $bdd->query('SELECT * FROM zone ORDER BY nom_zone');
 			
 		?>
