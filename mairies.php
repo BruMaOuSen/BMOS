@@ -8,7 +8,7 @@
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     	<link href="style.css" rel="stylesheet">
     	<meta charset="utf-8">
-        <title>UPARK | Mairie</title>
+        <title>UPARK | Mairie <?php echo $_SESSION['membreid'];?></title>
     </head>
     <body>
     	<!--INSERTION DU HEADER-->
