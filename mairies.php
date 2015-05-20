@@ -7,6 +7,10 @@
         <title>UPARK | Mairie</title>
     </head>
     <body>
+    	<!--INSERTION DU HEADER-->
+    	<?php include('header.php'); ?>   
+
+		<!--CORPS DE LA PAGE MAIRIE-->
 		<?php
 			// Connexion, sélection de la base de données
 			//$dbconn = pg_connect("host=localhost dbname=parkingProject user=admin password=admin")
@@ -25,16 +29,17 @@
 
 			// Exécution de la requête SQL
 			//$query = 'SELECT nom_zone, prix_h_zone, prix_m_zone FROM zone';
-			$reponse = $bdd->query('SELECT * FROM zone');
+			$reponse = $bdd->query('SELECT * FROM zone ORDER BY nom_zone');
 			
 		?>
-		<section class="col-md-offset-2 col-md-8 table-responsive">
+		<section style="margin-top: 15px;" class="col-md-offset-2 col-md-8 table-responsive">
+			<form method="post" action="mairiesmodif.php">
 			<div class="panel panel-primary">
   				<div class="panel-heading">
     				<h3 class="panel-title">Modifier le prix d'une zone</h3>
   				</div>
   				<div class="panel-body form control">
-  					<select>
+  					<select name="zone"class="selectpicker">
   						<?php
 							while ($donnees = $reponse->fetch())
 							{
@@ -45,14 +50,15 @@
 							$reponse->closeCursor();
 						?>
   					</select>
-  					<select>
+  					<select name="typeTarif">
   							<option>prix à l'heure</option>
   							<option>prix au mois </option>
   			  		</select>
-  			  		<input type="text" placeholder="nouveau prix">
+  			  		<input name="prix" type="text" placeholder="nouveau prix">
   			  		<button>Changer le prix</button>
   				</div>
 			</div>
+			</form>
 			<table class="table table-bordered table-striped table-condensed">
   				<caption>
   					<h4 style="text-align: center">Les zones de Lyon où nous sommes implantés.</h4>
@@ -66,7 +72,7 @@
   				</thead>
     			<tbody>			    
 					<?php
-						$reponse = $bdd->query('SELECT * FROM zone');
+						$reponse = $bdd->query('SELECT * FROM zone ORDER BY nom_zone');
 						while ($donnees = $reponse->fetch())
 						{
 					?>
@@ -81,6 +87,9 @@
 					?>
 				</tbody>
 			</table>
-		</section>			
+		</section>	
+		
+		<!--INSERTION DU FOOTER-->
+    	<?php include('footer.php'); ?>   		
 	</body>
 </html>
