@@ -1,3 +1,7 @@
+<?php
+    // Script faisant appel aux sessions
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,8 +12,7 @@
     </head>
     <body>
     	<!--INSERTION DU HEADER-->
-		<?php include ('header.php');?>
-		
+			<?php include ('header.php'); ?>			
 		<!--CORPS DE LA PAGE D'INDEX-->
     	<div id="inscription">
     		<div class="container">

@@ -1,3 +1,7 @@
+<?php 
+	session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -51,11 +55,11 @@
 						?>
   					</select>
   					<select name="typeTarif">
-  							<option>prix à l'heure</option>
-  							<option>prix au mois </option>
+  							<option value="prix à l'heure">prix à l'heure</option>
+  							<option value="prix au mois">prix au mois </option>
   			  		</select>
   			  		<input name="prix" type="text" placeholder="nouveau prix">
-  			  		<button>Changer le prix</button>
+  			  		<button type="submit">Changer le prix</button>
   				</div>
 			</div>
 			</form>

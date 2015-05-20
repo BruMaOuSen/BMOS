@@ -1,3 +1,6 @@
+<?php 
+	session_start();
+?>
 <?php
 	try
 	{
@@ -14,7 +17,12 @@
 	else if($prixAChanger == "prix au mois"){
 		$prixAChanger = 'prix_m_zone';
 	}
- 	$bdd->query('UPDATE zone SET prix_m_zone = 10 WHERE nom_zone = "Bachut - Transvaal"');
-	header('Location: mairies.php');
+	$tarif = $_POST['prix'];
+	$zone = $_POST['zone'];
+	$bdd->exec("UPDATE zone SET $prixAChanger = $tarif WHERE nom_zone = '$zone'");
+ 	//$bdd->exec("UPDATE zone SET" .$prixAChanger. "=" .$_POST['prix']. "WHERE 
+ 	//			nom_zone LIKE" .$_POST['zone']"");
+	header("Location: mairies.php");
+	exit;
 ?>
 	
