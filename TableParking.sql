@@ -1,4 +1,16 @@
+CREATE TYPE nbRoues AS enum ('2','4','8');
+CREATE TYPE typePlace AS enum ('couvert' , 'dehors');
+CREATE TYPE typePersonne AS enum ('personne', 'societe');
+CREATE TYPE moyenP AS enum ('carte', 'monnaie');
 create type typeTransac as enum ('ticket', 'abonnement');
+
+CREATE TABLE Zone ( 
+nom_zone varchar (50) UNIQUE NOT NULL, 
+prix_h_zone int , 
+prix_m_zone int, 
+PRIMARY KEY (nom_zone)
+);
+
 create table Client(
 	login varchar(25) primary key,
 	nom varchar(25) NOT NULL,
@@ -14,6 +26,8 @@ create table Administrateur(
 	mot_de_passe varchar(25)
 );
 
+
+
 create table Type_vehicule(
 	nb_roues nbRoues primary key
 );
@@ -27,7 +41,6 @@ create table Vehicule(
 	FOREIGN KEY (type_veh) REFERENCES Type_vehicule(nb_roues),
 	FOREIGN KEY (proprietaire) REFERENCES Client(login)
 );
-
 create table Parking(
 	nom_park varchar(50) UNIQUE NOT NULL, 
 	zone_park varchar (50) UNIQUE NOT NULL, 
@@ -55,7 +68,6 @@ CREATE TABLE Place (
 	FOREIGN KEY (type_veh) REFERENCES Type_vehicule(nb_roues),
 	FOREIGN KEY (zone_place) REFERENCES Parking(zone_park)
 );
-
 CREATE TABLE Occupe (
 	immatriculation varchar(25) UNIQUE NOT NULL, 
 	nom_park varchar (25) UNIQUE NOT NULL, 
@@ -98,7 +110,6 @@ create table Page (
 	ID_page SERIAL PRIMARY KEY,
 	nom_page varchar(50) 
 );
-
 create table RolePage (
 	numero_page int REFERENCES Page(ID_page),
 	role_page varchar(50) REFERENCES Role(type_role)
