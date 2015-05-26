@@ -129,21 +129,33 @@
 			</div>
   		</div>			
     	<div class="container">
-  			<div class="alert alert-warning alert-dismissable col-md-offset-3 col-md-6" style="display: none">
+  			<div class="alert alert-info alert-dismissable col-md-offset-3 col-md-6" style="display: none">
     			<button type="button" class="close">×</button>
-      				<h4>Mettre ici le formulaire de modification</h4> 
-      				Du style du formulaire de modif pour le prix des zones (fichier mairie.php).
+      			<form method="post" action="modifInfosPers.php">
+  					<legend>Modifications des informations</legend>
+						    <div class="form-group">
+      							<input id="nom" name="nom" type="text" placeholder="Nom" class="form-control">
+    						</div>
+						    <div class="form-group">
+      							<input id="identification"  name="identification" type="text" placeholder="Identification" class="form-control">
+    						</div>
+    						<div class="form-group">
+      							<input id="numCompte" name="numCompte" type="text" placeholder="Numéro de compte" class="form-control">	
+      						</div>
+    						<button type="submit">Valider</button>
+				</form>
   			</div>
   			<div class="col-md-offset-3 col-md-6">
-    			<input type="button" class="btn btn-primary" id="afficher" value="Modifier les paramètres du profil">
+    			<button type="submit" class="btn btn-info" id="afficher">
+    				<span class="glyphicon glyphicon-pencil"></span>&nbsp;Modifier les informations personnelles
+    			</button>
   			</div>
 		</div>
 
     	<!--INSERTION DU FOOTER-->
 		<?php include ('footer.php'); ?>
-		
-		
-		<!--Pour animer la page (bouton pour update le profil-->
+		  
+    	<!--Pour animer la page (bouton pour update le profil-->
 		<script src="bootstrap/js/jquery.js"></script> 
 		<script>  
   			$(function (){
@@ -156,6 +168,8 @@
       				$("#afficher").show();
     			}); 
   			}); 
-		</script>
+ 		</script>
+		
+
     </body>
 </html>
