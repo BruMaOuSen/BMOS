@@ -19,8 +19,8 @@
 	//echo $identification;
 	//echo $numCompte;
 	//echo $id;
-	$reponse = $bdd->query("UPDATE client SET nom = $nom AND typep = $identification AND numero_compte = $numCompte
-							 WHERE login = '$id'");
+	$reponse = $bdd->query("UPDATE client SET nom = '$nom', typep = '$identification', numero_compte = '$numCompte' 
+							WHERE login = '$id'");
  	//$bdd->exec("UPDATE zone SET" .$prixAChanger. "=" .$_POST['prix']. "WHERE 
  	//			nom_zone LIKE" .$_POST['zone']"");
 	header("Location: client.php");
