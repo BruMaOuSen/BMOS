@@ -17,7 +17,7 @@
     			<form  method="post" action="verifconnexion.php">	
     				<input id="pseudo" name="pseudo" type="text" placeholder="pseudo">
     				<input id="password" name="motdepasse" type="password" placeholder="password">    					
-    				<button>Envoyer</button>
+    				<button>Connexion</button>
     			</form>	
     		</div>
     	</div>
@@ -36,7 +36,7 @@
     			<p>Les parkings de Lyon</p></a>
     		</div>
     		<div  class="col-md-offset-3 col-md-4">
-    			<h4>Connecté avec le compte : <?php echo $_SESSION['membreid'];?></h4>
+    			<h4 class="colorwhite">Connecté avec le compte : <?php echo $_SESSION['membreid'];?></h4>
     			<a href="deconnexion.php">Deconnexion</a>
 	   		</div>
     	</div>

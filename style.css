@@ -47,11 +47,11 @@ h1, h2, h3, h4, h5, ul, li, a, div, p, body {
 a{
 	list-style: none;
 	text-decoration: none;
-	color: black;
+	color: white;
 }
 
 a:hover{
-	color: white;
+	color: red;
 	list-style: none;
 	text-decoration: none;
 	transition-duration: 1s;
@@ -65,14 +65,18 @@ a:hover{
 	font-size: 10px;
 }
 
+.colorwhite{
+	color: white;
+}
+
 /*****HEADER*****/
 #header{
-	background: #DDD;
+	background: #4a494d;
 	height: 61	px;
 }
 
 #pseudo{
-	width: 223px;
+	width: 239px;
 	margin-bottom: 3px;
 }
 
@@ -104,6 +108,6 @@ a:hover{
 #footer{
 	margin-top: 100px;
 	height: 30px;
-	//background: #DDD;
+	background: #4a494d;
   	//border-radius: 6px;
 }
