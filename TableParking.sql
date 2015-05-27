@@ -17,13 +17,17 @@ create table Client(
 	typeP typePersonne NOT NULL,
 	numero_compte integer UNIQUE NOT NULL,
 	taux_de_reduction float,
-	mot_de_passe varchar(25)
+	mot_de_passe varchar(25),
+	role_client varchar(50) NOT NULL,
+	FOREIGN KEY (role_client) REFERENCES Role(type_role) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table Administrateur(
 	login varchar(25) primary key,
 	nom varchar(25) NOT NULL,
 	mot_de_passe varchar(25)
+	role_admin varchar(50) NOT NULL,
+	FOREIGN KEY (role_admin) REFERENCES Role(type_role) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 
