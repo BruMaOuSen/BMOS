@@ -9,21 +9,22 @@
 	{
         die('Erreur : ' . $e->getMessage());
 	}
-	$reponse = $bdd->query("INSERT INTO utilisateur (pseudo, mot_de_passe, type_user) 
-							VALUES ('$_POST[login]', '$_POST[motdepasse]', 'client')");
 	
-	//$dbconn = pg_connect("host=localhost dbname=parkingProject user=admin password=admin")
-    //	or die('Connexion impossible : ' . pg_last_error());
-    
-    // Exécution de la requête SQL
-	//$query = "INSERT INTO utilisateur (pseudo, mot_de_passe, type_user) 
-	//		VALUES ('$_POST[login]', '$_POST[motdepasse]', 'client')";
-	//$result = pg_query($query) or die('Echec de la requête : ' . pg_last_error());
 	
-	//$_SESSION['membreid']= $_POST['login'];
-	//$_SESSION['authentification'] = TRUE;
-	//$_SESSION['roleutil'] = 'client';
+	$login = $_POST['login'];
+	$nom = $_POST['nom'];
+	$typeP = $_POST['typeP'];
+	$mdp = $_POST['motdepasse'];
 	
+	$reponse = $bdd->query("INSERT INTO client (login, nom, typep, taux_de_reduction, mot_de_passe, role_client) 
+							VALUES ('$login', '$nom', '$typeP', '0', '$mdp', 'client')");
+	
+	$_SESSION['membreid'] = $login;
+	$_SESSION['authentification'] = TRUE;
+	$_SESSION['roleutil'] = 'client';
+	
+	$reponse->closeCursor();
+		
 	header("Location: client.php");
 
 ?>	

@@ -11,40 +11,50 @@
 
     $id         = $_POST['pseudo'];
     $motDePasse = $_POST['motdepasse'];
-	//echo $id;
-	//echo $motDePasse;    
-    
-    $reponse = $bdd->query('SELECT * FROM utilisateur WHERE pseudo = \''.$id.'\' AND mot_de_passe = \''.$motDePasse.'\'');
+	
+    $reponse = $bdd->query("SELECT * FROM Client WHERE login = '$id' AND mot_de_passe = '$motDePasse'");
     $donnees = $reponse->fetch();
     
-    if ($donnees) {
+    if ($donnees){
     	// Paramètres de connexion à la base de données
 		$_SESSION['membreid']= $id;
 		$_SESSION['authentification'] = TRUE;
-		$_SESSION['roleutil'] = $donnees['type_user'];
+		$_SESSION['roleutil'] = $donnees['role_client'];
 				
-        if($donnees['type_user']=="mairie")
-        {
-        	header("Location: mairies.php");
-        	$reponse->closeCursor();
-        	exit;
-        }
-        else if($donnees['type_user']=="client")
+		if($_SESSION['roleutil']=="client")
         {
         	header("Location: client.php");
         	$reponse->closeCursor();
         	exit;
         }
-        else if($donnees['type_user']=="administrateur")
+    }     
+    else{
+		//Si personne n'est trouvé dans les bases clients et admin
+    	$reponse->closeCursor();
+    	//header("Location: index.php");
+		//exit;
+    }
+	
+    $reponse = $bdd->query("SELECT * FROM administrateur WHERE login = '$id' AND mot_de_passe = '$motDePasse'");
+    $donnees = $reponse->fetch();
+    
+    if ($donnees){
+    	// Paramètres de connexion à la base de données
+		$_SESSION['membreid']= $id;
+		$_SESSION['authentification'] = TRUE;
+		$_SESSION['roleutil'] = $donnees['role_admin'];
+				
+       if($_SESSION['roleutil']=="administrateur")
         {
         	header("Location: admin.php");
         	$reponse->closeCursor();
         	exit;
         }
-    } else {
-        //$_SESSION["membre"] = FALSE;
-        header("Location: index.php");
-        $reponse->closeCursor();
-		exit;
-    }
+    }     
+    else{
+		//Si personne n'est trouvé dans les bases clients et admin
+    	$reponse->closeCursor();
+    	//header("Location: index.php");
+		//exit;
+    }	
 ?>

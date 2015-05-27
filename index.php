@@ -18,7 +18,7 @@
     	<div id="inscription">
     		<div class="container">
     			<div class="row">
-    				<div class="col-md-offset-1 col-md-4 presIndex">
+    				<!--<div class="col-md-offset-1 col-md-4 presIndex">
   						<legend>Bienvenue chez UPARK</legend>
 					    <div class="alignjustify">	
 					    	Ce site g&egrave;re l'ensemble des parkings UPARK de Lyon.
@@ -31,15 +31,18 @@
 						<div class="size10 margintop20">
 	    					UPARK vous remercie de la confiance que vous lui accordez.
 						</div>
-					</div>
-					<div class="col-md-offset-2 col-md-4 presIndex"> 
+					</div>-->
+					<div class="col-md-offset-2 col-md-8 presIndex"> 
     					<form method="POST" action="creationutilisateur.php">
-  							<legend>Inscrivez-vous!</legend>
+  							<legend>Formulaire d'inscription</legend>
 						    <div class="form-group">
       							<input id="login" name="login" type="text" placeholder="Pseudo" class="form-control">
     						</div>
 						    <div class="form-group">
       							<input id="nom"  name="nom" type="text" placeholder="Nom" class="form-control">
+    						</div>
+    						<div class="form-group">
+      							<input id="typeP"  name="typeP" type="text" placeholder="Société ou personne?" class="form-control">
     						</div>
 						    <div class="form-group">
       							<input id="motdepasse"  name="motdepasse" type="password" placeholder="Choississez un mot de passe" class="form-control">
