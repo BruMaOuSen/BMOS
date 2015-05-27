@@ -23,106 +23,26 @@
     	<!--INSERTION DU HEADER-->
 		<?php include ('header.php'); ?>			
     	
+    	<!--BARRE DE NAVIGATION-->
+		<?php include ('menuClient.php')?>
+			    	
     	<!--CORPS DE LA PAGE D'INDEX-->
-		
 		<!--INFORMATIONS SUR LE CLIENT-->
-		<div class="container">
-    		<div class="row">
-    			<div class="col-md-offset-2 col-md-8">
-  					<table class="table table-bordered table-striped">
-  						<caption>
-  							<h4 style="text-align: center">Informations personnelles</h4>
-  						</caption>
-  						<?php
-							try
-							{
-								$bdd = new PDO('pgsql:host=localhost;dbname=parkingProject', 'admin', 'admin');
-							}
-							catch (Exception $e)
-							{
-        						die('Erreur : ' . $e->getMessage());
-							}
-						?>
-  						<?php
-  							$id = $_SESSION['membreid'];
-							$reponse = $bdd->query('SELECT * FROM client WHERE login =\''.$id.'\'');
-							$donnees = $reponse->fetch();
-						?>
-    					<tbody>
-    						<tr>
-    							<td class="col-md-6">Pseudo</td>
-    							<td>
-    								<?php 
-    									if($donnees){
-	    									echo $donnees['login'];
-    									}
-    									else
-    									{
-    										echo "Non renseigné";
-    									}
-    								?>
-    							</td>
-    						</tr>
-    						<tr>
-    							<td>Nom</td>
-    							<td><?php 
-    									if($donnees){
-	    									echo $donnees['nom'];
-    									}
-    									else
-    									{
-    										echo "Non renseigné";
-    									}
-    								?>
-    							</td>
-    						</tr>			    
-    						<tr>
-    							<td>Identification</td>
-    							<td><?php 
-    									if($donnees){
-	    									echo $donnees['typep'];
-    									}
-    									else
-    									{
-    										echo "Non renseigné";
-    									}
-    								?>
-    							</td>
-    						</tr>
-    						<tr>
-    							<td>Numéro de compte</td>
-    							<td><?php 
-    									if($donnees){
-	    									echo $donnees['numero_compte'];
-    									}
-    									else
-    									{
-    										echo "Non renseigné";
-    									}	
-    								?>
-    							</td>
-    						</tr>
-    						<tr>
-    							<td>Taux de réduction</td>
-    							<td><?php 
-    									if($donnees){
-	    									echo $donnees['taux_de_reduction'];
-    									}
-    									else
-    									{
-    										echo "Non renseigné";
-    									}	
-    								?>
-    							</td>
-    						</tr>    				    					
-						</tbody>
-						<?php
-							$reponse->closeCursor(); // Termine le traitement de la requête
-						?>
-					</table>
-  				</div>
-			</div>
-  		</div>			
+  		<?php
+			try
+			{
+				$bdd = new PDO('pgsql:host=localhost;dbname=parkingProject', 'admin', 'admin');
+			}
+			catch (Exception $e)
+			{
+        		die('Erreur : ' . $e->getMessage());
+			}
+		?>
+		
+		<!--ON INSERE les infos personnelles du client-->
+		<?php include('infoPersoClient.php'); ?>
+						
+    	<!--MODIFICATION DES INFOS CLIENTS-->
     	<div class="container">
   			<div id="infoPerso" class="alert alert-info alert-dismissable col-md-offset-3 col-md-6" style="display: none">
     			<button type="button" class="close" id="closePerso">×</button>
@@ -148,79 +68,9 @@
 		</div>
 
 		<!--INFORMATIONS SUR LE VEHICULE-->
-		<div class="container">
-    		<div class="row">
-    			<div class="col-md-offset-2 col-md-8">
-  					<table class="table table-bordered table-striped">
-  						<caption>
-  							<h4 style="text-align: center">Informations sur le Véhicule</h4>
-  						</caption>
-  						<?php
-							$reponse = $bdd->query("SELECT * FROM vehicule WHERE proprietaire = '$id'");
-							$donnees = $reponse->fetch();
-						?>
-    					<tbody>
-    						<tr>
-    							<td class="col-md-6">Marque</td>
-    							<td>
-    								<?php 
-    									if($donnees){
-	    									echo $donnees['marque'];
-    									}
-    									else
-    									{
-    										echo "Non renseigné";
-    									}
-    								?>
-    							</td>
-    						</tr>
-    						<tr>
-    							<td>Immatriculation</td>
-    							<td><?php 
-    									if($donnees){
-	    									echo $donnees['immatriculation'];
-    									}
-    									else
-    									{
-    										echo "Non renseigné";
-    									}
-    								?>
-    							</td>
-    						</tr>			    
-    						<tr>
-    							<td>Date de fabrication</td>
-    							<td><?php 
-    									if($donnees){
-	    									echo $donnees['date_fabrication'];
-    									}
-    									else
-    									{
-    										echo "Non renseigné";
-    									}
-    								?>
-    							</td>
-    						</tr>
-    						<tr>
-    							<td>Type de véhicule</td>
-    							<td><?php 
-    									if($donnees){
-	    									echo $donnees['type_veh'];
-    									}
-    									else
-    									{
-    										echo "Non renseigné";
-    									}	
-    								?>
-    							</td>
-    						</tr>
-    					</tbody>
-						<?php
-							$reponse->closeCursor(); // Termine le traitement de la requête
-						?>
-					</table>
-  				</div>
-			</div>
-  		</div>			
+		<?php include('infoVehiculeClient.php'); ?>
+
+		<!--MODIFICATION DES INFOS DU VEHICULE-->
     	<div class="container">
   			<div id="infoVoit" class="alert alert-info alert-dismissable col-md-offset-3 col-md-6" style="display: none">
     			<button type="button" class="close" id="closeVoit">×</button>
@@ -277,7 +127,5 @@
     			}); 
   			}); 
  		</script> 		
-		
-
     </body>
 </html>

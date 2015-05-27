@@ -1,6 +1,7 @@
 <?php
     // Script faisant appel aux sessions
     session_start();
+	//echo basename($_SERVER["PHP_SELF"]);
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,7 +28,7 @@
 							Si vous n'&ecirc;tes pas encore inscrit, remplissez le formulaire d'inscription sur votre droite avant
 					    	de profiter de tous nos services.<br/><br/>	
 						</div>
-						<div class="size10">
+						<div class="size10 margintop20">
 	    					UPARK vous remercie de la confiance que vous lui accordez.
 						</div>
 					</div>
@@ -35,7 +36,10 @@
     					<form method="POST" action="creationutilisateur.php">
   							<legend>Inscrivez-vous!</legend>
 						    <div class="form-group">
-      							<input id="login" name="login" type="text" placeholder="pseudo" class="form-control">
+      							<input id="login" name="login" type="text" placeholder="Pseudo" class="form-control">
+    						</div>
+						    <div class="form-group">
+      							<input id="nom"  name="nom" type="text" placeholder="Nom" class="form-control">
     						</div>
 						    <div class="form-group">
       							<input id="motdepasse"  name="motdepasse" type="password" placeholder="Choississez un mot de passe" class="form-control">

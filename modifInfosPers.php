@@ -15,14 +15,16 @@
 	$numCompte = $_POST['numCompte'];
 	$id = $_SESSION['membreid'];
 	
-	//echo $nom;
-	//echo $identification;
-	//echo $numCompte;
-	//echo $id;
-	$reponse = $bdd->query("UPDATE client SET nom = '$nom', typep = '$identification', numero_compte = '$numCompte' 
-							WHERE login = '$id'");
- 	//$bdd->exec("UPDATE zone SET" .$prixAChanger. "=" .$_POST['prix']. "WHERE 
- 	//			nom_zone LIKE" .$_POST['zone']"");
+	if($nom != NULL){
+	$reponse = $bdd->query("UPDATE client SET nom = '$nom' WHERE login = '$id'");
+	}
+	if($identification != NULL){
+	$reponse = $bdd->query("UPDATE client SET typep = '$identification' WHERE login = '$id'");
+	}
+	if($numCompte){
+	$reponse = $bdd->query("UPDATE client SET numero_compte = '$numCompte' WHERE login = '$id'");
+	}
+
 	header("Location: client.php");
 	$reponse->closeCursor();
 	exit;

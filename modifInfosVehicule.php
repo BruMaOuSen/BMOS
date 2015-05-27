@@ -15,12 +15,18 @@
 	$marque = $_POST['marque'];
 	$typeVeh = $_POST['typeVehicule'];
 	$id = $_SESSION['membreid'];
-	
-	$reponse = $bdd->query("UPDATE vehicule SET immatriculation = '$immat', 
-												date_fabrication = '$datefab', 
-												marque = '$marque',
-												type_veh = '$typeVeh' 
-												WHERE proprietaire = '$id'");
+	if($immat != NULL){
+		$reponse = $bdd->query("UPDATE vehicule SET immatriculation = '$immat' WHERE proprietaire = '$id'");
+	}
+	if($datefab != NULL){
+		$reponse = $bdd->query("UPDATE vehicule SET date_fabrication = '$datefab' WHERE proprietaire = '$id'");
+	}
+	if($marque != NULL){
+		$reponse = $bdd->query("UPDATE vehicule SET marque = '$marque' WHERE proprietaire = '$id'");
+	}
+	if($typeVeh != NULL){
+		$reponse = $bdd->query("UPDATE vehicule SET type_veh = '$typeVeh' WHERE proprietaire = '$id'");
+	}		
 	header("Location: client.php");
 	$reponse->closeCursor();
 	exit;

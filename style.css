@@ -65,6 +65,10 @@ a:hover{
 	font-size: 10px;
 }
 
+.margintop20{
+	margin-top: 20px;
+}
+
 .colorwhite{
 	color: white;
 }
@@ -80,7 +84,27 @@ a:hover{
 	margin-bottom: 3px;
 }
 
+/*****MENU CLIENT******/
+.navbar{
+	min-height: 30px;
+}
 
+.navbarColor{
+	background: #4a494d;	
+	border: 1px solid #4a494d;
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
+	border-radius: 0px;
+}
+.navbarColor li{
+	width: 33%;
+	display: inline-block;
+	background: #666;
+}
+.navbarColor li a{
+	padding: 10px;
+	display: block;
+}
 /*****BODY*****/
 #inscription{
 	padding-top: 100px;
@@ -91,7 +115,7 @@ a:hover{
   	border-radius: 6px;
   	background: #DDD;
   	box-shadow: 0 2px 5px rgba(0,0,0,0.6);
-  	height: 290px;
+  	height: 310px;
 }
 
 #inscription legend{

@@ -20,9 +20,9 @@
 	//		VALUES ('$_POST[login]', '$_POST[motdepasse]', 'client')";
 	//$result = pg_query($query) or die('Echec de la requête : ' . pg_last_error());
 	
-	$_SESSION['membreid']= $_POST['login'];
-	$_SESSION['authentification'] = TRUE;
-	$_SESSION['roleutil'] = 'client';
+	//$_SESSION['membreid']= $_POST['login'];
+	//$_SESSION['authentification'] = TRUE;
+	//$_SESSION['roleutil'] = 'client';
 	
 	header("Location: client.php");
 
