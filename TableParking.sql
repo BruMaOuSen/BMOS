@@ -4,11 +4,11 @@ CREATE TYPE typePersonne AS enum ('personne', 'societe');
 CREATE TYPE moyenP AS enum ('carte', 'monnaie');
 create type typeTransac as enum ('ticket', 'abonnement');
 
+
 CREATE TABLE Zone ( 
-nom_zone varchar (50) UNIQUE NOT NULL, 
+nom_zone varchar (50) PRIMARY KEY, 
 prix_h_zone int , 
-prix_m_zone int, 
-PRIMARY KEY (nom_zone)
+prix_m_zone int 
 );
 
 create table Client(
@@ -38,47 +38,45 @@ create table Vehicule(
 	marque varchar(25),
 	proprietaire varchar(25) NOT NULL,
 	type_veh nbRoues NOT NULL,
-	FOREIGN KEY (type_veh) REFERENCES Type_vehicule(nb_roues),
-	FOREIGN KEY (proprietaire) REFERENCES Client(login)
+	FOREIGN KEY (type_veh) REFERENCES Type_vehicule(nb_roues) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (proprietaire) REFERENCES Client(login) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
 create table Parking(
-	nom_park varchar(50) UNIQUE NOT NULL, 
+	nom_park varchar(50) PRIMARY KEY, 
 	zone_park varchar (50) UNIQUE NOT NULL, 
 	nbplaces_park int NOT NULL, 
 	free_places int, 
 	FOREIGN KEY (zone_park) REFERENCES Zone(nom_zone)
 );
 
-CREATE TABLE Autorise ( --ETRANGE QUE CA SOIT UNE TABLE
+CREATE TABLE Autorise ( 
 	parking varchar (50) NOT NULL, 
 	type_veh_a nbRoues, 
 	PRIMARY KEY(parking, type_veh_a),
-	FOREIGN KEY (parking) REFERENCES parking (nom_park),
-	FOREIGN KEY (type_veh_a) REFERENCES type_vehicule(nb_roues)
+	FOREIGN KEY (parking) REFERENCES Parking (nom_park) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY (type_veh_a) REFERENCES Type_vehicule(nb_roues) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Place (
-	num_place int UNIQUE NOT NULL, 
-	park_place varchar (50) UNIQUE NOT NULL, 
-	zone_place varchar (50) UNIQUE NOT NULL, 
+	num_place int NOT NULL, 
+	park_place varchar (50),  
 	type_place typePlace, 
 	type_veh nbRoues, 
-	PRIMARY KEY(num_place, park_place, zone_place ), 
-	FOREIGN KEY (park_place) REFERENCES Parking(nom_park), 
-	FOREIGN KEY (type_veh) REFERENCES Type_vehicule(nb_roues),
-	FOREIGN KEY (zone_place) REFERENCES Parking(zone_park)
+	PRIMARY KEY(num_place, park_place), 
+	FOREIGN KEY (park_place) REFERENCES Parking(nom_park) ON DELETE CASCADE ON UPDATE CASCADE, 
+	FOREIGN KEY (type_veh) REFERENCES Type_vehicule(nb_roues) ON DELETE CASCADE ON UPDATE CASCADE	
 );
+
 CREATE TABLE Occupe (
-	immatriculation varchar(25) UNIQUE NOT NULL, 
-	nom_park varchar (25) UNIQUE NOT NULL, 
-	numero integer UNIQUE NOT NULL, 
+	immatriculation varchar(25), 
+	nom_park varchar (50), 
+	numero int, 
 	date_debut integer NOT NULL, 
 	date_fin integer NOT NULL, 
 	PRIMARY KEY(immatriculation, nom_park, numero),
-	FOREIGN KEY (immatriculation) REFERENCES Vehicule(immatriculation), 
-	FOREIGN KEY (nom_park) REFERENCES Place(park_place),
-	FOREIGN KEY (numero) REFERENCES Place(num_place)
-	--CHECK ( verifier que vehiculeType = placeType)
+	FOREIGN KEY (immatriculation) REFERENCES Vehicule(immatriculation) ON DELETE CASCADE ON UPDATE CASCADE, 
+	FOREIGN KEY (nom_park, numero) REFERENCES Place(park_place, num_place) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Transac (
@@ -90,9 +88,10 @@ CREATE TABLE Transac (
 	type_t typeTransac NOT NULL,
 	numero_paiement integer NOT NULL,
 	moyen_p moyenP NOT NULL,
-	client varchar(25) REFERENCES Client(login),
-	nom_park varchar(25) REFERENCES Place(park_place),
-	numero_place integer REFERENCES Place(num_place)
+	client varchar(25) REFERENCES Client(login) ON DELETE CASCADE ON UPDATE CASCADE,
+	nom_park varchar(50),
+	numero_place integer,
+	FOREIGN KEY (nom_park, numero_place) REFERENCES Place(park_place, num_place) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 -- CREATION DES BASES UTILISATEUR, ROLE ET PAGE POUR LA CONNEXION
@@ -103,7 +102,7 @@ create table Role (
 create table utilisateur (
 	pseudo varchar(50) PRIMARY KEY NOT NULL,
 	mot_de_passe varchar(50),
-	type_user varchar(50) REFERENCES Role(type_role)
+	type_user varchar(50) REFERENCES Role(type_role) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table Page (
@@ -111,6 +110,6 @@ create table Page (
 	nom_page varchar(50) 
 );
 create table RolePage (
-	numero_page int REFERENCES Page(ID_page),
-	role_page varchar(50) REFERENCES Role(type_role)
+	numero_page int REFERENCES Page(ID_page) ON DELETE CASCADE ON UPDATE CASCADE,
+	role_page varchar(50) REFERENCES Role(type_role) ON DELETE CASCADE ON UPDATE CASCADE
 );

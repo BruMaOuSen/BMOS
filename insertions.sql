@@ -63,6 +63,16 @@ VALUES ('tec', 'technotrans', 'tecs', 'societe', 30, 10);
 
 
 
+----------Insertions Administrateur----------------------------
+
+INSERT INTO Administrateur (login, nom, mot_de_passe)
+VALUES 
+('lyo', 'lyon', 'lyos'),
+('upa', 'upark', 'upas'),
+('dou', 'doudou', 'doup')
+;
+
+
 ----------Insertions Type_vehicule----------------------------
 
 INSERT INTO Type_vehicule (nb_roues )
@@ -72,6 +82,62 @@ VALUES ('4');
 INSERT INTO Type_vehicule (nb_roues )
 VALUES ('8');
 
+
+
+----------Insertions Zones----------------------------
+
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('La Duchère', 3, 200);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Saint Rambert', 4, 250);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Vaise', 2, 100);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Champvert - Gorge du Loup', 6, 600);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Champvert - Point du Jour - Jeunet', 3, 200);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Ménival - Battières - La Plaine', 3, 200);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Saint Just - Saint Irénée - Fourvière', 9, 950);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Vieux Lyon', 4, 250);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Pentes de la Croix-Rousse', 4, 250);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Croix-Rousse', 6, 600);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Tete d''Or', 4, 250);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Brotteaux - Bellecombe', 6, 600);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Mutualité - Préfecture', 4, 250);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Guillotière',2, 100);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Voltaire - Part Dieu', 3, 200);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Jean Macé',2, 100);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('La Mouche', 4, 250);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Gerland', 3, 200);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Grand Trou - Moulin à vent', 3, 200);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Etats-Unis',6, 600);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Monplaisir',2, 100);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Sans souci - Dauphiné', 3, 200);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Monchat',2, 100);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Bachut - Transvaal', 3, 200);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('La Plaine Santy',6, 600);
+INSERT INTO zone (nom_zone, prix_h_zone, prix_m_zone)
+VALUES ('Laennec Mermoz', 3, 200);
 
 
 ----------Insertions Vehicule----------------------------
@@ -143,108 +209,108 @@ VALUES
 
 ----------Insertions Place----------------------------
 
-INSERT INTO Place (num_place, park_place, zone_place, type_place, type_veh)
+INSERT INTO Place (num_place, park_place, type_place, type_veh)
 VALUES 
-(1, 'marche', 'La Duchère', 'couvert', '2'),
-(2, 'marche', 'La Duchère', 'dehors', '4'),
-(3, 'marche', 'La Duchère', 'couvert', '4'),
-(4, 'marche', 'La Duchère', 'dehors', '4'),
-(5, 'marche', 'La Duchère', 'dehors', '8'),
-(1, 'guy', 'Champvert - Gorge du Loup', 'couvert', '2'),
-(2, 'guy', 'Champvert - Gorge du Loup', 'dehors', '4'),
-(3, 'guy', 'Champvert - Gorge du Loup', 'couvert', '4'),
-(4, 'guy', 'Champvert - Gorge du Loup', 'dehors', '4'),
-(5, 'guy', 'Champvert - Gorge du Loup', 'dehors', '8'),
-(1, 'vinci', 'Vaise', 'couvert', '2'),
-(2, 'vinci', 'Vaise', 'dehors', '4'),
-(3, 'vinci', 'Vaise', 'couvert', '4'),
-(4, 'vinci', 'Vaise', 'dehors', '4'),
-(5, 'vinci', 'Vaise', 'dehors', '8'),
-(1, 'hey', 'Champvert - Point du Jour - Jeunet', 'couvert', '2'),
-(2, 'hey', 'Champvert - Point du Jour - Jeunet', 'dehors', '4'),
-(3, 'hey', 'Champvert - Point du Jour - Jeunet', 'couvert', '4'),
-(4, 'hey', 'Champvert - Point du Jour - Jeunet', 'dehors', '4'),
-(5, 'hey', 'Champvert - Point du Jour - Jeunet', 'dehors', '8'),
-(1, 'hello', 'Vieux Lyon', 'couvert', '2'),
-(2, 'hello', 'Vieux Lyon', 'dehors', '4'),
-(3, 'hello', 'Vieux Lyon', 'couvert', '4'),
-(4, 'hello', 'Vieux Lyon', 'dehors', '4'),
-(5, 'hello', 'Vieux Lyon', 'dehors', '8'),
-(1, 'how', 'Croix-Rousse', 'couvert', '2'),
-(2, 'how', 'Croix-Rousse', 'dehors', '4'),
-(3, 'how', 'Croix-Rousse', 'couvert', '4'),
-(4, 'how', 'Croix-Rousse', 'dehors', '4'),
-(5, 'how', 'Croix-Rousse', 'dehors', '8'),
-(1, 'salut', 'Tete d''Or', 'couvert', '2'),
-(2, 'salut', 'Tete d''Or', 'dehors', '4'),
-(3, 'salut', 'Tete d''Or', 'couvert', '4'),
-(4, 'salut', 'Tete d''Or', 'dehors', '4'),
-(5, 'salut', 'Tete d''Or', 'dehors', '8'),
-(1, 'coucou', 'Mutualité - Préfecture', 'couvert', '2'),
-(2, 'coucou', 'Mutualité - Préfecture', 'dehors', '4'),
-(3, 'coucou', 'Mutualité - Préfecture', 'couvert', '4'),
-(4, 'coucou', 'Mutualité - Préfecture', 'dehors', '4'),
-(5, 'coucou', 'Mutualité - Préfecture', 'dehors', '8'),
-(1, 'dommage', 'Guillotière', 'couvert', '2'),
-(2, 'dommage', 'Guillotière', 'dehors', '4'),
-(3, 'dommage', 'Guillotière', 'couvert', '4'),
-(4, 'dommage', 'Guillotière', 'dehors', '4'),
-(5, 'dommage', 'Guillotière', 'dehors', '8'),
-(1, 'piscine', 'Jean Macé', 'couvert', '2'),
-(2, 'piscine', 'Jean Macé', 'dehors', '4'),
-(3, 'piscine', 'Jean Macé', 'couvert', '4'),
-(4, 'piscine', 'Jean Macé', 'dehors', '4'),
-(5, 'piscine', 'Jean Macé', 'dehors', '8'),
-(1, 'plage', 'Gerland', 'couvert', '2'),
-(2, 'plage', 'Gerland', 'dehors', '4'),
-(3, 'plage', 'Gerland', 'couvert', '4'),
-(4, 'plage', 'Gerland', 'dehors', '4'),
-(5, 'plage', 'Gerland', 'dehors', '8'),
-(1, 'mer', 'La Mouche', 'couvert', '2'),
-(2, 'mer', 'La Mouche', 'dehors', '4'),
-(3, 'mer', 'La Mouche', 'couvert', '4'),
-(4, 'mer', 'La Mouche', 'dehors', '4'),
-(5, 'mer', 'La Mouche', 'dehors', '8'),
-(1, 'base', 'Monplaisir', 'couvert', '2'),
-(2, 'base', 'Monplaisir', 'dehors', '4'),
-(3, 'base', 'Monplaisir', 'couvert', '4'),
-(4, 'base', 'Monplaisir', 'dehors', '4'),
-(5, 'base', 'Monplaisir', 'dehors', '8'),
-(1, 'donnee', 'Monchat', 'couvert', '2'),
-(2, 'donnee', 'Monchat', 'dehors', '4'),
-(3, 'donnee', 'Monchat', 'couvert', '4'),
-(4, 'donnee', 'Monchat', 'dehors', '4'),
-(5, 'donnee', 'Monchat', 'dehors', '8'),
-(1, 'editeur', 'Bachut - Transvaal', 'couvert', '2'),
-(2, 'editeur', 'Bachut - Transvaal', 'dehors', '4'),
-(3, 'editeur', 'Bachut - Transvaal', 'couvert', '4'),
-(4, 'editeur', 'Bachut - Transvaal', 'dehors', '4'),
-(5, 'editeur', 'Bachut - Transvaal', 'dehors', '8'),
-(1, 'message', 'La Plaine Santy', 'couvert', '2'),
-(2, 'message', 'La Plaine Santy', 'dehors', '4'),
-(3, 'message', 'La Plaine Santy', 'couvert', '4'),
-(4, 'message', 'La Plaine Santy', 'dehors', '4'),
-(5, 'message', 'La Plaine Santy', 'dehors', '8'),
-(1, 'sortie', 'Laennec Mermoz', 'couvert', '2'),
-(2, 'sortie', 'Laennec Mermoz', 'dehors', '4'),
-(3, 'sortie', 'Laennec Mermoz', 'couvert', '4'),
-(4, 'sortie', 'Laennec Mermoz', 'dehors', '4'),
-(5, 'sortie', 'Laennec Mermoz', 'dehors', '8'),
-(1, 'entree', 'Etats-Unis', 'couvert', '2'),
-(2, 'entree', 'Etats-Unis', 'dehors', '4'),
-(3, 'entree', 'Etats-Unis', 'couvert', '4'),
-(4, 'entree', 'Etats-Unis', 'dehors', '4'),
-(5, 'entree', 'Etats-Unis', 'dehors', '8'),
-(1, 'fichier', 'Voltaire - Part Dieu', 'couvert', '2'),
-(2, 'fichier', 'Voltaire - Part Dieu', 'dehors', '4'),
-(3, 'fichier', 'Voltaire - Part Dieu', 'couvert', '4'),
-(4, 'fichier', 'Voltaire - Part Dieu', 'dehors', '4'),
-(5, 'fichier', 'Voltaire - Part Dieu', 'dehors', '8'),
-(1, 'edition', 'Brotteaux - Bellecombe', 'couvert', '2'),
-(2, 'edition', 'Brotteaux - Bellecombe', 'dehors', '4'),
-(3, 'edition', 'Brotteaux - Bellecombe', 'couvert', '4'),
-(4, 'edition', 'Brotteaux - Bellecombe', 'dehors', '4'),
-(5, 'edition', 'Brotteaux - Bellecombe', 'dehors', '8')
+(1, 'marche', 'couvert', '2'),
+(2, 'marche', 'dehors', '4'),
+(3, 'marche', 'couvert', '4'),
+(4, 'marche', 'dehors', '4'),
+(5, 'marche', 'dehors', '8'),
+(1, 'guy', 'couvert', '2'),
+(2, 'guy', 'dehors', '4'),
+(3, 'guy', 'couvert', '4'),
+(4, 'guy', 'dehors', '4'),
+(5, 'guy', 'dehors', '8'),
+(1, 'vinci', 'couvert', '2'),
+(2, 'vinci', 'dehors', '4'),
+(3, 'vinci', 'couvert', '4'),
+(4, 'vinci', 'dehors', '4'),
+(5, 'vinci', 'dehors', '8'),
+(1, 'hey', 'couvert', '2'),
+(2, 'hey', 'dehors', '4'),
+(3, 'hey', 'couvert', '4'),
+(4, 'hey', 'dehors', '4'),
+(5, 'hey', 'dehors', '8'),
+(1, 'hello', 'couvert', '2'),
+(2, 'hello', 'dehors', '4'),
+(3, 'hello', 'couvert', '4'),
+(4, 'hello', 'dehors', '4'),
+(5, 'hello', 'dehors', '8'),
+(1, 'how', 'couvert', '2'),
+(2, 'how', 'dehors', '4'),
+(3, 'how', 'couvert', '4'),
+(4, 'how', 'dehors', '4'),
+(5, 'how', 'dehors', '8'),
+(1, 'salut', 'couvert', '2'),
+(2, 'salut', 'dehors', '4'),
+(3, 'salut', 'couvert', '4'),
+(4, 'salut', 'dehors', '4'),
+(5, 'salut', 'dehors', '8'),
+(1, 'coucou', 'couvert', '2'),
+(2, 'coucou', 'dehors', '4'),
+(3, 'coucou', 'couvert', '4'),
+(4, 'coucou', 'dehors', '4'),
+(5, 'coucou', 'dehors', '8'),
+(1, 'dommage', 'couvert', '2'),
+(2, 'dommage', 'dehors', '4'),
+(3, 'dommage', 'couvert', '4'),
+(4, 'dommage', 'dehors', '4'),
+(5, 'dommage', 'dehors', '8'),
+(1, 'piscine', 'couvert', '2'),
+(2, 'piscine', 'dehors', '4'),
+(3, 'piscine', 'couvert', '4'),
+(4, 'piscine', 'dehors', '4'),
+(5, 'piscine', 'dehors', '8'),
+(1, 'plage', 'couvert', '2'),
+(2, 'plage', 'dehors', '4'),
+(3, 'plage', 'couvert', '4'),
+(4, 'plage', 'dehors', '4'),
+(5, 'plage', 'dehors', '8'),
+(1, 'mer', 'couvert', '2'),
+(2, 'mer', 'dehors', '4'),
+(3, 'mer', 'couvert', '4'),
+(4, 'mer', 'dehors', '4'),
+(5, 'mer', 'dehors', '8'),
+(1, 'base', 'couvert', '2'),
+(2, 'base', 'dehors', '4'),
+(3, 'base', 'couvert', '4'),
+(4, 'base', 'dehors', '4'),
+(5, 'base', 'dehors', '8'),
+(1, 'donnee', 'couvert', '2'),
+(2, 'donnee', 'dehors', '4'),
+(3, 'donnee', 'couvert', '4'),
+(4, 'donnee', 'dehors', '4'),
+(5, 'donnee', 'dehors', '8'),
+(1, 'editeur', 'couvert', '2'),
+(2, 'editeur', 'dehors', '4'),
+(3, 'editeur', 'couvert', '4'),
+(4, 'editeur', 'dehors', '4'),
+(5, 'editeur', 'dehors', '8'),
+(1, 'message', 'couvert', '2'),
+(2, 'message', 'dehors', '4'),
+(3, 'message', 'couvert', '4'),
+(4, 'message', 'dehors', '4'),
+(5, 'message', 'dehors', '8'),
+(1, 'sortie', 'couvert', '2'),
+(2, 'sortie', 'dehors', '4'),
+(3, 'sortie', 'couvert', '4'),
+(4, 'sortie', 'dehors', '4'),
+(5, 'sortie', 'dehors', '8'),
+(1, 'entree', 'couvert', '2'),
+(2, 'entree', 'dehors', '4'),
+(3, 'entree', 'couvert', '4'),
+(4, 'entree', 'dehors', '4'),
+(5, 'entree', 'dehors', '8'),
+(1, 'fichier', 'couvert', '2'),
+(2, 'fichier', 'dehors', '4'),
+(3, 'fichier', 'couvert', '4'),
+(4, 'fichier', 'dehors', '4'),
+(5, 'fichier', 'dehors', '8'),
+(1, 'edition', 'couvert', '2'),
+(2, 'edition', 'dehors', '4'),
+(3, 'edition', 'couvert', '4'),
+(4, 'edition', 'dehors', '4'),
+(5, 'edition', 'dehors', '8')
 ;
 
 
