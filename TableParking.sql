@@ -15,7 +15,7 @@ create table Client(
 	login varchar(25) primary key,
 	nom varchar(25) NOT NULL,
 	typeP typePersonne NOT NULL,
-	numero_compte integer UNIQUE NOT NULL,
+	numero_compte SERIAL NOT NULL,
 	taux_de_reduction float,
 	mot_de_passe varchar(25),
 	role_client varchar(50) NOT NULL,
