@@ -1,25 +1,25 @@
-----------Insertions Client----------------------------
+﻿----------Insertions Client----------------------------
 
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('dup', 'dupont', 'dupp', 'personne', 01, 30);
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('kro', 'kromwel', 'krop', 'personne', 02, 0);
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('wan', 'wang', 'wanp', 'personne', 03, 0);
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('voi', 'voinier', 'voip', 'personne', 04, 40);
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('tal', 'talouka', 'talp', 'personne', 05, 10);
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('rai', 'rain', 'raip', 'personne', 06, 0);
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('wi', 'weill', 'weip', 'personne', 07, 0);
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('coh', 'cohen', 'cohp', 'personne', 08, 0);
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('mic', 'michel', 'micp', 'personne', 09, 0);
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('dan', 'daniel', 'danp', 'personne', 10, 10);
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('dup', 'dupont', 'dupp', 'personne', 01, 30, 'client', false);
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('kro', 'kromwel', 'krop', 'personne', 02, 0, 'client', false);
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('wan', 'wang', 'wanp', 'personne', 03, 0, 'client', false);
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('voi', 'voinier', 'voip', 'personne', 04, 40, 'client', false);
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('tal', 'talouka', 'talp', 'personne', 05, 10, 'client', false);
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('rai', 'rain', 'raip', 'personne', 06, 0, 'client', false);
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('wi', 'weill', 'weip', 'personne', 07, 0, 'client', false);
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('coh', 'cohen', 'cohp', 'personne', 08, 0, 'client', false);
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('mic', 'michel', 'micp', 'personne', 09, 0, 'client', false);
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('dan', 'daniel', 'danp', 'personne', 10, 10, 'client', false);
 /*INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
 VALUES ('pui', 'puiffe', 'puip', 'personne', 11, 30);
 INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
@@ -40,36 +40,35 @@ INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_redu
 VALUES ('vua', 'vuatrin', 'vuap', 'personne', 19, 50);
 INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
 VALUES ('dio', 'dionisi', 'diop', 'personne', 20, 0); */
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('nes', 'nespoli', 'ness', 'societe', 21, 20);
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('gla', 'glass', 'glas', 'societe', 22, 40);
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('gav', 'gavametal', 'gavs', 'societe', 23, 30);
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('exc', 'excellium', 'excs', 'societe', 24, 10);
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('mir', 'mirometrics', 'mirs', 'societe', 25, 0);
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('pro', 'prodel', 'pros', 'societe', 26, 0);
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('cet', 'cetim', 'cets', 'societe', 27, 50);
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('sol', 'solvakem', 'sols', 'societe', 28, 20);
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('met', 'metallerie', 'mets', 'societe', 29, 20);
-INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction)
-VALUES ('tec', 'technotrans', 'tecs', 'societe', 30, 10);
-
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('nes', 'nespoli', 'ness', 'societe', 21, 20, 'client', false);
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('gla', 'glass', 'glas', 'societe', 22, 40, 'client', false);
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('gav', 'gavametal', 'gavs', 'societe', 23, 30, 'client', false);
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('exc', 'excellium', 'excs', 'societe', 24, 10, 'client', false);
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('mir', 'mirometrics', 'mirs', 'societe', 25, 0, 'client', false);
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('pro', 'prodel', 'pros', 'societe', 26, 0, 'client', false);
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('cet', 'cetim', 'cets', 'societe', 27, 50, 'client', false);
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('sol', 'solvakem', 'sols', 'societe', 28, 20, 'client', false);
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('met', 'metallerie', 'mets', 'societe', 29, 20, 'client', false);
+INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
+VALUES ('tec', 'technotrans', 'tecs', 'societe', 30, 10, 'client', false);
 
 
 ----------Insertions Administrateur----------------------------
 
-INSERT INTO Administrateur (login, nom, mot_de_passe)
+INSERT INTO Administrateur (login, nom, mot_de_passe, role_admin)
 VALUES 
-('lyo', 'lyon', 'lyos'),
-('upa', 'upark', 'upas'),
-('dou', 'doudou', 'doup')
+('lyo', 'lyon', 'lyos', 'administrateur'),
+('upa', 'upark', 'upas', 'administrateur'),
+('dou', 'doudou', 'doup', 'administrateur')
 ;
 
 
