@@ -12,7 +12,7 @@
 	}		
 	$nom = $_POST['nom'];
 	$identification = $_POST['identification'];
-	$numCompte = $_POST['numCompte'];
+	$nbVoit = $_POST['nbVoit'];
 	$id = $_SESSION['membreid'];
 	
 	if($nom != NULL){
@@ -21,12 +21,12 @@
 	if($identification != NULL){
 	$reponse = $bdd->query("UPDATE client SET typep = '$identification' WHERE login = '$id'");
 	}
-	if($numCompte){
-	$reponse = $bdd->query("UPDATE client SET numero_compte = '$numCompte' WHERE login = '$id'");
+	if($nbVoit != NULL){
+	$reponse = $bdd->query("UPDATE client SET nb_voitures = '$nbVoit' WHERE login = '$id'");
 	}
+	$reponse->closeCursor();
 
 	header("Location: client.php");
-	$reponse->closeCursor();
 	exit;
 ?>
 	

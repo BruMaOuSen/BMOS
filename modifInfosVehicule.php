@@ -38,18 +38,25 @@
 	
 	if($donnees == NULL){
 		//echo "papa";
-		$reponse2 = $bdd->query("INSERT INTO vehicule (immatriculation, date_fabrication, marque, proprietaire, type_veh)
-								 VALUES ('$immat', '$datefab', '$marque', '$id', '$typeVeh')");
-		$reponse2->closeCursor();
+		$reponse2 = $bdd->query("SELECT * FROM vehicule WHERE immatriculation ='$immat'");
+		$donnees = $reponse2->fetch();
+		
+		if($donnees){
+			header("Location: client.php");
+		}
+		else{
+			$reponse3 = $bdd->query("INSERT INTO vehicule (immatriculation, date_fabrication, marque, proprietaire, type_veh)
+									 VALUES ('$immat', '$datefab', '$marque', '$id', '$typeVeh')");
+			$reponse3->closeCursor();
+		}
 	}
-	
+	$reponse->closeCursor();
 	//else{
 	//	$reponse = $bdd("INSERT INTO Vehicule
 	//					 VALUES('$immat', '$datefab', '$marque', '$id', '$typeVeh')");
 	//	$reponse->closeCursor();
 	//}		
 	header("Location: client.php");
-	//$reponse->closeCursor();
 	exit;
 ?>
 	
