@@ -19,13 +19,14 @@ create table Client(
 	taux_de_reduction float,
 	mot_de_passe varchar(25),
 	role_client varchar(50) NOT NULL,
+	abonne boolean,
 	FOREIGN KEY (role_client) REFERENCES Role(type_role) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table Administrateur(
 	login varchar(25) primary key,
 	nom varchar(25) NOT NULL,
-	mot_de_passe varchar(25)
+	mot_de_passe varchar(25),
 	role_admin varchar(50) NOT NULL,
 	FOREIGN KEY (role_admin) REFERENCES Role(type_role) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -103,11 +104,12 @@ create table Role (
 	type_role varchar(50) PRIMARY KEY
 );
 
-create table utilisateur (
+/*Useless*/
+/*create table utilisateur (
 	pseudo varchar(50) PRIMARY KEY NOT NULL,
 	mot_de_passe varchar(50),
 	type_user varchar(50) REFERENCES Role(type_role) ON DELETE CASCADE ON UPDATE CASCADE
-);
+);*/
 
 create table Page (
 	ID_page SERIAL PRIMARY KEY,
