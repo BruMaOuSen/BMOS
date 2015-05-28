@@ -25,7 +25,7 @@ create table Client(
 create table Administrateur(
 	login varchar(25) primary key,
 	nom varchar(25) NOT NULL,
-	mot_de_passe varchar(25)
+	mot_de_passe varchar(25),
 	role_admin varchar(50) NOT NULL,
 	FOREIGN KEY (role_admin) REFERENCES Role(type_role) ON DELETE CASCADE ON UPDATE CASCADE
 );
