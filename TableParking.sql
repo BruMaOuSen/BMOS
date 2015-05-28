@@ -24,7 +24,7 @@ create table Client(
 create table compte (
         numero_de_compte SERIAL PRIMARY KEY,
         taux_de_reduction double precision,
-        loginC character varying(25) NOT NULL,
+        loginC character varying(25) UNIQUE NOT NULL,
         FOREIGN KEY (loginC) REFERENCES client (login) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
