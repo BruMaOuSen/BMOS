@@ -103,11 +103,12 @@ create table Role (
 	type_role varchar(50) PRIMARY KEY
 );
 
-create table utilisateur (
+/*Useless*/
+/*create table utilisateur (
 	pseudo varchar(50) PRIMARY KEY NOT NULL,
 	mot_de_passe varchar(50),
 	type_user varchar(50) REFERENCES Role(type_role) ON DELETE CASCADE ON UPDATE CASCADE
-);
+);*/
 
 create table Page (
 	ID_page SERIAL PRIMARY KEY,
