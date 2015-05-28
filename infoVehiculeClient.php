@@ -58,13 +58,13 @@
     						<?php 
     							if($donnees){
     								if($donnees['type_veh']=='2'){
-    									echo " 2 roues";
+    									echo "2 roues";
     								}
     								else if($donnees['type_veh']=='4'){
-    									echo " 4 roues";
+    									echo "4 roues";
     								}
     								else if($donnees['type_veh']=='8'){
-    									echo " 8 roues";
+    									echo "8 roues";
     								}
     							}
     							else

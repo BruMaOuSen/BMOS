@@ -40,7 +40,7 @@
     					</td>
     				</tr>			    
     				<tr>
-    					<td>Identification</td>
+    					<td>Identification (société ou personne)</td>
     					<td>
     						<?php 
     							if($donnees){
@@ -68,11 +68,11 @@
     					</td>
     				</tr>
     				<tr>
-    					<td>Taux de réduction</td>
+    					<td>Taux de réduction (%)</td>
     					<td>
     						<?php 
     							if($donnees){
-	    							echo $donnees['taux_de_reduction'];
+	    							echo $donnees['taux_de_reduction'] ;
     							}
     							else
     							{

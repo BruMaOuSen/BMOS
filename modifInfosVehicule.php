@@ -15,6 +15,12 @@
 	$marque = $_POST['marque'];
 	$typeVeh = $_POST['typeVehicule'];
 	$id = $_SESSION['membreid'];
+	
+	
+	$reponse = $bdd->query("SELECT * FROM vehicule WHERE proprietaire = '$id'");
+	$donnees = $reponse->fetch();
+
+	if($donnees){
 	if($immat != NULL){
 		$reponse = $bdd->query("UPDATE vehicule SET immatriculation = '$immat' WHERE proprietaire = '$id'");
 	}
@@ -26,9 +32,24 @@
 	}
 	if($typeVeh != NULL){
 		$reponse = $bdd->query("UPDATE vehicule SET type_veh = '$typeVeh' WHERE proprietaire = '$id'");
-	}		
-	header("Location: client.php");
+	}
 	$reponse->closeCursor();
+	}
+	
+	if($donnees == NULL){
+		//echo "papa";
+		$reponse2 = $bdd->query("INSERT INTO vehicule (immatriculation, date_fabrication, marque, proprietaire, type_veh)
+								 VALUES ('$immat', '$datefab', '$marque', '$id', '$typeVeh')");
+		$reponse2->closeCursor();
+	}
+	
+	//else{
+	//	$reponse = $bdd("INSERT INTO Vehicule
+	//					 VALUES('$immat', '$datefab', '$marque', '$id', '$typeVeh')");
+	//	$reponse->closeCursor();
+	//}		
+	header("Location: client.php");
+	//$reponse->closeCursor();
 	exit;
 ?>
 	

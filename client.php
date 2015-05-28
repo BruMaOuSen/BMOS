@@ -52,7 +52,7 @@
       							<input id="nom" name="nom" type="text" placeholder="Nom" class="form-control">
     						</div>
 						    <div class="form-group">
-      							<input id="identification"  name="identification" type="text" placeholder="Identification" class="form-control">
+      							<input id="identification"  name="identification" type="text" placeholder="Société ou personne?" class="form-control">
     						</div>
     						<div class="form-group">
       							<input id="numCompte" name="numCompte" type="text" placeholder="Numéro de compte" class="form-control">	
