@@ -6,21 +6,26 @@ create type typeTransac as enum ('ticket', 'abonnement');
 
 
 CREATE TABLE Zone ( 
-nom_zone varchar (50) PRIMARY KEY, 
-prix_h_zone int , 
-prix_m_zone int 
+        nom_zone varchar (50) PRIMARY KEY, 
+        prix_h_zone int , 
+        prix_m_zone int 
 );
 
 create table Client(
 	login varchar(25) primary key,
 	nom varchar(25) NOT NULL,
 	typeP typePersonne NOT NULL,
-	numero_compte SERIAL NOT NULL,
-	taux_de_reduction float,
 	mot_de_passe varchar(25),
 	role_client varchar(50) NOT NULL,
 	abonne boolean,
 	FOREIGN KEY (role_client) REFERENCES Role(type_role) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+create table compte (
+        numero_de_compte SERIAL PRIMARY KEY,
+        taux_de_reduction double precision,
+        loginC character varying(25) UNIQUE NOT NULL,
+        FOREIGN KEY (loginC) REFERENCES client (login) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table Administrateur(

@@ -1,10 +1,6 @@
-<?php
-	session_start();
-?>
-
-<?php 
+<!--<?php 
 	if($_SESSION['membreid']==NULL){
-?>
+?>-->
 <!-- Si un utilisateur n'est pas connecté on affiche le formulaire de connexion-->
 <div id="header">
     <div class="container">
