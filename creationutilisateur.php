@@ -16,15 +16,18 @@
 	$typeP = $_POST['typeP'];
 	$mdp = $_POST['motdepasse'];
 	
-	$reponse = $bdd->query("INSERT INTO client (login, nom, typep, taux_de_reduction, mot_de_passe, role_client) 
-							VALUES ('$login', '$nom', '$typeP', '0', '$mdp', 'client')");
+	$reponse = $bdd->query("INSERT INTO client (login, nom, typep, mot_de_passe, role_client, nb_voitures) 
+							VALUES ('$login', '$nom', '$typeP', '$mdp', 'client', '1')");	
+	$reponse->closeCursor();
+
+	$reponse1 = $bdd->query("INSERT INTO compte (taux_de_reduction, loginC) VALUES('0', '$login')");
+	$reponse1->closeCursor();
+
 	
 	$_SESSION['membreid'] = $login;
 	$_SESSION['authentification'] = TRUE;
-	$_SESSION['roleutil'] = 'client';
-	
-	$reponse->closeCursor();
-		
+	$_SESSION['roleutil'] = 'client';	
+				
 	header("Location: client.php");
-
+	exit;
 ?>	

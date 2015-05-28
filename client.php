@@ -55,7 +55,7 @@
       							<input id="identification"  name="identification" type="text" placeholder="Société ou personne?" class="form-control">
     						</div>
     						<div class="form-group">
-      							<input id="numCompte" name="numCompte" type="text" placeholder="Numéro de compte" class="form-control">	
+      							<input id="nbVoit" name="nbVoit" type="text" placeholder="Nombre de voiture(s)" class="form-control">	
       						</div>
     						<button type="submit">Valider</button>
 				</form>
@@ -67,37 +67,13 @@
   			</div>
 		</div>
 
-		<!--INFORMATIONS SUR LE VEHICULE-->
+		<!--INFORMATIONS SUR LE VEHICULE ET BOUTON DE MODIFICATION-->
+		<?php 
+			
+		?>
 		<?php include('infoVehiculeClient.php'); ?>
-
-		<!--MODIFICATION DES INFOS DU VEHICULE-->
-    	<div class="container">
-  			<div id="infoVoit" class="alert alert-info alert-dismissable col-md-offset-3 col-md-6" style="display: none">
-    			<button type="button" class="close" id="closeVoit">×</button>
-      			<form method="post" action="modifInfosVehicule.php">
-  					<legend>Modifications des informations</legend>
-						    <div class="form-group">
-      							<input id="marque" name="marque" type="text" placeholder="Marque" class="form-control">
-    						</div>
-						    <div class="form-group">
-      							<input id="immatriculation"  name="immatriculation" type="text" placeholder="Immatriculation" class="form-control">
-    						</div>
-    						<div class="form-group">
-      							<input id="datefabrication" name="dateFabrication" type="text" placeholder="Date de fabrication" class="form-control">	
-      						</div>
-      						<div class="form-group">
-      							<input id="typeVehicule" name="typeVehicule" type="text" placeholder="Type de véhicule" class="form-control">	
-      						</div>
-    						<button type="submit">Valider</button>
-				</form>
-  			</div>
-  			<div class="col-md-offset-3 col-md-6">
-    			<button type="submit" class="btn btn-info" id="afficherInfoVoit">
-    				<span class="glyphicon glyphicon-pencil"></span>&nbsp;Modifier les informations du véhicule
-    			</button>
-  			</div>
-		</div>
-
+    	
+    	
     	<!--INSERTION DU FOOTER-->
 		<?php include ('footer.php'); ?>
 		  

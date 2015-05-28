@@ -3,12 +3,14 @@
     	<div class="col-md-offset-2 col-md-8">
   			<table class="table table-bordered table-striped">
   				<caption>
-  					<h4 style="text-align: center">Informations personnelles</h4>
+  					<h4 style="text-align: center">Informations personnelles de <?php echo $_SESSION['membreid'];?></h4>
   				</caption>
   				<?php
   					$id = $_SESSION['membreid'];
 					$reponse = $bdd->query('SELECT * FROM client WHERE login =\''.$id.'\'');
 					$donnees = $reponse->fetch();
+					$reponse1 = $bdd->query('SELECT * FROM compte WHERE loginC = \''.$id.'\'');
+					$donnees1 = $reponse1->fetch();
 				?>
     			<tbody>
     				<tr>
@@ -57,8 +59,22 @@
     					<td>Numéro de compte</td>
     					<td>
     						<?php 
+    							if($donnees1){
+	    							echo $donnees1['numero_de_compte'];
+    							}
+    							else
+    							{
+    								echo "Non renseigné";
+    							}	
+    						?>
+    					</td>
+    				</tr>
+    				<tr>
+    					<td>Nombre de voiture(s)</td>
+    					<td>
+    						<?php 
     							if($donnees){
-	    							echo $donnees['numero_compte'];
+	    							echo $donnees['nb_voitures'];
     							}
     							else
     							{
@@ -71,8 +87,8 @@
     					<td>Taux de réduction (%)</td>
     					<td>
     						<?php 
-    							if($donnees){
-	    							echo $donnees['taux_de_reduction'] ;
+    							if($donnees1){
+	    							echo $donnees1['taux_de_reduction'] ;
     							}
     							else
     							{
@@ -84,6 +100,7 @@
 				</tbody>
 				<?php
 					$reponse->closeCursor(); // Termine le traitement de la requête
+					$reponse1->closeCursor();
 				?>
 			</table>
   		</div>
