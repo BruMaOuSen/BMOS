@@ -18,6 +18,7 @@ create table Client(
 	mot_de_passe varchar(25),
 	role_client varchar(50) NOT NULL,
 	abonne boolean,
+	nb_voitures integer NOT NULL,
 	FOREIGN KEY (role_client) REFERENCES Role(type_role) ON DELETE CASCADE ON UPDATE CASCADE
 );
 

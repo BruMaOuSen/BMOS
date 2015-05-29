@@ -61,6 +61,12 @@ VALUES ('met', 'metallerie', 'mets', 'societe', 29, 20, 'client', false);
 INSERT INTO client (login, nom, mot_de_passe, typeP, numero_compte, taux_de_reduction, role_client, abonne)
 VALUES ('tec', 'technotrans', 'tecs', 'societe', 30, 10, 'client', false);
 
+----------Insertions Role----------------------------------------------
+INSERT INTO Role (type_role) 
+VALUES
+('administrateur'),
+('client');
+
 
 ----------Insertions Administrateur----------------------------
 
