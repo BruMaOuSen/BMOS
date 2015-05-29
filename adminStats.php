@@ -5,24 +5,25 @@
 	}
 	else
 	{
-		if($_SESSION['roleutil']!='mairie' && $_SESSION['roleutil']!='administrateur'){
+		if($_SESSION['roleutil']!='administrateur'){
 			header("Location: index.php");
 			exit;		
 		}
 	}
 ?>
-
-
+<!DOCTYPE html>
 <html>
-<head>
+    <head>
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     	<link href="style.css" rel="stylesheet">
     	<meta charset="utf-8">
-        <title>UPARK | Administrateur <?php echo $_SESSION['membreid'];?></title>
+        <title>UPARK | Admin <?php echo $_SESSION['membreid'];?></title>
     </head>
-<body>
-
-<!--affichage de toutes les zones pour en selectionner une -->
+    <body>
+    	<!--INSERTION DU HEADER-->
+			<?php include ('header.php'); ?>			
+    	
+    	<!--CORPS DE LA PAGE D'INDEX-->    	
         <?php
 			try
 			{
@@ -36,9 +37,9 @@
 		?>
 
 		<div class="container">
-  			<div class="alert alert-info alert-dismissable col-md-offset-2 col-md-8" style="display: none">
-    			<button type="button" class="close">×</button>
-				<form method="post" action="adminCreation.php">
+  			<div id="alertChoixZone"class="alert alert-info alert-dismissable col-md-offset-2 col-md-8" style="display: none">
+    			<button type="button" class="close" id="closeChoixZone">×</button>
+				<form method="post" action="adminStats.php">
 					<h3 class="panel-title">Choisir une zone</h3>
   					<select name="zone"class="selectpicker">
   					<?php
@@ -58,7 +59,7 @@
 				</form>	
   			</div>
   			<div class="col-md-offset-3 col-md-6">
-    			<button type="submit" class="btn btn-info" id="afficher">
+    			<button type="submit" class="btn btn-info" id="afficherChoixZone">
     				<span class="glyphicon glyphicon-pencil"></span>&nbsp;choisir une zone
     			</button>
   			</div>
@@ -70,12 +71,10 @@
 //			$donnees2 = $reponse2->fetch();
 ?>
 
-<!-- affichage de tous les parkings presents dans la zone selectionnee avec les infos des places au total et libres -->
-
 <section style="margin-top: 15px;" class="col-md-offset-2 col-md-8 table-responsive">
 			<table class="table table-bordered table-striped">
   				<caption>
-  					<h4 style="text-align: center">Les parkings de cette zone</h4>
+  					<h4 style="text-align: center">Les parkings de <?php echo $nomzone;?></h4>
   				</caption>
   				<thead>
     				<tr>
@@ -87,7 +86,6 @@
     			<tbody>	
     			<?php
     				$reponse2 = $bdd->query("SELECT * FROM parking WHERE zone_park = '$nomzone'");
-
 					while($donnees2 = $reponse2->fetch())
 					{	
 				?>
@@ -98,48 +96,51 @@
       						</tr>
 				<?php
 					}
-					//$reponse2->closeCursor(); // Termine le traitement de la requête
+					$reponse2->closeCursor(); // Termine le traitement de la requête
 				?>
 				</tbody>
-			</table>
-</section>			    
-		
-
+			</table>			    
+</section>
 		<div class="container">
-	  		<div class="col-md-offset-3 col-md-6">
+  			<div id="alertSupprPark" class="alert alert-info alert-dismissable col-md-offset-2 col-md-8" style="display: none">
+    			<button type="button" class="close" id="closeSupprPark">×</button>
+				<form method="post" action="test.php">
+					<h3 class="panel-title">Choisir un parking</h3>
+  					<select name="parking"class="selectpicker">
+  					<?php
+  						$reponse2= $bdd->query("SELECT * FROM parking WHERE zone_park = '$nomzone'");
+						while ($donnees2 = $reponse2->fetch())
+						{
+					?>
+  							<option ><?php echo $donnees2['nom_park'];?></option>
+  					<?php
+						}
+						
+						$reponse2->closeCursor();
+					?>
+  					</select>
+  					
+ 
+  			  		<button type="submit">Supprimer</button>
+				</form>	
+  			</div>
+  			<div class="col-md-offset-3 col-md-2">
     			<button type="submit" class="btn btn-info" id="afficher">
-    				<span class="glyphicon glyphicon-pencil"></span>&nbsp;Modifier ce parking
+    				<span class="glyphicon glyphicon-pencil"></span>&nbsp;Modifier un parking
     			</button>
-    			<button type="submit" class="btn btn-info" id="afficher">
-    				<span class="glyphicon glyphicon-pencil"></span>&nbsp;Supprimer ce parking
+  			</div>
+			<div class="col-md-2" style="padding-left: 0px; padding-right: 0px;">
+    			<button type="submit" class="btn btn-info" id="supprPark">
+    				<span class="glyphicon glyphicon-pencil"></span>&nbsp;Supprimer un parking
     			</button>
+    		</div>
+    		<div class="col-md-2">
     			<button type="submit" class="btn btn-info" id="afficher">
     				<span class="glyphicon glyphicon-pencil"></span>&nbsp;Ajouter un parking
     			</button>                                                                        
-  			</div>
-
+			</div>
 		</div>
-
-<div class="container">
-  	<div class="alert alert-info alert-dismissable col-md-offset-2 col-md-8" style="display: none">
-    	<button type="button" class="close">×</button>
-		<form method="post" action="adminCreation.php">
-			<h3 class="panel-title">Modifier le nombre de place d'un parking</h3>
-  			<select name="zone"class="selectpicker">
-  			
-  			</select>
-  			  <input name="nombre" type="text" placeholder="nouveau nombre de places">
-  			  <button type="submit">Changer le nombre de places</button>
-		</form>
-  	</div>
-  	<div class="col-md-offset-3 col-md-6">
-    	<button type="submit" class="btn btn-info" id="afficher">
-    		<span class="glyphicon glyphicon-pencil"></span>&nbsp;Modifier le nombre de places d'un parking
-    	</button>
-  	</div>
-</div>
-
-
+    	
 
 
 
@@ -147,17 +148,30 @@
 <script src="bootstrap/js/jquery.js"></script> 
 		<script>  
   			$(function (){
-    			$("#afficher").click(function() {
-      				$("#afficher").hide();
-      				$(".alert").show("slow");
+    			$("#afficherChoixZone").click(function() {
+      				$("#afficherChoixZone").hide();
+      				$("#alertChoixZone").show("slow");
     			}); 
-    			$(".close").click(function() {
-      				$(".alert").hide("slow");
-      				$("#afficher").show();
+    			$("#closeChoixZone").click(function() {
+      				$("#alertChoixZone").hide("slow");
+      				$("#afficherChoixZone").show();
     			}); 
   			}); 
 		</script>  	
-
-
-</body>
+		<script>  
+  			$(function (){
+    			$("#supprPark").click(function() {
+      				$("#supprPark").hide();
+      				$("#alertSupprPark").show("slow");
+    			}); 
+    			$("#closeSupprPark").click(function() {
+      				$("#alertSupprPark").hide("slow");
+      				$("#supprPark").show();
+    			}); 
+  			}); 
+		</script> 
+    	
+    	<!--INSERTION DU FOOTER-->
+		<!--<?php include ('footer.php'); ?>-->
+    </body>
 </html>

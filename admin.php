@@ -21,7 +21,19 @@
     </head>
     <body>
     	<!--INSERTION DU HEADER-->
-			<?php include ('header.php'); ?>			
+		<?php include ('header.php'); ?>	
+			
+		<nav class="navbar navbar-default navbarColor">
+		  	<div class="container-fluid col-md-offset-2 col-md-8">
+    			<ul>
+    		 		<li> <a href="adminStats.php">Statistiques</a> </li>
+      				<li> <a href="#">Gestion Abonnement</a> </li>
+      				<li> <a href="#">Reserver une place</a> </li>
+      				<!--<li> <a href="#">Références</a> </li>-->
+    			</ul>
+			</div>
+		</nav>
+			
     	
     	<!--CORPS DE LA PAGE D'INDEX-->    	
     	<?php echo "page client papa!"; ?>
