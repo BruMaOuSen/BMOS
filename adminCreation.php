@@ -22,6 +22,7 @@
     </head>
 <body>
 
+<!--affichage de toutes les zones pour en selectionner une -->
         <?php
 			try
 			{
@@ -71,6 +72,8 @@
 //			$donnees2 = $reponse2->fetch();
 ?>
 
+<!-- affichage de tous les parkings presents dans la zone selectionnee avec les infos des places au total et libres -->
+
 <section style="margin-top: 15px;" class="col-md-offset-2 col-md-8 table-responsive">
 			<table class="table table-bordered table-striped">
   				<caption>
@@ -97,15 +100,15 @@
       						</tr>
 				<?php
 					}
-					$reponse2->closeCursor(); // Termine le traitement de la requête
+					//$reponse2->closeCursor(); // Termine le traitement de la requête
 				?>
 				</tbody>
 			</table>
-		</section>			    
-		<div class="container">
+</section>			    
+		
 
-  			
-  		<div class="col-md-offset-3 col-md-6">
+		<div class="container">
+	  		<div class="col-md-offset-3 col-md-6">
     			<button type="submit" class="btn btn-info" id="afficher">
     				<span class="glyphicon glyphicon-pencil"></span>&nbsp;Modifier ce parking
     			</button>
@@ -119,6 +122,25 @@
   			</div>
 
 		</div>
+
+<div class="container">
+  	<div class="alert alert-info alert-dismissable col-md-offset-2 col-md-8" style="display: none">
+    	<button type="button" class="close">×</button>
+		<form method="post" action="adminCreation.php">
+			<h3 class="panel-title">Modifier le nombre de place d'un parking</h3>
+  			<select name="zone"class="selectpicker">
+  			
+  			</select>
+  			  <input name="nombre" type="text" placeholder="nouveau nombre de places">
+  			  <button type="submit">Changer le nombre de places</button>
+		</form>
+  	</div>
+  	<div class="col-md-offset-3 col-md-6">
+    	<button type="submit" class="btn btn-info" id="afficher">
+    		<span class="glyphicon glyphicon-pencil"></span>&nbsp;Modifier le nombre de places d'un parking
+    	</button>
+  	</div>
+</div>
 
 
 
