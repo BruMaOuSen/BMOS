@@ -9,12 +9,18 @@
 	catch (Exception $e)
 	{
         die('Erreur : ' . $e->getMessage());
-	}		
-	$immat = $_POST['immatriculation'];
-	$datefab = $_POST['dateFabrication'];
-	$marque = $_POST['marque'];
-	$typeVeh = $_POST['typeVehicule'];
+	}
+	$compteur = $_POST[]{strlen($mot)-1};	
+	$immat = $_POST['immatriculation'.$compteur];
+	$datefab = $_POST['dateFabrication'.$compteur];
+	$marque = $_POST['marque'.$compteur];
+	$typeVeh = $_POST['typeVehicule'.$compteur];
 	$id = $_SESSION['membreid'];
+	
+	echo $immat;
+	echo $datefab;
+	echo $marque;
+	echo $typeVeh;
 	
 	
 	$reponse = $bdd->query("SELECT * FROM vehicule WHERE proprietaire = '$id'");
@@ -22,16 +28,16 @@
 
 	if($donnees){
 	if($immat != NULL){
-		$reponse = $bdd->query("UPDATE vehicule SET immatriculation = '$immat' WHERE proprietaire = '$id'");
+		$reponse = $bdd->query("UPDATE vehicule SET immatriculation = '$immat' WHERE immatriculation = '$mmat'");
 	}
 	if($datefab != NULL){
-		$reponse = $bdd->query("UPDATE vehicule SET date_fabrication = '$datefab' WHERE proprietaire = '$id'");
+		$reponse = $bdd->query("UPDATE vehicule SET date_fabrication = '$datefab' WHERE immatriculation = '$mmat'");
 	}
 	if($marque != NULL){
-		$reponse = $bdd->query("UPDATE vehicule SET marque = '$marque' WHERE proprietaire = '$id'");
+		$reponse = $bdd->query("UPDATE vehicule SET marque = '$marque' WHERE immatriculation = '$mmat'");
 	}
 	if($typeVeh != NULL){
-		$reponse = $bdd->query("UPDATE vehicule SET type_veh = '$typeVeh' WHERE proprietaire = '$id'");
+		$reponse = $bdd->query("UPDATE vehicule SET type_veh = '$typeVeh' WHERE immatriculation = '$mmat'");
 	}
 	$reponse->closeCursor();
 	}
@@ -56,7 +62,7 @@
 	//					 VALUES('$immat', '$datefab', '$marque', '$id', '$typeVeh')");
 	//	$reponse->closeCursor();
 	//}		
-	header("Location: client.php");
-	exit;
+	//header("Location: client.php");
+	//exit;
 ?>
 	

@@ -91,17 +91,42 @@
     			}); 
   			}); 
  		</script>
+ 		
+ 		
+ 		<?php
+			$login = $_SESSION['membreid'];
+			$reponse = $bdd->query("SELECT nb_voitures FROM client WHERE login = '$login'");
+			$donnees = $reponse->fetch();
+			$nbVoit = $donnees['nb_voitures'];
+			$reponse->closeCursor();
+		?>
+
+		<?php
+			$compteur = 0;
+			while($compteur<$nbVoit)
+			{
+			$numeroVoiture = $compteur + 1;
+		?>
 		<script>  
   			$(function (){
-    			$("#afficherInfoVoit").click(function() {
-      				$("#afficherInfoVoit").hide();
-      				$("#infoVoit").show("slow");
+    			$("#afficherInfoVoit<?php echo $numeroVoiture;?>").click(function() {
+      				$("#afficherInfoVoit<?php echo $numeroVoiture;?>").hide();
+      				$("#infoVoit<?php echo $numeroVoiture;?>").show("slow");
     			}); 
-    			$("#closeVoit").click(function() {
-      				$("#infoVoit").hide("slow");
-      				$("#afficherInfoVoit").show();
+    			$("#closeVoit<?php echo $numeroVoiture;?>").click(function() {
+      				$("#infoVoit<?php echo $numeroVoiture;?>").hide("slow");
+      				$("#afficherInfoVoit<?php echo $numeroVoiture;?>").show();
     			}); 
-  			}); 
- 		</script> 		
+  			});
+        	var machin; 
+        function clic("afficherInfoVoit<?php echo $numeroVoiture;?>"){
+                alert("afficherInfoVoit<?php echo $numeroVoiture;?>");
+                machin = outgoingLink;
+        } 
+ 		</script> 
+ 		<?php
+			$compteur = $compteur + 1;
+		}
+		?>		
     </body>
 </html>
