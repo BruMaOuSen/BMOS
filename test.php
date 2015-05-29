@@ -11,6 +11,7 @@
 			}
 
 	$reponse4 = $bdd->query("DELETE FROM parking WHERE nom_park = '$parking'");
-	
+	$reponse->closeCursor();
 	header("Location: adminStats.php");
+	exit;
 ?>
