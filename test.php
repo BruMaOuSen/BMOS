@@ -1,6 +1,6 @@
 <?php 
 	session_start();
-	$parking = $_POST['parking'];
+	$parking = $_POST['supprparking'];
 			try
 			{
 				$bdd = new PDO('pgsql:host=localhost;dbname=parkingProject', 'admin', 'admin');
