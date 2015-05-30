@@ -42,7 +42,7 @@ session_start();
 	<input type="submit" name ="submitted" value ="submit" class="btn btn-info">
 	</select>
 	</form>
-  		</div>
+  	</div>
 	</div>
 </div>
 
