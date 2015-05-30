@@ -100,7 +100,6 @@ session_start();
 	<label>datedebut<input type="text" name="datedebut" >datefin<input type="text" name="datefin" ></label>
 	<br/><br/>
 	<input type="submit" value="Valider" name="choisir_place" class="btn btn-info col-md-offset-5 ">
-	
 	</form>
 	
 </body>
