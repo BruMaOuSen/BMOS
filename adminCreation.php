@@ -93,7 +93,7 @@
           </thead>
           <tbody> 
           <?php
-            $reponse2 = $bdd->query("SELECT * FROM parking WHERE zone_park = '$nomzone'");
+            $reponse2 = $bdd->query("SELECT * FROM parking WHERE zone_park = '$nomzone' ORDER BY nom_park");
           while($donnees2 = $reponse2->fetch())
           { 
         ?>
@@ -119,7 +119,7 @@
           <h3 class="panel-title">Choisir un parking</h3>
             <select name="parkingsuppr"class="selectpicker">
             <?php
-              $reponse3= $bdd->query("SELECT * FROM parking WHERE zone_park = '$nomzone'");
+              $reponse3= $bdd->query("SELECT * FROM parking WHERE zone_park = '$nomzone' ORDER BY nom_park");
             while ($donnees3 = $reponse3->fetch())
             {
           ?>
@@ -150,7 +150,7 @@
           <h3 class="panel-title">Choisir le parking et la zone de transfert</h3>
             <select name="parkingmodif"class="selectpicker">
           <?php
-              $reponse5= $bdd->query("SELECT * FROM parking WHERE zone_park = '$nomzone'");
+              $reponse5= $bdd->query("SELECT * FROM parking WHERE zone_park = '$nomzone' ORDER BY nom_park");
             while ($donnees5 = $reponse5->fetch())
             {
           ?>
@@ -163,7 +163,7 @@
             </select>
             <select name="zonetransfert"class="selectpicker">
             <?php
-              $reponse6 = $bdd->query("SELECT nom_zone FROM zone");
+              $reponse6 = $bdd->query("SELECT nom_zone FROM zone EXCEPT (SELECT nom_zone FROM zone WHERE nom_zone = '$nomzone' )ORDER BY nom_zone");
             while ($donnees6 = $reponse6->fetch())
             {
           ?>
@@ -186,24 +186,52 @@
         
 ?>
       
+<!--////////////////Ajouter un parking dasn la zone selectionnee -->
 
+<?php $_SESSION['nomZone'] = $nomzone;?>
+        <div id="alertAjoutPark" class="alert alert-info alert-dismissable col-md-offset-2 col-md-8" style="display: none">
+          <button type="button" class="close" id="closeAjoutPark">×</button>
+        <form method="post" action="test2.php">
+          <h3 class="panel-title">Ajouter un parking dans la zone <?php echo $nomzone;?></h3>
+            <div class="form-group">
+                <input id="nomParking" name="nomParking" type="text" placeholder="Nom du parking" class="form-control">
+            </div>
+          <div class="form-group">
+                <input id="RC2"  name="RC2" type="text" placeholder="Nombres de places COUVERTES pour les 2 roues" class="form-control">
+            </div>
+            <div class="form-group">
+                <input id="RD2" name="RD2" type="text" placeholder="Nombres de places DEHORS pour les 2 roues" class="form-control">
+            </div>
+            <div class="form-group">
+                <input id="RC4"  name="RC4" type="text" placeholder="Nombres de places COUVERTES pour les 4 roues" class="form-control">
+            </div>
+            <div class="form-group">
+                <input id="RD4" name="RD4" type="text" placeholder="Nombres de places DEHORS pour les 4 roues" class="form-control">
+            </div><div class="form-group">
+                <input id="RC8"  name="RC8" type="text" placeholder="Nombres de places COUVERTES pour les 8 roues" class="form-control">
+            </div>
+            <div class="form-group">
+                <input id="8RD" name="RD8" type="text" placeholder="Nombres de places DEHORS pour les 8 roues" class="form-control">
+            </div>
+              <button type="submit">Ajouter</button>
+        </form> 
+        </div>
         <div class="col-md-offset-3 col-md-2">
           <button type="submit" class="btn btn-info" id="modifPark">
             <span class="glyphicon glyphicon-pencil"></span>&nbsp;Transférer un parking
           </button>
         </div>
-
       <div class="col-md-2" style="padding-left: 0px; padding-right: 0px;">
           <button type="submit" class="btn btn-info" id="supprPark">
             <span class="glyphicon glyphicon-pencil"></span>&nbsp;Supprimer un parking
           </button>
         </div>
-
         <div class="col-md-2">
-          <button type="submit" class="btn btn-info" id="afficher">
+          <button type="submit" class="btn btn-info" id="ajoutPark">
             <span class="glyphicon glyphicon-pencil"></span>&nbsp;Ajouter un parking
           </button>                                                                        
       </div>
+  
     </div>
       
 
@@ -211,15 +239,22 @@
 
 
 <script src="bootstrap/js/jquery.js"></script> 
+    <!--SCRIPTS FONCTiONNELS POUR TOUS LES BOUTONS DE LA PAGE-->
     <script>  
         $(function (){
           $("#afficherChoixZone").click(function() {
               $("#afficherChoixZone").hide();
+              $("#supprPark").hide();
+              $("#ajoutPark").hide();
+              $("#modifPark").hide();
               $("#alertChoixZone").show("slow");
           }); 
           $("#closeChoixZone").click(function() {
               $("#alertChoixZone").hide("slow");
               $("#afficherChoixZone").show();
+              $("#supprPark").show();
+              $("#ajoutPark").show();
+              $("#modifPark").show();
           }); 
         }); 
     </script>   
@@ -227,26 +262,56 @@
         $(function (){
           $("#supprPark").click(function() {
               $("#supprPark").hide();
+              $("#ajoutPark").hide();
+              $("#afficherChoixZone").hide();
+              $("#modifPark").hide();
               $("#alertSupprPark").show("slow");
           }); 
           $("#closeSupprPark").click(function() {
               $("#alertSupprPark").hide("slow");
               $("#supprPark").show();
+              $("#ajoutPark").show();
+              $("#afficherChoixZone").show();
+          $("#modifPark").show();
           }); 
         }); 
     </script> 
     <script>  
         $(function (){
+          $("#ajoutPark").click(function() {
+              $("#ajoutPark").hide();
+              $("#supprPark").hide();
+              $("#afficherChoixZone").hide();
+              $("#modifPark").hide();
+              $("#alertAjoutPark").show("slow");
+          }); 
+          $("#closeAjoutPark").click(function() {
+              $("#alertAjoutPark").hide("slow");
+              $("#ajoutPark").show();
+              $("#supprPark").show();
+              $("#afficherChoixZone").show();
+              $("#modifPark").show();
+          }); 
+        }); 
+    </script>
+    <script>  
+        $(function (){
           $("#modifPark").click(function() {
+              $("#ajoutPark").hide();
+              $("#supprPark").hide();
+              $("#afficherChoixZone").hide();
               $("#modifPark").hide();
               $("#alertModifPark").show("slow");
           }); 
           $("#closeModifPark").click(function() {
               $("#alertModifPark").hide("slow");
+              $("#ajoutPark").show();
+              $("#supprPark").show();
+              $("#afficherChoixZone").show();
               $("#modifPark").show();
           }); 
         }); 
-    </script> 
+    </script>
       
       <!--INSERTION DU FOOTER-->
     <!--<?php include ('footer.php'); ?>-->
