@@ -103,7 +103,19 @@
 </section>
 		<div class="container">
 		
-		  	<!--BOUTTON SUPPRIMER PARKING-->
+		  	<!--BOUTON MODIFIER NE PAS LE RECUPERER JUSTE LA POUR TESTER LES SCRIPTS-->
+		  	<div id="alertModifPark" class="alert alert-info alert-dismissable col-md-offset-2 col-md-8" style="display: none">
+    			<button type="button" class="close" id="closeModifPark">×</button>
+				<form method="post" action="test.php">
+					<h3 class="panel-title">Choisir un parking</h3>
+  					<select name="supprparking"class="selectpicker" style="width:219px;">
+  				
+  					</select>
+  					<button type="submit">Supprimer</button>
+				</form>	
+  			</div>
+		  	
+		  	<!--BOUTON SUPPRIMER PARKING-->
   			<div id="alertSupprPark" class="alert alert-info alert-dismissable col-md-offset-2 col-md-8" style="display: none">
     			<button type="button" class="close" id="closeSupprPark">×</button>
 				<form method="post" action="test.php">
@@ -125,7 +137,7 @@
 				</form>	
   			</div>
   			
-  			<!--BOUTTON AJOUTER PARKING-->
+  			<!--BOUTON AJOUTER PARKING-->
   			<?php $_SESSION['nomZone'] = $nomzone;?>
   			<div id="alertAjoutPark" class="alert alert-info alert-dismissable col-md-offset-2 col-md-8" style="display: none">
     			<button type="button" class="close" id="closeAjoutPark">×</button>
@@ -155,7 +167,7 @@
 				</form>	
   			</div>
   			<div class="col-md-offset-3 col-md-2">
-    			<button type="submit" class="btn btn-info" id="afficher">
+    			<button type="submit" class="btn btn-info" id="modifPark">
     				<span class="glyphicon glyphicon-pencil"></span>&nbsp;Modifier un parking
     			</button>
   			</div>
@@ -176,12 +188,14 @@
 
 
 <script src="bootstrap/js/jquery.js"></script> 
+		<!--SCRIPTS FONCTiONNELS POUR TOUS LES BOUTONS DE LA PAGE-->
 		<script>  
   			$(function (){
     			$("#afficherChoixZone").click(function() {
       				$("#afficherChoixZone").hide();
       				$("#supprPark").hide();
       				$("#ajoutPark").hide();
+      				$("#modifPark").hide();
       				$("#alertChoixZone").show("slow");
     			}); 
     			$("#closeChoixZone").click(function() {
@@ -189,6 +203,7 @@
       				$("#afficherChoixZone").show();
       				$("#supprPark").show();
       				$("#ajoutPark").show();
+      				$("#modifPark").show();
     			}); 
   			}); 
 		</script>  	
@@ -198,6 +213,7 @@
       				$("#supprPark").hide();
       				$("#ajoutPark").hide();
       				$("#afficherChoixZone").hide();
+      				$("#modifPark").hide();
       				$("#alertSupprPark").show("slow");
     			}); 
     			$("#closeSupprPark").click(function() {
@@ -205,7 +221,7 @@
       				$("#supprPark").show();
       				$("#ajoutPark").show();
       				$("#afficherChoixZone").show();
-
+					$("#modifPark").show();
     			}); 
   			}); 
 		</script> 
@@ -215,7 +231,7 @@
       				$("#ajoutPark").hide();
       				$("#supprPark").hide();
       				$("#afficherChoixZone").hide();
-
+      				$("#modifPark").hide();
       				$("#alertAjoutPark").show("slow");
     			}); 
     			$("#closeAjoutPark").click(function() {
@@ -223,7 +239,25 @@
       				$("#ajoutPark").show();
       				$("#supprPark").show();
       				$("#afficherChoixZone").show();
-
+      				$("#modifPark").show();
+    			}); 
+  			}); 
+		</script>
+		<script>  
+  			$(function (){
+    			$("#modifPark").click(function() {
+      				$("#ajoutPark").hide();
+      				$("#supprPark").hide();
+      				$("#afficherChoixZone").hide();
+      				$("#modifPark").hide();
+      				$("#alertModifPark").show("slow");
+    			}); 
+    			$("#closeModifPark").click(function() {
+      				$("#alertModifPark").hide("slow");
+      				$("#ajoutPark").show();
+      				$("#supprPark").show();
+      				$("#afficherChoixZone").show();
+      				$("#modifPark").show();
     			}); 
   			}); 
 		</script>
