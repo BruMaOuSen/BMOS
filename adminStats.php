@@ -36,7 +36,20 @@
 			$reponse1 = $bdd->query('SELECT * FROM zone ORDER BY nom_zone');
 ?>
 
-
+<section style="margin-top: 15px;" class="col-md-offset-2 col-md-8 table-responsive">
+			<table class="table table-bordered table-striped">
+  				<caption>
+  					<h4 style="text-align: center">Profits de tous les parkings</h4>
+  				</caption>
+  				<thead>
+    				<tr>
+      					<th style="text-align: center">Mensuels</th>
+      					<th style="text-align: center">Annuels</th>
+    				</tr>
+  				</thead>
+			
+			</table>			    
+</section>
 		<div class="container">
   			<div id="alertChoixZone"class="alert alert-info alert-dismissable col-md-offset-2 col-md-8" style="display: none">
     			<button type="button" class="close" id="closeChoixZone">×</button>
@@ -58,19 +71,35 @@
  
   			  		<button type="submit">Valider</button>
 				</form>	
+				<?php 
+				session_start();
+				$nomzone = $_POST['zone']; 
+				$_SESSION['nomZone'] = $nomzone;
+?>
+
   			</div>
   			<div class="col-md-offset-3 col-md-6">
     			<button type="submit" class="btn btn-info" id="afficherChoixZone">
     				<span class="glyphicon glyphicon-pencil"></span>&nbsp;choisir une zone
     			</button>
-  			</div>
+  			</div>	
 		</div>
 
-<?php 
-			$nomzone = $_POST['zone'];
-			$_SESSION['nomZone'] = $nomzone;
 
-?>
+<section style="margin-top: 15px;" class="col-md-offset-2 col-md-8 table-responsive">
+			<table class="table table-bordered table-striped">
+  				<caption>
+  					<h4 style="text-align: center">Profits des parkings de <?php echo $_SESSION['nomZone'];?></h4>
+  				</caption>
+  				<thead>
+    				<tr>
+      					<th style="text-align: center">Mensuels</th>
+      					<th style="text-align: center">Annuels</th>
+    				</tr>
+  				</thead>
+    			
+			</table>			    
+</section>
 
 
 <div class="container">
@@ -110,7 +139,22 @@
 
 ?>
 
-		
+<section style="margin-top: 15px;" class="col-md-offset-2 col-md-8 table-responsive">
+			<table class="table table-bordered table-striped">
+  				<caption>
+  					<h4 style="text-align: center">Profits du parking <?php echo $nomparking;?></h4>
+  				</caption>
+  				<thead>
+    				<tr>
+      					<th style="text-align: center">Mensuels</th>
+      					<th style="text-align: center">Annuels</th>
+    				</tr>
+  				</thead>
+    			
+
+			</table>			    
+</section>		
+
 
 <script src="bootstrap/js/jquery.js"></script> 
 		<!--SCRIPTS FONCTiONNELS POUR TOUS LES BOUTONS DE LA PAGE-->
