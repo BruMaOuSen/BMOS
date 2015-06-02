@@ -220,7 +220,7 @@
        	<div class="col-md-offset-2 col-md-8"> 
        		<div class="btn-group btn-group-justified" role="group"> 
         		<div class="btn-group"  role="group">
-        		  <button type="submit" class="btn btn-success" role="group" id="ajoutPark">
+        		  <button type="submit" class="btn btn-success" id="ajoutPark">
         		    <span class="glyphicon glyphicon-ok"></span>&nbsp;Ajouter un parking
           		</button>                                                                        
      	 	</div>
@@ -230,7 +230,7 @@
           		 </button>
         	</div>
      	 	<div class="btn-group"  role="group">
-          		<button type="submit" class="btn btn-danger" role="group" id="supprPark">
+          		<button type="submit" class="btn btn-danger" id="supprPark">
             		<span class="glyphicon glyphicon-remove"></span>&nbsp;Supprimer un parking
           		</button>
         	</div>

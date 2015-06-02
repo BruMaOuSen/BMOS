@@ -44,7 +44,7 @@
 						
     	<!--MODIFICATION DES INFOS CLIENTS-->
     	<div class="container">
-  			<div id="infoPerso" class="alert alert-info alert-dismissable col-md-offset-3 col-md-6" style="display: none">
+  			<div id="infoPerso" class="alert btn-warning alert-dismissable col-md-offset-3 col-md-6" style="display: none">
     			<button type="button" class="close" id="closePerso">×</button>
       			<form method="post" action="modifInfosPers.php">
   					<legend>Modifications des informations</legend>
@@ -57,34 +57,44 @@
     						<div class="form-group">
       							<input id="nbVoit" name="nbVoit" type="text" placeholder="Nombre de voiture(s)" class="form-control">	
       						</div>
-    						<button type="submit">Valider</button>
+    						<button type="submit" class="btn btn-info">Valider</button>
 				</form>
   			</div>
-  			<div class="col-md-offset-1 col-md-5">
-    			<button type="submit" class="btn btn-info" id="afficherInfoPerso">
-    				<span class="glyphicon glyphicon-pencil"></span>&nbsp;Informations personnelles
-    			</button>
-  			</div>
-			<div id="infoVeh" class="alert alert-info alert-dismissable col-md-offset-3 col-md-6" style="display: none">
+
+			<div id="infoVeh" class="alert btn-success alert-dismissable col-md-offset-3 col-md-6" style="display: none">
     			<button type="button" class="close" id="closeInfoVeh">×</button>
       			<form method="post" action="modifInfosPers.php">
   					<legend>Ajouter un véhicule pour <?php echo $_SESSION['membreid'];?></legend>
 						    <div class="form-group">
-      							<input id="nom" name="nom" type="text" placeholder="Nom" class="form-control">
+      							<input id="marque" name="marque" type="text" placeholder="Marque" class="form-control">
     						</div>
 						    <div class="form-group">
-      							<input id="identification"  name="identification" type="text" placeholder="Société ou personne?" class="form-control">
+      							<input id="immat"  name="immat" type="text" placeholder="Immatriculation" class="form-control">
     						</div>
     						<div class="form-group">
-      							<input id="nbVoit" name="nbVoit" type="text" placeholder="Nombre de voiture(s)" class="form-control">	
+      							<input id="dateFab" name="dateFab" type="text" placeholder="Date de fabrication" class="form-control">	
       						</div>
-    						<button type="submit">Valider</button>
+    						<div class="form-group">
+      							<input id="typeVeh" name="typeVeh" type="text" placeholder="Date de fabrication" class="form-control">	
+      						</div>
+
+    						<button type="submit" class="btn btn-succes">Valider</button>
 				</form>
   			</div>
-  			<div class="col-md-5">
-    			<button type="submit" class="btn btn-info" id="ajoutVehicule">
-    				<span class="glyphicon glyphicon-pushpin"></span>&nbsp;Ajouter un véhicule
-    			</button>
+
+  		 	<div class="col-md-offset-2 col-md-8"> 
+       			<div class="btn-group btn-group-justified" role="group"> 
+        			<div class="btn-group"  role="group">
+		    			<button type="submit" class="btn btn-warning" id="afficherInfoPerso">
+    						<span class="glyphicon glyphicon-pencil"></span>&nbsp;Modifications des infos personnelles
+    					</button>
+  					</div>
+  					<div class="btn-group"  role="group">
+    					<button type="submit" class="btn btn-success" id="ajoutVehicule">
+    						<span class="glyphicon glyphicon-pushpin"></span>&nbsp;Ajouter un véhicule
+    					</button>
+  					</div>
+  				</div>
   			</div>
 		</div>
 
@@ -95,8 +105,7 @@
 		<?php include('infoVehiculeClient.php'); ?>
     	
     	
-		<script src="bootstrap/js/jquery.js"></script> 
- 		
+		
  		<?php
 			$login = $_SESSION['membreid'];
 			$reponse = $bdd->query("SELECT nb_voitures FROM client WHERE login = '$login'");
@@ -111,6 +120,8 @@
 			{
 			$numeroVoiture = $compteur + 1;
 		?>
+		
+		<script src="bootstrap/js/jquery.js"></script> 
 		<script>  
   			$(function (){
     			$("#afficherInfoVoit<?php echo $numeroVoiture;?>").click(function() {
