@@ -60,9 +60,30 @@
     						<button type="submit">Valider</button>
 				</form>
   			</div>
-  			<div class="col-md-offset-3 col-md-6">
+  			<div class="col-md-offset-1 col-md-5">
     			<button type="submit" class="btn btn-info" id="afficherInfoPerso">
-    				<span class="glyphicon glyphicon-pencil"></span>&nbsp;Modifier les informations personnelles
+    				<span class="glyphicon glyphicon-pencil"></span>&nbsp;Informations personnelles
+    			</button>
+  			</div>
+			<div id="infoVeh" class="alert alert-info alert-dismissable col-md-offset-3 col-md-6" style="display: none">
+    			<button type="button" class="close" id="closeInfoVeh">×</button>
+      			<form method="post" action="modifInfosPers.php">
+  					<legend>Ajouter un véhicule pour <?php echo $_SESSION['membreid'];?></legend>
+						    <div class="form-group">
+      							<input id="nom" name="nom" type="text" placeholder="Nom" class="form-control">
+    						</div>
+						    <div class="form-group">
+      							<input id="identification"  name="identification" type="text" placeholder="Société ou personne?" class="form-control">
+    						</div>
+    						<div class="form-group">
+      							<input id="nbVoit" name="nbVoit" type="text" placeholder="Nombre de voiture(s)" class="form-control">	
+      						</div>
+    						<button type="submit">Valider</button>
+				</form>
+  			</div>
+  			<div class="col-md-5">
+    			<button type="submit" class="btn btn-info" id="ajoutVehicule">
+    				<span class="glyphicon glyphicon-pushpin"></span>&nbsp;Ajouter un véhicule
     			</button>
   			</div>
 		</div>
@@ -74,24 +95,7 @@
 		<?php include('infoVehiculeClient.php'); ?>
     	
     	
-    	<!--INSERTION DU FOOTER-->
-		<?php include ('footer.php'); ?>
-		  
-    	<!--Pour animer la page (bouton pour update le profil-->
 		<script src="bootstrap/js/jquery.js"></script> 
-		<script>  
-  			$(function (){
-    			$("#afficherInfoPerso").click(function() {
-      				$("#afficherInfoPerso").hide();
-      				$("#infoPerso").show("slow");
-    			}); 
-    			$("#closePerso").click(function() {
-      				$("#infoPerso").hide("slow");
-      				$("#afficherInfoPerso").show();
-    			}); 
-  			}); 
- 		</script>
- 		
  		
  		<?php
 			$login = $_SESSION['membreid'];
@@ -127,6 +131,40 @@
  		<?php
 			$compteur = $compteur + 1;
 		}
-		?>		
+		?>	
+		
+		<!--INSERTION DU FOOTER-->
+		<?php include ('footer.php'); ?>
+
+		<!--Pour animer la page (bouton pour update le profil-->
+		<script>  
+  			$(function (){
+    			$("#afficherInfoPerso").click(function() {
+      				$("#afficherInfoPerso").hide();
+      				$("#ajoutVehicule").hide();
+      				$("#infoPerso").show("slow");
+    			}); 
+    			$("#closePerso").click(function() {
+      				$("#infoPerso").hide("slow");
+      				$("#afficherInfoPerso").show();
+      				$("#ajoutVehicule").show();
+    			}); 
+  			}); 
+ 		</script>
+ 		<script>  
+  			$(function (){
+    			$("#ajoutVehicule").click(function() {
+      				$("#ajoutVehicule").hide();
+      				$("#afficherInfoPerso").hide();
+      				$("#infoVeh").show("slow");
+      				
+    			}); 
+    			$("#closeInfoVeh").click(function() {
+      				$("#infoVeh").hide("slow");
+      				$('#afficherInfoPerso').show();
+      				$("#ajoutVehicule").show();
+    			}); 
+  			}); 
+ 		</script>	
     </body>
 </html>
