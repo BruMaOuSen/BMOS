@@ -70,20 +70,6 @@
     					</td>
     				</tr>
     				<tr>
-    					<td>Nombre de voiture(s)</td>
-    					<td>
-    						<?php 
-    							if($donnees){
-	    							echo $donnees['nb_voitures'];
-    							}
-    							else
-    							{
-    								echo "Non renseigné";
-    							}	
-    						?>
-    					</td>
-    				</tr>
-    				<tr>
     					<td>Taux de réduction (%)</td>
     					<td>
     						<?php 

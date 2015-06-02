@@ -220,22 +220,22 @@
        	<div class="col-md-offset-2 col-md-8"> 
        		<div class="btn-group btn-group-justified" role="group"> 
         		<div class="btn-group"  role="group">
-        		  <button type="submit" class="btn btn-success" id="ajoutPark">
-        		    <span class="glyphicon glyphicon-ok"></span>&nbsp;Ajouter un parking
-          		</button>                                                                        
-     	 	</div>
-     	 	<div class="btn-group"  role="group">
-         		 <button type="button" class="btn btn-info" id="modifPark">
-            		<span class="glyphicon glyphicon-pencil"></span>&nbsp;Transférer un parking
-          		 </button>
-        	</div>
-     	 	<div class="btn-group"  role="group">
-          		<button type="submit" class="btn btn-danger" id="supprPark">
-            		<span class="glyphicon glyphicon-remove"></span>&nbsp;Supprimer un parking
-          		</button>
-        	</div>
-    	</div>
-      
+        			<button type="submit" class="btn btn-success" id="ajoutPark">
+        		    	<span class="glyphicon glyphicon-ok"></span>&nbsp;Ajouter un parking
+          		  	</button>                                                                        
+     	 		</div>
+     	 		<div class="btn-group"  role="group">
+         			<button type="button" class="btn btn-info" id="modifPark">
+            			<span class="glyphicon glyphicon-pencil"></span>&nbsp;Transférer un parking
+          			</button>
+        		</div>
+     	 		<div class="btn-group"  role="group">
+          			<button type="submit" class="btn btn-danger" id="supprPark">
+            			<span class="glyphicon glyphicon-remove"></span>&nbsp;Supprimer un parking
+          			</button>
+        		</div>
+    		</div>
+      </div>
 
 
 

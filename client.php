@@ -63,7 +63,7 @@
 
 			<div id="infoVeh" class="alert btn-success alert-dismissable col-md-offset-3 col-md-6" style="display: none">
     			<button type="button" class="close" id="closeInfoVeh">×</button>
-      			<form method="post" action="modifInfosPers.php">
+      			<form method="post" action="test.php">
   					<legend>Ajouter un véhicule pour <?php echo $_SESSION['membreid'];?></legend>
 						    <div class="form-group">
       							<input id="marque" name="marque" type="text" placeholder="Marque" class="form-control">
@@ -75,7 +75,7 @@
       							<input id="dateFab" name="dateFab" type="text" placeholder="Date de fabrication" class="form-control">	
       						</div>
     						<div class="form-group">
-      							<input id="typeVeh" name="typeVeh" type="text" placeholder="Date de fabrication" class="form-control">	
+      							<input id="typeVeh" name="typeVeh" type="text" placeholder="Type de véhicule" class="form-control">	
       						</div>
 
     						<button type="submit" class="btn btn-succes">Valider</button>
@@ -99,55 +99,14 @@
 		</div>
 
 		<!--INFORMATIONS SUR LE VEHICULE ET BOUTON DE MODIFICATION-->
-		<?php 
-			
-		?>
 		<?php include('infoVehiculeClient.php'); ?>
     	
-    	
-		
- 		<?php
-			$login = $_SESSION['membreid'];
-			$reponse = $bdd->query("SELECT nb_voitures FROM client WHERE login = '$login'");
-			$donnees = $reponse->fetch();
-			$nbVoit = $donnees['nb_voitures'];
-			$reponse->closeCursor();
-		?>
 
-		<?php
-			$compteur = 0;
-			while($compteur<$nbVoit)
-			{
-			$numeroVoiture = $compteur + 1;
-		?>
-		
-		<script src="bootstrap/js/jquery.js"></script> 
-		<script>  
-  			$(function (){
-    			$("#afficherInfoVoit<?php echo $numeroVoiture;?>").click(function() {
-      				$("#afficherInfoVoit<?php echo $numeroVoiture;?>").hide();
-      				$("#infoVoit<?php echo $numeroVoiture;?>").show("slow");
-    			}); 
-    			$("#closeVoit<?php echo $numeroVoiture;?>").click(function() {
-      				$("#infoVoit<?php echo $numeroVoiture;?>").hide("slow");
-      				$("#afficherInfoVoit<?php echo $numeroVoiture;?>").show();
-    			}); 
-  			});
-        	var machin; 
-        function clic("afficherInfoVoit<?php echo $numeroVoiture;?>"){
-                alert("afficherInfoVoit<?php echo $numeroVoiture;?>");
-                machin = outgoingLink;
-        } 
- 		</script> 
- 		<?php
-			$compteur = $compteur + 1;
-		}
-		?>	
-		
 		<!--INSERTION DU FOOTER-->
 		<?php include ('footer.php'); ?>
 
 		<!--Pour animer la page (bouton pour update le profil-->
+		<script src="bootstrap/js/jquery.js"></script> 
 		<script>  
   			$(function (){
     			$("#afficherInfoPerso").click(function() {
