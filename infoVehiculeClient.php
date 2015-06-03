@@ -2,9 +2,6 @@
 	$login = $_SESSION['membreid'];
 	$reponse = $bdd->query("SELECT * FROM vehicule WHERE proprietaire = '$login'");
 	
-	if($reponse){
-		$varbutton = 1;
-	}
 	while($donnees = $reponse->fetch()){
 ?>
 <div class="container">
@@ -87,26 +84,36 @@
   		</div>
 	</div>
 	<?php
-	}	
-	if($varbutton==1)
-	{
+	}
+	$reponse->closeCursor();
+
+	$reponse = $bdd->query("SELECT * FROM vehicule WHERE proprietaire = '$login'");
+	if($reponse->fetch() == NULL){
+	?>
+	<div class="container">
+  		<div class="alert btn-primary alert-dismissable col-md-offset-3 col-md-6" style="margin-bottom: 10px;">
+			<div>
+				Aucun véhicule encore renseigné pour : <?php echo $login;?>
+  			</div>
+    </div>
+	
+	<?php
+	$reponse->closeCursor();
+	}
 	?>
 	<div class="col-md-offset-2 col-md-8"> 
 	    <div class="btn-group btn-group-justified" role="group"> 
     		<div class="btn-group"  role="group">
-			    <button type="submit" class="btn btn-warning" id="afficherInfoPerso">
+			    <button type="submit" class="btn btn-warning" id="afficherModifVehicule">
     				<span class="glyphicon glyphicon-pencil"></span>&nbsp;Modifier un véhicule
     			</button>
 	  		</div>
   			<div class="btn-group"  role="group">
-    			<button type="submit" class="btn btn-danger" id="ajoutVehicule">
+    			<button type="submit" class="btn btn-danger" id="afficherSuppressionVehicule">
     				<span class="glyphicon glyphicon-remove"></span>&nbsp;Supprimer un véhicule
     			</button>
   			</div>
   		</div>
 	</div>
-	<?php
-	}
-	$reponse->closeCursor();
-	?>
 </div>
+

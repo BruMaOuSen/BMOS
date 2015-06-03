@@ -213,7 +213,7 @@
             <div class="form-group">
                 <input id="8RD" name="RD8" type="text" placeholder="Nombres de places DEHORS pour les 8 roues" class="form-control">
             </div>
-              <button type="submit" class="btn btn-success">Ajouter</button>
+              <button type="submit" class="btn btn-primary">Ajouter</button>
         </form> 
         </div>
       

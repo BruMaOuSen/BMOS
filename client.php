@@ -57,7 +57,7 @@
     						<div class="form-group">
       							<input id="nbVoit" name="nbVoit" type="text" placeholder="Nombre de voiture(s)" class="form-control">	
       						</div>
-    						<button type="submit" class="btn btn-info">Valider</button>
+    						<button type="submit" class="btn btn-primary">Valider</button>
 				</form>
   			</div>
 
@@ -78,7 +78,7 @@
       							<input id="typeVeh" name="typeVeh" type="text" placeholder="Type de véhicule" class="form-control">	
       						</div>
 
-    						<button type="submit" class="btn btn-succes">Valider</button>
+    						<button type="submit" class="btn btn-primary">Valider</button>
 				</form>
   			</div>
 
@@ -101,7 +101,40 @@
 		<!--INFORMATIONS SUR LE VEHICULE ET BOUTON DE MODIFICATION-->
 		<?php include('infoVehiculeClient.php'); ?>
     	
+    	
+    	<!--FORMULAIRE POUR MODIFIER LES VEHICULES DU CLIENT-->
+			<div id="infoModifVehicule" class="alert btn-warning alert-dismissable col-md-offset-3 col-md-6" style="display: none">
+    	<button type="button" class="close" id="closeModifVehicule">×</button>
+      	<form method="post" action="modifInfosPers.php">
+  			<legend>Modifier le véhicule</legend>
+  			<?php
+  				$reponse = $bdd->query("SELECT immatriculation FROM vehicule WHERE proprietaire = '$login'");
+  			?>
+  			<select name="immatriculation"class="selectpicker" style="margin-bottom: 10px; width: 150px">
+  					<?php
+						while ($donnees = $reponse->fetch())
+						{
+					?>
+  							<option><?php echo $donnees['immatriculation'];?></option>
+  					<?php
+						}
+						$reponse->closeCursor();
+					?>
+  			</select>
 
+			<div class="form-group">
+     			<input id="nom" name="nom" type="text" placeholder="Nom" class="form-control">
+    		</div>
+			<div class="form-group">
+      			<input id="identification"  name="identification" type="text" placeholder="Société ou personne?" class="form-control">
+    		</div>
+			<div class="form-group">
+    				<input id="nbVoit" name="nbVoit" type="text" placeholder="Nombre de voiture(s)" class="form-control">	
+      		</div>
+    	<button type="submit" class="btn btn-primary">Modifer</button>
+		</form>
+  	</div>
+			
 		<!--INSERTION DU FOOTER-->
 		<?php include ('footer.php'); ?>
 
@@ -135,6 +168,21 @@
       				$("#ajoutVehicule").show();
     			}); 
   			}); 
- 		</script>	
+ 		</script>
+ 		<script>  
+  			$(function (){
+    			$("#afficherModifVehicule").click(function() {
+      				$("#afficherModifVehicule").hide();
+      				$("#afficherSuppressionVehicule").hide();
+      				$("#infoModifVehicule").show("slow");
+    			}); 
+    			$("#closeModifVehicule").click(function() {
+      				$("#infoModifVehicule").hide("slow");
+      				$("#afficherModifVehicule").show();
+      				$("#afficherSuppressionVehicule").show();
+    			}); 
+  			}); 
+ 		</script>
+	
     </body>
 </html>
