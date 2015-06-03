@@ -94,9 +94,9 @@ session_start();
 	<form method="post" action = "choisir_place.php">
 	<label><input type="radio" name="num_place" value="1">1 couvert "2"</label><br/>
 	<label><input type="radio" name="num_place" value="2">2 dehors  "4"</label><br/>
-	<label><input type="radio" name="num_place" value="3">2 couvert "4"</label><br/>
-	<label><input type="radio" name="num_place" value="4">2 dehors  "4"</label><br/>
-	<label><input type="radio" name="num_place" value="5">2 dehors  "8"</label><br/>
+	<label><input type="radio" name="num_place" value="3">3 couvert "4"</label><br/>
+	<label><input type="radio" name="num_place" value="4">4 dehors  "4"</label><br/>
+	<label><input type="radio" name="num_place" value="5">5 dehors  "8"</label><br/>
 	<label>datedebut<input type="text" name="datedebut" >datefin<input type="text" name="datefin" ></label>
 	<br/><br/>
 	<input type="submit" value="Valider" name="choisir_place" class="btn btn-info col-md-offset-5 ">
