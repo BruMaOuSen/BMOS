@@ -170,7 +170,7 @@
                 <option><?php echo $donnees6['nom_zone'];?></option>
           <?php
             }
-            $reponse5->closeCursor();
+            $reponse6->closeCursor();
           ?>
 
             </select>

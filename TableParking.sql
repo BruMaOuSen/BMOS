@@ -15,10 +15,9 @@ create table Client(
 	login varchar(25) primary key,
 	nom varchar(25) NOT NULL,
 	typeP typePersonne NOT NULL,
-	mot_de_passe varchar(25),
+	mot_de_passe varchar(25) NOT NULL,
 	role_client varchar(50) NOT NULL,
 	abonne boolean,
-	nb_voitures integer NOT NULL,
 	FOREIGN KEY (role_client) REFERENCES Role(type_role) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
@@ -32,7 +31,7 @@ create table compte (
 create table Administrateur(
 	login varchar(25) primary key,
 	nom varchar(25) NOT NULL,
-	mot_de_passe varchar(25),
+	mot_de_passe varchar(25) NOT NULL,
 	role_admin varchar(50) NOT NULL,
 	FOREIGN KEY (role_admin) REFERENCES Role(type_role) ON DELETE CASCADE ON UPDATE CASCADE
 );
@@ -45,7 +44,7 @@ create table Type_vehicule(
 
 create table Vehicule(
 	immatriculation varchar(25) primary key,
-	date_fabrication integer NOT NULL,
+	date_fabrication integer,
 	marque varchar(25),
 	proprietaire varchar(25) NOT NULL,
 	type_veh nbRoues NOT NULL,
@@ -62,7 +61,7 @@ create table Parking(
 );
 
 CREATE TABLE Autorise ( 
-	parking varchar (50) NOT NULL, 
+	parking varchar (50), 
 	type_veh_a nbRoues, 
 	PRIMARY KEY(parking, type_veh_a),
 	FOREIGN KEY (parking) REFERENCES Parking (nom_park) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -70,7 +69,7 @@ CREATE TABLE Autorise (
 );
 
 CREATE TABLE Place (
-	num_place int NOT NULL, 
+	num_place int, 
 	park_place varchar (50),  
 	type_place typePlace, 
 	type_veh nbRoues, 
@@ -83,21 +82,21 @@ CREATE TABLE Occupe (
 	immatriculation varchar(25), 
 	nom_park varchar (50), 
 	numero int, 
-	date_debut integer NOT NULL, 
-	date_fin integer NOT NULL, 
+	date_debut timestamp with time zone NOT NULL, 
+	date_fin timestamp with time zone NOT NULL, 
 	PRIMARY KEY(immatriculation, nom_park, numero),
 	FOREIGN KEY (immatriculation) REFERENCES Vehicule(immatriculation) ON DELETE CASCADE ON UPDATE CASCADE, 
 	FOREIGN KEY (nom_park, numero) REFERENCES Place(park_place, num_place) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE Transac (
-	numero_transac int PRIMARY KEY,
-	date_achat integer NOT NULL,
-	date_debut integer NOT NULL,
-	date_fin integer NOT NULL,
+	numero_transac int  SERIAL PRIMARY KEY,
+	date_achat timestamp with time zone NOT NULL,
+	date_debut timestamp with time zone NOT NULL,
+	date_fin timestamp with time zone NOT NULL,
 	prix float NOT NULL,
 	type_t typeTransac NOT NULL,
-	numero_paiement integer NOT NULL,
+	numero_paiement integer,
 	moyen_p moyenP NOT NULL,
 	client varchar(25) REFERENCES Client(login) ON DELETE CASCADE ON UPDATE CASCADE,
 	nom_park varchar(50),
@@ -105,8 +104,9 @@ CREATE TABLE Transac (
 	FOREIGN KEY (nom_park, numero_place) REFERENCES Place(park_place, num_place) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
+
 -- CREATION DES BASES UTILISATEUR, ROLE ET PAGE POUR LA CONNEXION
-create table Role (
+CREATE TABLE Role (
 	type_role varchar(50) PRIMARY KEY
 );
 
@@ -117,11 +117,11 @@ create table Role (
 	type_user varchar(50) REFERENCES Role(type_role) ON DELETE CASCADE ON UPDATE CASCADE
 );*/
 
-create table Page (
+CREATE TABLE Page (
 	ID_page SERIAL PRIMARY KEY,
-	nom_page varchar(50) 
+	nom_page varchar(50) NOT NULL
 );
-create table RolePage (
+CREATE TABLE RolePage (
 	numero_page int REFERENCES Page(ID_page) ON DELETE CASCADE ON UPDATE CASCADE,
 	role_page varchar(50) REFERENCES Role(type_role) ON DELETE CASCADE ON UPDATE CASCADE
 );
