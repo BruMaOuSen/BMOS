@@ -54,7 +54,7 @@
     else{
 		//Si personne n'est trouvé dans les bases clients et admin
     	$reponse->closeCursor();
-    	//header("Location: index.php");
-		//exit;
+    	header("Location: index.php");
+		exit;
     }	
 ?>

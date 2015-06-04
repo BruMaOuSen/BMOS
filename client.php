@@ -24,9 +24,9 @@
 		<?php include ('header.php'); ?>			
     	
     	<!--BARRE DE NAVIGATION-->
-		<?php include ('menuClient.php')?>
+		<?php include ('menuClient.php');?>
 			    	
-    	<!--CORPS DE LA PAGE D'INDEX-->
+    	<!--CORPS DE LA PAGE D\'INDEX-->
 		<!--INFORMATIONS SUR LE CLIENT-->
   		<?php
 			try
@@ -46,22 +46,21 @@
     	<div class="container">
   			<div id="infoPerso" class="alert btn-warning alert-dismissable col-md-offset-3 col-md-6" style="display: none">
     			<button type="button" class="close" id="closePerso">×</button>
-      			<form method="post" action="modifInfosPers.php">
+      		<form method="post" action="modifInfosPers.php">
   					<legend>Modifications des informations</legend>
-						    <div class="form-group">
-      							<input id="nom" name="nom" type="text" placeholder="Nom" class="form-control">
-    						</div>
-						    <div class="form-group">
-      							<input id="identification"  name="identification" type="text" placeholder="Société ou personne?" class="form-control">
-    						</div>
-    						<div class="form-group">
-      							<input id="nbVoit" name="nbVoit" type="text" placeholder="Nombre de voiture(s)" class="form-control">	
-      						</div>
-    						<button type="submit" class="btn btn-primary">Valider</button>
-				</form>
+						<div class="form-group">
+      				<input id="nom" name="nom" type="text" placeholder="Nom" class="form-control">
+    				</div>
+						<div class="form-group">
+      				<input id="identification"  name="identification" type="text" placeholder="Société ou personne?" class="form-control">
+    				</div>
+    				<button type="submit" class="btn btn-primary">Modifier</button>
+				  </form>
   			</div>
 
-			<div id="infoVeh" class="alert btn-success alert-dismissable col-md-offset-3 col-md-6" style="display: none">
+
+      <!--AJOUTER UN VEHICULE-->  
+			  <div id="infoVeh" class="alert btn-success alert-dismissable col-md-offset-3 col-md-6" style="display: none">
     			<button type="button" class="close" id="closeInfoVeh">×</button>
       			<form method="post" action="test.php">
   					<legend>Ajouter un véhicule pour <?php echo $_SESSION['membreid'];?></legend>
@@ -76,12 +75,12 @@
       						</div>
     						<div class="form-group">
       							<input id="typeVeh" name="typeVeh" type="text" placeholder="Type de véhicule" class="form-control">	
-      						</div>
-
-    						<button type="submit" class="btn btn-primary">Valider</button>
-				</form>
+      					</div>
+    						<button type="submit" class="btn btn-primary">Ajouter</button>
+				    </form>
   			</div>
 
+        <!--MODIFICATION DES INFOS CLIENTS-->
   		 	<div class="col-md-offset-2 col-md-8"> 
        			<div class="btn-group btn-group-justified" role="group"> 
         			<div class="btn-group"  role="group">
@@ -89,6 +88,8 @@
     						<span class="glyphicon glyphicon-pencil"></span>&nbsp;Modifications des infos personnelles
     					</button>
   					</div>
+
+        <!--AJOUTER UN VEHICULE-->     
   					<div class="btn-group"  role="group">
     					<button type="submit" class="btn btn-success" id="ajoutVehicule">
     						<span class="glyphicon glyphicon-pushpin"></span>&nbsp;Ajouter un véhicule
@@ -103,37 +104,62 @@
     	
     	
     	<!--FORMULAIRE POUR MODIFIER LES VEHICULES DU CLIENT-->
-			<div id="infoModifVehicule" class="alert btn-warning alert-dismissable col-md-offset-3 col-md-6" style="display: none">
+	<div id="infoModifVehicule" class="alert btn-warning alert-dismissable col-md-offset-3 col-md-6" style="display: none">
     	<button type="button" class="close" id="closeModifVehicule">×</button>
-      	<form method="post" action="modifInfosPers.php">
-  			<legend>Modifier le véhicule</legend>
-  			<?php
-  				$reponse = $bdd->query("SELECT immatriculation FROM vehicule WHERE proprietaire = '$login'");
-  			?>
-  			<select name="immatriculation"class="selectpicker" style="margin-bottom: 10px; width: 150px">
-  					<?php
+      	<form method="post" action="modifInfosVehicule2.php">
+  			  <legend>Modifier le véhicule</legend>
+  			  <?php
+  				  $reponse = $bdd->query("SELECT immatriculation FROM vehicule WHERE proprietaire = '$login'");
+  			  ?>
+  			  <select name="immatAncienne"class="selectpicker" style="margin-bottom: 10px; width: 150px">
+  				<?php
 						while ($donnees = $reponse->fetch())
 						{
 					?>
-  							<option><?php echo $donnees['immatriculation'];?></option>
-  					<?php
+  						<option><?php echo $donnees['immatriculation'];?></option>
+  				<?php
 						}
 						$reponse->closeCursor();
 					?>
-  			</select>
+  			  </select>
+			    <div class="form-group">
+     			  <input id="marque" name="marque" type="text" placeholder="Marque" class="form-control">
+    		  </div>
+			    <div class="form-group">
+      			<input id="immatriculation"  name="immatriculation" type="text" placeholder="Immatriculation" class="form-control">
+    		  </div>
+			    <div class="form-group">
+    				<input id="dateFabrication" name="dateFabrication" type="text" placeholder="Date de Fabrication" class="form-control">	
+          </div>
+          <div class="form-group">
+            <input id="typeVehicule" name="typeVehicule" type="text" placeholder="Type de véhicule" class="form-control">  
+          </div>  
+    	    <button type="submit" class="btn btn-primary">Modifer le véhicule</button>
+		    </form>
+  </div>
 
-			<div class="form-group">
-     			<input id="nom" name="nom" type="text" placeholder="Nom" class="form-control">
-    		</div>
-			<div class="form-group">
-      			<input id="identification"  name="identification" type="text" placeholder="Société ou personne?" class="form-control">
-    		</div>
-			<div class="form-group">
-    				<input id="nbVoit" name="nbVoit" type="text" placeholder="Nombre de voiture(s)" class="form-control">	
-      		</div>
-    	<button type="submit" class="btn btn-primary">Modifer</button>
-		</form>
-  	</div>
+  <!--FORMULAIRE POUR SUPPRIMER UN VEHICULE DU CLIENT-->
+  <div id="infoSupprVehicule" class="alert btn-danger alert-dismissable col-md-offset-3 col-md-6" style="display: none">
+      <button type="button" class="close" id="closeSupprVehicule">×</button>
+        <form method="post" action="supprVehicule.php">
+          <legend>Supprimer le véhicule</legend>
+          <?php
+            $reponse = $bdd->query("SELECT immatriculation FROM vehicule WHERE proprietaire = '$login'");
+          ?>
+          <select name="immatriculation"class="selectpicker" style="margin-bottom: 10px; width: 150px">
+          <?php
+            while ($donnees = $reponse->fetch())
+            {
+          ?>
+              <option><?php echo $donnees['immatriculation'];?></option>
+          <?php
+            }
+            $reponse->closeCursor();
+          ?>
+          </select> 
+          <button type="submit" class="btn btn-primary">Supprimer le véhicule</button>
+        </form>
+  </div>
 			
 		<!--INSERTION DU FOOTER-->
 		<?php include ('footer.php'); ?>
@@ -183,6 +209,19 @@
     			}); 
   			}); 
  		</script>
-	
+    <script>  
+        $(function (){
+          $("#afficherSuppressionVehicule").click(function() {
+              $("#afficherModifVehicule").hide();
+              $("#afficherSuppressionVehicule").hide();
+              $("#infoSupprVehicule").show("slow");
+          }); 
+          $("#closeSupprVehicule").click(function() {
+              $("#infoSupprVehicule").hide("slow");
+              $("#afficherModifVehicule").show();
+              $("#afficherSuppressionVehicule").show();
+          }); 
+        }); 
+    </script>	
     </body>
 </html>

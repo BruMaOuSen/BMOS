@@ -1,5 +1,6 @@
 <?php 
 	session_start();
+	
 	try
 	{
 		$bdd = new PDO('pgsql:host=localhost;dbname=parkingProject', 'admin', 'admin');
@@ -9,13 +10,10 @@
         die('Erreur : ' . $e->getMessage());
 	}
 
-	$id = $_SESSION['membreid'];
-	$immat = $_POST['immat'];
-	$marque = $_POST['marque'];
-	$typeVeh = $_POST['typeVeh'];
-	$dateFab = $_POST['dateFab'];
+	$immatriculation = $_POST['immatriculation'];
+	//echo $immatriculation;
 	
-	$reponse = $bdd->query("INSERT INTO vehicule VALUES('$immat', '$dateFab', '$marque', '$id', '$typeVeh')");
+	$reponse = $bdd->query("DELETE FROM vehicule WHERE immatriculation = '$immatriculation'");
 	$reponse->closeCursor();
 	header("Location: client.php");
 	exit;

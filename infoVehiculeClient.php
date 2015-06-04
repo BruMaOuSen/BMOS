@@ -77,9 +77,6 @@
     					</td>
     				</tr>
     			</tbody>
-				<?php
-					//$reponse->closeCursor(); // Termine le traitement de la requête
-				?>
 			</table>
   		</div>
 	</div>
@@ -92,14 +89,14 @@
 	?>
 	<div class="container">
   		<div class="alert btn-primary alert-dismissable col-md-offset-3 col-md-6" style="margin-bottom: 10px;">
-			<div>
-				Aucun véhicule encore renseigné pour : <?php echo $login;?>
-  			</div>
+			Aucun véhicule encore renseigné pour : <?php echo $login;?>
+  		</div>
     </div>
 	
 	<?php
-	$reponse->closeCursor();
 	}
+    else
+    {    
 	?>
 	<div class="col-md-offset-2 col-md-8"> 
 	    <div class="btn-group btn-group-justified" role="group"> 
@@ -115,5 +112,9 @@
   			</div>
   		</div>
 	</div>
+    <?php
+    $reponse->closeCursor();
+    }
+    ?>
 </div>
 

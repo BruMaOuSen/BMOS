@@ -18,7 +18,7 @@
     	<div id="inscription">
     		<div class="container">
     			<div class="row">
-    				<!--<div class="col-md-offset-1 col-md-4 presIndex">
+    				<div class="col-md-offset-1 col-md-4 presIndex">
   						<legend>Bienvenue chez UPARK</legend>
 					    <div class="alignjustify">	
 					    	Ce site g&egrave;re l'ensemble des parkings UPARK de Lyon.
@@ -31,8 +31,8 @@
 						<div class="size10 margintop20">
 	    					UPARK vous remercie de la confiance que vous lui accordez.
 						</div>
-					</div>-->
-					<div class="col-md-offset-2 col-md-8 presIndex"> 
+					</div>
+					<div class="col-md-offset-2 col-md-4 presIndex"> 
     					<form method="POST" action="creationutilisateur.php">
   							<legend>Formulaire d'inscription</legend>
 						    <div class="form-group">
@@ -56,7 +56,12 @@
 				</div>
     		</div>
     	</div>
-    	
+        	
+
+
+
+
+
     	<!--INSERTION DU FOOTER-->
 		<?php include ('footer.php'); ?>
     </body>

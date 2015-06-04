@@ -74,7 +74,7 @@
     					<td>
     						<?php 
     							if($donnees1){
-	    							echo $donnees1['taux_de_reduction'] ;
+	    							echo $donnees1['taux_de_reduction'] . ' %' ;
     							}
     							else
     							{
