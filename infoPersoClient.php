@@ -55,6 +55,9 @@
     						?>
     					</td>
     				</tr>
+                    <?php
+                    if ($donnees['abonne']==TRUE) {
+                    ?>
     				<tr>
     					<td>Numéro de compte</td>
     					<td>
@@ -69,6 +72,12 @@
     						?>
     					</td>
     				</tr>
+                    <?php
+                    }
+                    else if ($donnees['abonne']== FALSE) 
+                    {
+                    }
+                    ?>
     				<tr>
     					<td>Taux de réduction (%)</td>
     					<td>

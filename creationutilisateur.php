@@ -16,8 +16,8 @@
 	$typeP = $_POST['typeP'];
 	$mdp = $_POST['motdepasse'];
 	
-	$reponse = $bdd->query("INSERT INTO client (login, nom, typep, mot_de_passe, role_client) 
-							VALUES ('$login', '$nom', '$typeP', '$mdp', 'client')");	
+	$reponse = $bdd->query("INSERT INTO client (login, nom, typep, mot_de_passe, role_client, abonne) 
+							VALUES ('$login', '$nom', '$typeP', '$mdp', 'client', '0')");	
 	$reponse->closeCursor();
 
 	$reponse1 = $bdd->query("INSERT INTO compte (taux_de_reduction, loginC) VALUES('0', '$login')");

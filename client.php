@@ -51,9 +51,16 @@
 						<div class="form-group">
       				<input id="nom" name="nom" type="text" placeholder="Nom" class="form-control">
     				</div>
-						<div class="form-group">
-      				<input id="identification"  name="identification" type="text" placeholder="Société ou personne?" class="form-control">
-    				</div>
+            <div class="form-group">
+              <select name="identification" class="selectpicker form-control">
+                <option>
+                  societe  
+                </option>
+                <option>
+                  personne
+                </option>    
+              </select> 
+            </div>
     				<button type="submit" class="btn btn-primary">Modifier</button>
 				  </form>
   			</div>
@@ -72,11 +79,23 @@
     						</div>
     						<div class="form-group">
       							<input id="dateFab" name="dateFab" type="text" placeholder="Date de fabrication" class="form-control">	
-      						</div>
-    						<div class="form-group">
-      							<input id="typeVeh" name="typeVeh" type="text" placeholder="Type de véhicule" class="form-control">	
       					</div>
-    						<button type="submit" class="btn btn-primary">Ajouter</button>
+                 <div class="form-group">
+                  <select name="typeVeh" class="selectpicker form-control">
+                    <option>
+                      2  
+                    </option>
+                    <option>
+                      4
+                    </option>
+                    <option>
+                      8
+                    </option>    
+                  </select> 
+                </div>
+                <div class="form-group">
+      						<button type="submit" class="btn btn-primary form-control">Ajouter</button>
+                </div>
 				    </form>
   			</div>
 
@@ -111,7 +130,8 @@
   			  <?php
   				  $reponse = $bdd->query("SELECT immatriculation FROM vehicule WHERE proprietaire = '$login'");
   			  ?>
-  			  <select name="immatAncienne"class="selectpicker" style="margin-bottom: 10px; width: 150px">
+          <div class="form-group">
+          <select name="immatAncienne"class="selectpicker form-control">
   				<?php
 						while ($donnees = $reponse->fetch())
 						{
@@ -122,6 +142,7 @@
 						$reponse->closeCursor();
 					?>
   			  </select>
+          </div>
 			    <div class="form-group">
      			  <input id="marque" name="marque" type="text" placeholder="Marque" class="form-control">
     		  </div>
@@ -133,20 +154,37 @@
           </div>
           <div class="form-group">
             <input id="typeVehicule" name="typeVehicule" type="text" placeholder="Type de véhicule" class="form-control">  
-          </div>  
-    	    <button type="submit" class="btn btn-primary">Modifer le véhicule</button>
-		    </form>
+          </div> 
+          <div class="form-group">
+            <select name="typeVehicule" class="selectpicker form-control">
+              <option>
+                2  
+              </option>
+              <option>
+                4
+              </option>
+              <option>
+                8
+              </option>    
+            </select> 
+          </div>
+          <div class="form-group">
+      	    <button type="submit" class="btn btn-primary form-control">Modifer le véhicule</button>
+	        </div>
+  	    </form>
   </div>
 
   <!--FORMULAIRE POUR SUPPRIMER UN VEHICULE DU CLIENT-->
   <div id="infoSupprVehicule" class="alert btn-danger alert-dismissable col-md-offset-3 col-md-6" style="display: none">
       <button type="button" class="close" id="closeSupprVehicule">×</button>
         <form method="post" action="supprVehicule.php">
+          
           <legend>Supprimer le véhicule</legend>
           <?php
             $reponse = $bdd->query("SELECT immatriculation FROM vehicule WHERE proprietaire = '$login'");
           ?>
-          <select name="immatriculation"class="selectpicker" style="margin-bottom: 10px; width: 150px">
+          <div class="form-group"> 
+          <select name="immatriculation"class="selectpicker form-control" >
           <?php
             while ($donnees = $reponse->fetch())
             {
@@ -156,8 +194,11 @@
             }
             $reponse->closeCursor();
           ?>
-          </select> 
-          <button type="submit" class="btn btn-primary">Supprimer le véhicule</button>
+          </select>
+          </div>
+          <div class="form-group"> 
+            <button type="submit" class="btn btn-primary form-control">Supprimer le véhicule</button>
+          </div>
         </form>
   </div>
 			
