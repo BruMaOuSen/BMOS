@@ -47,6 +47,20 @@
       					<th style="text-align: center">Annuels</th>
     				</tr>
   				</thead>
+				<tbody>
+				<?php $reponse1A = $bdd->query("SELECT SUM(prix) FROM transac WHERE date_achat BETWEEN to_timestamp(to_char(Now()::timestamptz, 'YYYY')||'-01-01', 'YYYY-MM-DD') AND Now()") ;
+				$reponse1M = $bdd->query("SELECT SUM(prix) FROM transac WHERE date_achat BETWEEN to_timestamp(to_char(Now()::timestamptz, 'YYYY-MM')||'-01', 'YYYY-MM-DD') AND Now()");
+				$donnees1A = $reponse1A->fetch();
+				$donnees1M = $reponse1M->fetch()
+				?>
+				<tr>
+				<td><center><?php echo $donnees1M['sum'] ?></center></td>
+				<td><center><?php echo $donnees1A['sum'] ?></center></td>
+				<?php $reponse1A->closeCursor(); 
+				$reponse1M->closeCursor();
+				?>
+        			</tr>
+				</tbody>
 			
 			</table>			    
 </section>
@@ -121,6 +135,7 @@
 			?>
 			</select>
                <button type="submit">Valider</button>
+	
         </form> 
         </div>
 	<div class="col-md-offset-3 col-md-6">
@@ -144,6 +159,23 @@
       					<th style="text-align: center">Annuels</th>
     				</tr>
   				</thead>
+				<tbody>
+				<?php 
+				$nomzone = $bdd->query("SELECT zone_park FROM parking where nom_park='$nom_park'");	
+				$reponse3A = $bdd->query("SELECT SUM(prix) FROM transac WHERE date_achat BETWEEN to_timestamp(to_char(Now()::timestamptz, 'YYYY')||'-01-01', 'YYYY-MM-DD') AND Now() AND nom_park=$nomparking") ;
+				$reponse3M = $bdd->query("SELECT SUM(prix) FROM transac WHERE date_achat BETWEEN to_timestamp(to_char(Now()::timestamptz, 'YYYY-MM')||'-01', 'YYYY-MM-DD') AND Now() AND nom_park=$nomparking");
+				
+				//$donnees3A = $reponse3A->fetch(); 
+				//$donnees3M = $reponse3M->fetch();
+				
+				?>
+				
+				<tr>
+				<td><center><?php echo $donnees3M['sum'] ?></center></td>
+				<td><center><?php echo $donnees3A['sum'] ?></center></td>
+				
+        			</tr>
+				</tbody>
     			
 
 			</table>			    
