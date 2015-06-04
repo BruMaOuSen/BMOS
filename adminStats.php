@@ -78,7 +78,7 @@
   					<?php
 						}
 						
-						//$reponse1->closeCursor();
+						$reponse1->closeCursor();
 					?>
   					</select>
   					
@@ -124,7 +124,7 @@
             <select name="parking"class="selectpicker">
                         
             		<?php
-				$reponse3 = $bdd->query("SELECT * FROM parking WHERE zone_park = '$_SESSION[nomZone]'");
+				$reponse3 = $bdd->query("SELECT * FROM parking WHERE zone_park = '$nomzone'");
 				while ($donnees3 = $reponse3->fetch())
 				{
 			?>
@@ -141,17 +141,11 @@
 	<div class="col-md-offset-3 col-md-6">
 	<button type="submit" class="btn btn-info" id="afficherChoixParking">
     		<span class="glyphicon glyphicon-pencil"></span>&nbsp;choisir un parking
-<?php 
-							$reponse3 = $bdd->query("SELECT * FROM parking WHERE zone_park = '$_SESSION[nomZone]'");
-	$donnees3 = $reponse3->fetch();
-?>
-
     	</button>
   	</div>
 </div>
 <?php 
 			$nomparking = $_POST['parking'];
-
 ?>
 
 <section style="margin-top: 15px;" class="col-md-offset-2 col-md-8 table-responsive">
