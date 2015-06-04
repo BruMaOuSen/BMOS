@@ -48,14 +48,17 @@
     				</tr>
   				</thead>
 				<tbody>
-				<?php $reponse1A = $bdd->query("SELECT SUM(prix) FROM transac WHERE date_achat BETWEEN to_timestamp(to_char(Now()::timestamptz, 'YYYY')||'-01-01', 'YYYY-MM-DD') AND Now()") ;
-				$reponse1M = $bdd->query("SELECT SUM(prix) FROM transac WHERE date_achat BETWEEN to_timestamp(to_char(Now()::timestamptz, 'YYYY-MM')||'-01', 'YYYY-MM-DD') AND Now()");
+				<?php $reponse1A = $bdd->query("SELECT SUM(prix) FROM transac 
+                                        WHERE date_achat BETWEEN to_timestamp(to_char(Now()::timestamptz, 'YYYY')||'-01-01', 'YYYY-MM-DD') AND Now()") ;
+				$reponse1M = $bdd->query("SELECT SUM(prix) FROM transac 
+                                        WHERE date_achat BETWEEN to_timestamp(to_char(Now()::timestamptz, 'YYYY-MM')||'-00', 'YYYY-MM-DD') AND Now()");
 				$donnees1A = $reponse1A->fetch();
-				$donnees1M = $reponse1M->fetch()
+				$donnees1M = $reponse1M->fetch();
+        $_SESSION['sommeAnnee'] = $donnees1A['sum'];
 				?>
 				<tr>
-				<td><center><?php echo $donnees1M['sum'] ?></center></td>
-				<td><center><?php echo $donnees1A['sum'] ?></center></td>
+				<td><center><?php echo  $donnees1M['sum'] ?></center></td>
+				<td><center><?php echo $_SESSION['sommeAnnee'] ?></center></td>
 				<?php $reponse1A->closeCursor(); 
 				$reponse1M->closeCursor();
 				?>
@@ -86,7 +89,6 @@
   			  		<button type="submit">Valider</button>
 				</form>	
 				<?php 
-				session_start();
 				$nomzone = $_POST['zone']; 
 				$_SESSION['nomZone'] = $nomzone;
 ?>
@@ -161,7 +163,7 @@
   				</thead>
 				<tbody>
 				<?php 
-				$nomzone = $bdd->query("SELECT zone_park FROM parking where nom_park='$nom_park'");	
+				$nomzone = $bdd->query("SELECT zone_park FROM parking where nom_park='$nomparking'");	
 				$reponse3A = $bdd->query("SELECT SUM(prix) FROM transac WHERE date_achat BETWEEN to_timestamp(to_char(Now()::timestamptz, 'YYYY')||'-01-01', 'YYYY-MM-DD') AND Now() AND nom_park=$nomparking") ;
 				$reponse3M = $bdd->query("SELECT SUM(prix) FROM transac WHERE date_achat BETWEEN to_timestamp(to_char(Now()::timestamptz, 'YYYY-MM')||'-01', 'YYYY-MM-DD') AND Now() AND nom_park=$nomparking");
 				
