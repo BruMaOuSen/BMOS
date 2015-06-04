@@ -44,7 +44,7 @@
 						
     	<!--MODIFICATION DES INFOS CLIENTS-->
     	<div class="container">
-  			<div id="infoPerso" class="alert alert-info alert-dismissable col-md-offset-3 col-md-6" style="display: none">
+  			<div id="infoPerso" class="alert btn-warning alert-dismissable col-md-offset-3 col-md-6" style="display: none">
     			<button type="button" class="close" id="closePerso">×</button>
       			<form method="post" action="modifInfosPers.php">
   					<legend>Modifications des informations</legend>
@@ -57,76 +57,132 @@
     						<div class="form-group">
       							<input id="nbVoit" name="nbVoit" type="text" placeholder="Nombre de voiture(s)" class="form-control">	
       						</div>
-    						<button type="submit">Valider</button>
+    						<button type="submit" class="btn btn-primary">Valider</button>
 				</form>
   			</div>
-  			<div class="col-md-offset-3 col-md-6">
-    			<button type="submit" class="btn btn-info" id="afficherInfoPerso">
-    				<span class="glyphicon glyphicon-pencil"></span>&nbsp;Modifier les informations personnelles
-    			</button>
+
+			<div id="infoVeh" class="alert btn-success alert-dismissable col-md-offset-3 col-md-6" style="display: none">
+    			<button type="button" class="close" id="closeInfoVeh">×</button>
+      			<form method="post" action="test.php">
+  					<legend>Ajouter un véhicule pour <?php echo $_SESSION['membreid'];?></legend>
+						    <div class="form-group">
+      							<input id="marque" name="marque" type="text" placeholder="Marque" class="form-control">
+    						</div>
+						    <div class="form-group">
+      							<input id="immat"  name="immat" type="text" placeholder="Immatriculation" class="form-control">
+    						</div>
+    						<div class="form-group">
+      							<input id="dateFab" name="dateFab" type="text" placeholder="Date de fabrication" class="form-control">	
+      						</div>
+    						<div class="form-group">
+      							<input id="typeVeh" name="typeVeh" type="text" placeholder="Type de véhicule" class="form-control">	
+      						</div>
+
+    						<button type="submit" class="btn btn-primary">Valider</button>
+				</form>
+  			</div>
+
+  		 	<div class="col-md-offset-2 col-md-8"> 
+       			<div class="btn-group btn-group-justified" role="group"> 
+        			<div class="btn-group"  role="group">
+		    			<button type="submit" class="btn btn-warning" id="afficherInfoPerso">
+    						<span class="glyphicon glyphicon-pencil"></span>&nbsp;Modifications des infos personnelles
+    					</button>
+  					</div>
+  					<div class="btn-group"  role="group">
+    					<button type="submit" class="btn btn-success" id="ajoutVehicule">
+    						<span class="glyphicon glyphicon-pushpin"></span>&nbsp;Ajouter un véhicule
+    					</button>
+  					</div>
+  				</div>
   			</div>
 		</div>
 
 		<!--INFORMATIONS SUR LE VEHICULE ET BOUTON DE MODIFICATION-->
-		<?php 
-			
-		?>
 		<?php include('infoVehiculeClient.php'); ?>
     	
     	
-    	<!--INSERTION DU FOOTER-->
+    	<!--FORMULAIRE POUR MODIFIER LES VEHICULES DU CLIENT-->
+			<div id="infoModifVehicule" class="alert btn-warning alert-dismissable col-md-offset-3 col-md-6" style="display: none">
+    	<button type="button" class="close" id="closeModifVehicule">×</button>
+      	<form method="post" action="modifInfosPers.php">
+  			<legend>Modifier le véhicule</legend>
+  			<?php
+  				$reponse = $bdd->query("SELECT immatriculation FROM vehicule WHERE proprietaire = '$login'");
+  			?>
+  			<select name="immatriculation"class="selectpicker" style="margin-bottom: 10px; width: 150px">
+  					<?php
+						while ($donnees = $reponse->fetch())
+						{
+					?>
+  							<option><?php echo $donnees['immatriculation'];?></option>
+  					<?php
+						}
+						$reponse->closeCursor();
+					?>
+  			</select>
+
+			<div class="form-group">
+     			<input id="nom" name="nom" type="text" placeholder="Nom" class="form-control">
+    		</div>
+			<div class="form-group">
+      			<input id="identification"  name="identification" type="text" placeholder="Société ou personne?" class="form-control">
+    		</div>
+			<div class="form-group">
+    				<input id="nbVoit" name="nbVoit" type="text" placeholder="Nombre de voiture(s)" class="form-control">	
+      		</div>
+    	<button type="submit" class="btn btn-primary">Modifer</button>
+		</form>
+  	</div>
+			
+		<!--INSERTION DU FOOTER-->
 		<?php include ('footer.php'); ?>
-		  
-    	<!--Pour animer la page (bouton pour update le profil-->
+
+		<!--Pour animer la page (bouton pour update le profil-->
 		<script src="bootstrap/js/jquery.js"></script> 
 		<script>  
   			$(function (){
     			$("#afficherInfoPerso").click(function() {
       				$("#afficherInfoPerso").hide();
+      				$("#ajoutVehicule").hide();
       				$("#infoPerso").show("slow");
     			}); 
     			$("#closePerso").click(function() {
       				$("#infoPerso").hide("slow");
       				$("#afficherInfoPerso").show();
+      				$("#ajoutVehicule").show();
     			}); 
   			}); 
  		</script>
- 		
- 		
- 		<?php
-			$login = $_SESSION['membreid'];
-			$reponse = $bdd->query("SELECT nb_voitures FROM client WHERE login = '$login'");
-			$donnees = $reponse->fetch();
-			$nbVoit = $donnees['nb_voitures'];
-			$reponse->closeCursor();
-		?>
-
-		<?php
-			$compteur = 0;
-			while($compteur<$nbVoit)
-			{
-			$numeroVoiture = $compteur + 1;
-		?>
-		<script>  
+ 		<script>  
   			$(function (){
-    			$("#afficherInfoVoit<?php echo $numeroVoiture;?>").click(function() {
-      				$("#afficherInfoVoit<?php echo $numeroVoiture;?>").hide();
-      				$("#infoVoit<?php echo $numeroVoiture;?>").show("slow");
+    			$("#ajoutVehicule").click(function() {
+      				$("#ajoutVehicule").hide();
+      				$("#afficherInfoPerso").hide();
+      				$("#infoVeh").show("slow");
+      				
     			}); 
-    			$("#closeVoit<?php echo $numeroVoiture;?>").click(function() {
-      				$("#infoVoit<?php echo $numeroVoiture;?>").hide("slow");
-      				$("#afficherInfoVoit<?php echo $numeroVoiture;?>").show();
+    			$("#closeInfoVeh").click(function() {
+      				$("#infoVeh").hide("slow");
+      				$('#afficherInfoPerso').show();
+      				$("#ajoutVehicule").show();
     			}); 
-  			});
-        	var machin; 
-        function clic("afficherInfoVoit<?php echo $numeroVoiture;?>"){
-                alert("afficherInfoVoit<?php echo $numeroVoiture;?>");
-                machin = outgoingLink;
-        } 
- 		</script> 
- 		<?php
-			$compteur = $compteur + 1;
-		}
-		?>		
+  			}); 
+ 		</script>
+ 		<script>  
+  			$(function (){
+    			$("#afficherModifVehicule").click(function() {
+      				$("#afficherModifVehicule").hide();
+      				$("#afficherSuppressionVehicule").hide();
+      				$("#infoModifVehicule").show("slow");
+    			}); 
+    			$("#closeModifVehicule").click(function() {
+      				$("#infoModifVehicule").hide("slow");
+      				$("#afficherModifVehicule").show();
+      				$("#afficherSuppressionVehicule").show();
+    			}); 
+  			}); 
+ 		</script>
+	
     </body>
 </html>

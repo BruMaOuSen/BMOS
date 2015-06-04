@@ -1,28 +1,16 @@
 <?php
 	$login = $_SESSION['membreid'];
-	$reponse = $bdd->query("SELECT nb_voitures FROM client WHERE login = '$login'");
-	$donnees = $reponse->fetch();
-	$nbVoit = $donnees['nb_voitures'];
-	$reponse->closeCursor();
-?>
-
-<?php
-	$numeroVoiture=1;
-	while($numeroVoiture<=$nbVoit)
-	{
-		
+	$reponse = $bdd->query("SELECT * FROM vehicule WHERE proprietaire = '$login'");
+	
+	while($donnees = $reponse->fetch()){
 ?>
 <div class="container">
     <div class="row">
     	<div class="col-md-offset-2 col-md-8">
   			<table class="table table-bordered table-striped">
   				<caption>
-  					<h4 style="text-align: center">Informations sur le véhicule <?php echo $numeroVoiture; ?></h4>
+  					<h4 style="text-align: center">Informations sur le véhicule <?php echo $donnees['immatriculation']; ?></h4>
   				</caption>
-  				<?php
-					$reponse = $bdd->query("SELECT * FROM vehicule WHERE proprietaire = '$id'");
-					$donnees = $reponse->fetch();
-				?>
     			<tbody>
     				<tr>
     					<td class="col-md-6">Marque</td>
@@ -90,41 +78,42 @@
     				</tr>
     			</tbody>
 				<?php
-					$reponse->closeCursor(); // Termine le traitement de la requête
+					//$reponse->closeCursor(); // Termine le traitement de la requête
 				?>
 			</table>
   		</div>
 	</div>
-</div>	
-
-<div class="container">
-  	<div id="infoVoit<?php echo $numeroVoiture;?>" class="alert alert-info alert-dismissable col-md-offset-3 col-md-6" style="display: none">
-    	<button type="button" class="close" id="closeVoit<?php echo $numeroVoiture;?>">×</button>
-      	<form method="post" action="modifInfosVehicule.php">
-  			<legend>Modifications des informations</legend>
-			<div class="form-group">
-      			<input id="marque" name="marque<?php echo $numeroVoiture;?>" type="text" placeholder="Marque" class="form-control">
-    		</div>
-			<div class="form-group">
-      			<input id="immatriculation"  name="immatriculation<?php echo $numeroVoiture;?>" type="text" placeholder="Immatriculation" class="form-control">
-    		</div>
-    		<div class="form-group">
-      			<input id="datefabrication" name="dateFabrication<?php echo $numeroVoiture;?>" type="text" placeholder="Date de fabrication" class="form-control">	
-      		</div>
-      		<div class="form-group">
-      			<input id="typeVehicule" name="typeVehicule<?php echo $numeroVoiture;?>" type="text" placeholder="Type de véhicule" class="form-control">	
-      		</div>
-    		<button type="submit">Valider</button>
-		</form>
-  	</div>
-  	<div class="col-md-offset-3 col-md-6">
-    	<button type="submit" class="btn btn-info" id="afficherInfoVoit<?php echo $numeroVoiture;?>">
-    		<span class="glyphicon glyphicon-pencil"></span>&nbsp;Modifier les informations du véhicule <?php echo $numeroVoiture; ?>
-    	</button>
-  	</div>
-</div>
-		
-<?php
-	$numeroVoiture = $numeroVoiture + 1;
+	<?php
 	}
-?>
+	$reponse->closeCursor();
+
+	$reponse = $bdd->query("SELECT * FROM vehicule WHERE proprietaire = '$login'");
+	if($reponse->fetch() == NULL){
+	?>
+	<div class="container">
+  		<div class="alert btn-primary alert-dismissable col-md-offset-3 col-md-6" style="margin-bottom: 10px;">
+			<div>
+				Aucun véhicule encore renseigné pour : <?php echo $login;?>
+  			</div>
+    </div>
+	
+	<?php
+	$reponse->closeCursor();
+	}
+	?>
+	<div class="col-md-offset-2 col-md-8"> 
+	    <div class="btn-group btn-group-justified" role="group"> 
+    		<div class="btn-group"  role="group">
+			    <button type="submit" class="btn btn-warning" id="afficherModifVehicule">
+    				<span class="glyphicon glyphicon-pencil"></span>&nbsp;Modifier un véhicule
+    			</button>
+	  		</div>
+  			<div class="btn-group"  role="group">
+    			<button type="submit" class="btn btn-danger" id="afficherSuppressionVehicule">
+    				<span class="glyphicon glyphicon-remove"></span>&nbsp;Supprimer un véhicule
+    			</button>
+  			</div>
+  		</div>
+	</div>
+</div>
+

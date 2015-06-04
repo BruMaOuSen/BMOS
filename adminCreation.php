@@ -40,7 +40,7 @@
     ?>
 
     <div class="container">
-        <div id="alertChoixZone"class="alert alert-info alert-dismissable col-md-offset-2 col-md-8" style="display: none">
+        <div id="alertChoixZone"class="alert btn-primary alert-dismissable col-md-offset-2 col-md-8" style="display: none">
           <button type="button" class="close" id="closeChoixZone">×</button>
         <form method="post" action="adminCreation.php">
           <h3 class="panel-title">Choisir une zone</h3>
@@ -58,11 +58,11 @@
             </select>
             
  
-              <button type="submit"> Valider </button>
+              <button type="submit" class="btn btn-primary"> Valider </button>
         </form> 
         </div>
         <div class="col-md-offset-3 col-md-6">
-          <button type="submit" class="btn btn-info" id="afficherChoixZone">
+          <button type="submit" class="btn btn-primary" id="afficherChoixZone">
             <span class="glyphicon glyphicon-pencil"></span>&nbsp;choisir une zone
           </button>
         </div>
@@ -113,7 +113,7 @@
 <!--////////////// Suppression d'un des parking de la zone selectionnee -->
 
     <div class="container">
-        <div id="alertSupprPark" class="alert alert-info alert-dismissable col-md-offset-2 col-md-8" style="display: none">
+        <div id="alertSupprPark" class="alert btn-danger alert-dismissable col-md-offset-2 col-md-8" style="display: none">
           <button type="button" class="close" id="closeSupprPark">×</button>
         <form method="post" action="adminCreation.php">
           <h3 class="panel-title">Choisir un parking</h3>
@@ -132,7 +132,7 @@
             </select>
             
  
-              <button type="submit">Supprimer</button>
+              <button type="submit" class="btn btn-danger">Supprimer</button>
         </form> 
         </div>
 
@@ -144,7 +144,7 @@
 ?>
 <!--/////////// Modification des infos d'un des parkings de la zone -->
         
-        <div id="alertModifPark" class="alert alert-info alert-dismissable col-md-offset-2 col-md-8" style="display: none">
+        <div id="alertModifPark" class="alert btn-info alert-dismissable col-md-offset-2 col-md-8" style="display: none">
           <button type="button" class="close" id="closeModifPark">×</button>
         <form method="post" action="adminCreation.php">
           <h3 class="panel-title">Choisir le parking et la zone de transfert</h3>
@@ -174,7 +174,7 @@
           ?>
 
             </select>
-              <button type="submit">Transférer</button>
+              <button type="submit" class="btn btn-info">Transférer</button>
         </form> 
         </div>
 
@@ -189,7 +189,7 @@
 <!--////////////////Ajouter un parking dasn la zone selectionnee -->
 
 <?php $_SESSION['nomZone'] = $nomzone;?>
-        <div id="alertAjoutPark" class="alert alert-info alert-dismissable col-md-offset-2 col-md-8" style="display: none">
+        <div id="alertAjoutPark" class="alert btn-success alert-dismissable col-md-offset-2 col-md-8" style="display: none">
           <button type="button" class="close" id="closeAjoutPark">×</button>
         <form method="post" action="test2.php">
           <h3 class="panel-title">Ajouter un parking dans la zone <?php echo $nomzone;?></h3>
@@ -213,27 +213,29 @@
             <div class="form-group">
                 <input id="8RD" name="RD8" type="text" placeholder="Nombres de places DEHORS pour les 8 roues" class="form-control">
             </div>
-              <button type="submit">Ajouter</button>
+              <button type="submit" class="btn btn-primary">Ajouter</button>
         </form> 
         </div>
-        <div class="col-md-offset-3 col-md-2">
-          <button type="submit" class="btn btn-info" id="modifPark">
-            <span class="glyphicon glyphicon-pencil"></span>&nbsp;Transférer un parking
-          </button>
-        </div>
-      <div class="col-md-2" style="padding-left: 0px; padding-right: 0px;">
-          <button type="submit" class="btn btn-info" id="supprPark">
-            <span class="glyphicon glyphicon-pencil"></span>&nbsp;Supprimer un parking
-          </button>
-        </div>
-        <div class="col-md-2">
-          <button type="submit" class="btn btn-info" id="ajoutPark">
-            <span class="glyphicon glyphicon-pencil"></span>&nbsp;Ajouter un parking
-          </button>                                                                        
-      </div>
-  
-    </div>
       
+       	<div class="col-md-offset-2 col-md-8"> 
+       		<div class="btn-group btn-group-justified" role="group"> 
+        		<div class="btn-group"  role="group">
+        			<button type="submit" class="btn btn-success" id="ajoutPark">
+        		    	<span class="glyphicon glyphicon-ok"></span>&nbsp;Ajouter un parking
+          		  	</button>                                                                        
+     	 		</div>
+     	 		<div class="btn-group"  role="group">
+         			<button type="button" class="btn btn-info" id="modifPark">
+            			<span class="glyphicon glyphicon-pencil"></span>&nbsp;Transférer un parking
+          			</button>
+        		</div>
+     	 		<div class="btn-group"  role="group">
+          			<button type="submit" class="btn btn-danger" id="supprPark">
+            			<span class="glyphicon glyphicon-remove"></span>&nbsp;Supprimer un parking
+          			</button>
+        		</div>
+    		</div>
+      </div>
 
 
 
