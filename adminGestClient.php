@@ -5,10 +5,10 @@
   }
   else
   {
-    if($_SESSION['roleutil']!='administrateur'){
-      header("Location: index.php");
-      exit;   
-    }
+    //if($_SESSION['roleutil']!='administrateur'){
+    //  header("Location: index.php");
+     // exit;   
+    //}
   }
 ?>
 <!DOCTYPE html>
@@ -28,6 +28,7 @@
       try
       {
         $bdd = new PDO('pgsql:host=localhost;dbname=parkingProject', 'admin', 'admin');
+        
       }
       catch (Exception $e)
       {
@@ -36,7 +37,8 @@
 
 ///////////////////// Choix d'une zone pour afficher les parkings qui la contiennent
 
-      $reponse1 = $bdd->query("SELECT DISTINCT * FROM client ORDER BY typeP");
+      $reponse1 = $bdd->query("SELECT DISTINCT login FROM client ORDER BY typep");
+      
     ?>
 
     <div class="container">
@@ -49,7 +51,7 @@
             while ($donnees1 = $reponse1->fetch())
             {
           ?>
-                <option ><?php echo $donnees1['typeP'] ;?></option>
+                <option ><?php echo $donnees1['typep'] ;?></option>
             <?php
             }
             
@@ -60,7 +62,7 @@
             <h3 class="panel-title">Choisir une <?php '$typep' ?> </h3>
             <select name="nom"class="selectpicker">
             <?php
-            $reponse2 = $bdd->query("SELECT DISTINCT * FROM client where typeP='typep' ORDER BY numero_compte, nom");
+            $reponse2 = $bdd->query("SELECT DISTINCT login FROM client where typep='typep' ORDER BY numero_compte, nom");
             while ($donnees2 = $reponse2->fetch())
             {
           ?>
