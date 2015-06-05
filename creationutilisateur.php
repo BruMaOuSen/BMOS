@@ -20,7 +20,7 @@
 							VALUES ('$login', '$nom', '$typeP', '$mdp', 'client', '0')");	
 	$reponse->closeCursor();
 
-	$reponse1 = $bdd->query("INSERT INTO compte (taux_de_reduction, loginC) VALUES('0', '$login')");
+	$reponse1 = $bdd->query("INSERT INTO compte (taux_de_reduction, loginC, date_creation) VALUES('0', '$login', now())");
 	$reponse1->closeCursor();
 
 	

@@ -44,7 +44,8 @@
           <button type="button" class="close" id="closeChoixZone">×</button>
         <form method="post" action="adminCreation.php">
           <h3 class="panel-title">Choisir une zone</h3>
-            <select name="zone"class="selectpicker">
+          <div class="form-group">  
+            <select name="zone"class="selectpicker form-control">
             <?php
             while ($donnees1 = $reponse1->fetch())
             {
@@ -56,9 +57,10 @@
             $reponse1->closeCursor();
           ?>
             </select>
-            
- 
-              <button type="submit" class="btn btn-primary"> Valider </button>
+          </div>  
+ 		  <div class="form-group">	
+              <button type="submit" class="btn btn-primary form-control"> Valider </button>
+          </div>	
         </form> 
         </div>
         <div class="col-md-offset-3 col-md-6">
@@ -117,7 +119,8 @@
           <button type="button" class="close" id="closeSupprPark">×</button>
         <form method="post" action="adminCreation.php">
           <h3 class="panel-title">Choisir un parking</h3>
-            <select name="parkingsuppr"class="selectpicker">
+          <div class="form-group">
+            <select name="parkingsuppr"class="selectpicker form-control">
             <?php
               $reponse3= $bdd->query("SELECT * FROM parking WHERE zone_park = '$nomzone' ORDER BY nom_park");
             while ($donnees3 = $reponse3->fetch())
@@ -130,9 +133,10 @@
             $reponse3->closeCursor();
           ?>
             </select>
-            
- 
-              <button type="submit" class="btn btn-danger">Supprimer</button>
+            </div>
+ 			<div class="form-group">
+              <button type="submit" class="btn btn-primary form-control">Supprimer</button>
+            </div>  
         </form> 
         </div>
 
@@ -148,7 +152,8 @@
           <button type="button" class="close" id="closeModifPark">×</button>
         <form method="post" action="adminCreation.php">
           <h3 class="panel-title">Choisir le parking et la zone de transfert</h3>
-            <select name="parkingmodif"class="selectpicker">
+            <div class="form-group">
+            <select name="parkingmodif"class="selectpicker form-control">
           <?php
               $reponse5= $bdd->query("SELECT * FROM parking WHERE zone_park = '$nomzone' ORDER BY nom_park");
             while ($donnees5 = $reponse5->fetch())
@@ -161,7 +166,9 @@
            $reponse5->closeCursor();
           ?>
             </select>
-            <select name="zonetransfert"class="selectpicker">
+            </div>
+            <div class="form-group">
+            <select name="zonetransfert"class="selectpicker form-control">
             <?php
               $reponse6 = $bdd->query("SELECT nom_zone FROM zone EXCEPT (SELECT nom_zone FROM zone WHERE nom_zone = '$nomzone' )ORDER BY nom_zone");
             while ($donnees6 = $reponse6->fetch())
@@ -174,7 +181,10 @@
           ?>
 
             </select>
-              <button type="submit" class="btn btn-info">Transférer</button>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary form-control">Transférer</button>
+            </div>
         </form> 
         </div>
 
@@ -213,7 +223,9 @@
             <div class="form-group">
                 <input id="8RD" name="RD8" type="text" placeholder="Nombres de places DEHORS pour les 8 roues" class="form-control">
             </div>
-              <button type="submit" class="btn btn-primary">Ajouter</button>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary form-control">Ajouter</button>
+        	</div>
         </form> 
         </div>
       
