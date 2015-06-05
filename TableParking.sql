@@ -11,6 +11,11 @@ CREATE TABLE Zone (
         prix_m_zone int 
 );
 
+-- CREATION DES BASES UTILISATEUR, ROLE ET PAGE POUR LA CONNEXION
+CREATE TABLE Role (
+	type_role varchar(50) PRIMARY KEY
+);
+
 create table Client(
 	login varchar(25) primary key,
 	nom varchar(25) NOT NULL,
@@ -90,7 +95,7 @@ CREATE TABLE Occupe (
 );
 
 CREATE TABLE Transac (
-	numero_transac int  SERIAL PRIMARY KEY,
+	numero_transac SERIAL PRIMARY KEY,
 	date_achat timestamp with time zone NOT NULL,
 	date_debut timestamp with time zone NOT NULL,
 	date_fin timestamp with time zone NOT NULL,
@@ -105,10 +110,6 @@ CREATE TABLE Transac (
 );
 
 
--- CREATION DES BASES UTILISATEUR, ROLE ET PAGE POUR LA CONNEXION
-CREATE TABLE Role (
-	type_role varchar(50) PRIMARY KEY
-);
 
 /*Useless*/
 /*create table utilisateur (
