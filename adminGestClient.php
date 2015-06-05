@@ -35,18 +35,18 @@
             die('Erreur : ' . $e->getMessage());
       }
 
-///////////////////// Choix d'une zone pour afficher les parkings qui la contiennent
+///////////////////// Choix d'un type de client////////////////////////////////////
 
-      $reponse1 = $bdd->query("SELECT DISTINCT login FROM client ORDER BY typep");
+      $reponse1 = $bdd->query("SELECT DISTINCT typep FROM client ORDER BY typep");
       
     ?>
 
     <div class="container">
-        <div id="alertChoixZone"class="alert btn-primary alert-dismissable col-md-offset-2 col-md-8" style="display: none">
-          <button type="button" class="close" id="closeChoixZone">×</button>
-        <form method="post" action="adminCreation.php">
+        <div id="alertChoixType"class="alert btn-primary alert-dismissable col-md-offset-2 col-md-8" style="display: none">
+          <button type="button" class="close" id="closeChoixType">×</button>
+        <form method="post" action="adminGestClient.php">
           <h3 class="panel-title">Choisir un type de client </h3>
-            <select name="typeP"class="selectpicker">
+            <select name="typep"class="selectpicker">
             <?php
             while ($donnees1 = $reponse1->fetch())
             {
@@ -59,30 +59,132 @@
             $typep = $_POST['typep'];
           ?>
             </select>
-            <h3 class="panel-title">Choisir une <?php '$typep' ?> </h3>
-            <select name="nom"class="selectpicker">
+            </div>  
+      <div class="form-group">  
+              <button type="submit" class="btn btn-primary form-control"> Valider </button>
+          </div>  
+        </form> 
+        </div>
+        <div class="col-md-offset-3 col-md-6">
+          <button type="submit" class="btn btn-primary" id="afficherChoixType">
+            <span class="glyphicon glyphicon-pencil"></span>&nbsp;Choisir un type de client
+          </button>
+        </div>
+    </div>
+
+<!--///////////////////Affichage des clients du type selectionné/////////////-->
+
+<?php
+  $typep = $_POST['typep'];
+?>
+<section style="margin-top: 15px;" class="col-md-offset-2 col-md-8 table-responsive">
+      <table class="table table-bordered table-striped">
+          <caption>
+            <h4 style="text-align: center">Les clients de type <?php echo $typep;?></h4>
+          </caption>
+          <thead>
+            <tr>
+                <th style="text-align: center">Login du client</th>
+                <th style="text-align: center">Nom du client</th>
+            </tr>
+          </thead>
+          <tbody> 
             <?php
-            $reponse2 = $bdd->query("SELECT DISTINCT login FROM client where typep='typep' ORDER BY numero_compte, nom");
+            $reponse2 = $bdd->query("SELECT login,nom FROM client where typep='$typep' ORDER BY login, nom");
             while ($donnees2 = $reponse2->fetch())
             {
           ?>
                 <tr>
+                    <td><center><?php echo $donnees2['login']; ?></center></td>
                     <td><center><?php echo $donnees2['nom']; ?></center></td>
-                    <td><center><?php echo $donnees2['numero_compte']; ?> places </center></td>
                   </tr>
             <?php
             }
             
             $reponse2->closeCursor();
           ?>
-            </select>
+            </tbody>
+      </table>          
+</section>
  
-              <button type="submit" class="btn btn-primary"> Valider </button>
+<!--///////////////////Suppression d'un client selectionné/////////////-->
+
+<div class="container">
+        <div id="alertSupprClient" class="alert btn-danger alert-dismissable col-md-offset-2 col-md-8" style="display: none">
+          <button type="button" class="close" id="closeSupprClient">×</button>
+        <form method="post" action="adminGestClient.php">
+          <h3 class="panel-title">Choisir un client </h3>
+          <div class="form-group">
+            <select name="clientsuppr"class="selectpicker form-control">
+            <?php
+              $reponse3= $bdd->query("SELECT login FROM client where typep='$typep' ORDER BY login");
+            while ($donnees3 = $reponse3->fetch())
+            {
+          ?>
+                <option ><?php echo $donnees3['login'];?></option>
+            <?php
+            }
+            
+            $reponse3->closeCursor();
+          ?>
+            </select>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary form-control">Supprimer</button>
+            </div>  
         </form> 
         </div>
-        <div class="col-md-offset-3 col-md-6">
-          <button type="submit" class="btn btn-primary" id="afficherChoixZone">
-            <span class="glyphicon glyphicon-pencil"></span>&nbsp;choisir un client
-          </button>
+
+<?php
+    $client = $_POST['clientsuppr'];
+    $reponse4 = $bdd->query("DELETE FROM Client WHERE login = '$client'");
+    $reponse4->closeCursor();
+    
+?>
+
+
+        <div class="col-md-offset-2 col-md-8"> 
+          <div class="btn-group"  role="group">
+                <button type="submit" class="btn btn-danger" id="supprClient">
+                  <span class="glyphicon glyphicon-remove"></span>&nbsp;Supprimer un client
+                </button>
+            </div>
         </div>
-    </div>
+</div>
+
+              
+<script src="bootstrap/js/jquery.js"></script> 
+    <!--SCRIPTS FONCTiONNELS POUR TOUS LES BOUTONS DE LA PAGE-->
+    <script>  
+        $(function (){
+          $("#afficherChoixType").click(function() {
+              $("#afficherChoixType").hide();
+              $("#supprClient").hide();
+              $("#alertChoixType").show("slow");
+          }); 
+          $("#closeChoixType").click(function() {
+              $("#alertChoixType").hide("slow");
+              $("#afficherChoixType").show();
+              $("#supprPark").show();
+          }); 
+        }); 
+    </script>   
+    <script>  
+        $(function (){
+          $("#supprClient").click(function() {
+              $("#supprClient").hide();
+              $("#afficherChoixType").hide();
+              $("#alertSupprClient").show("slow");
+          }); 
+          $("#closeSupprClient").click(function() {
+              $("#alertSupprClient").hide("slow");
+              $("#supprClient").show();
+              $("#afficherChoixType").show();
+          }); 
+        }); 
+    </script> 
+
+          <!--INSERTION DU FOOTER-->
+    <!--<?php include ('footer.php'); ?>-->
+    </body>
+</html>
