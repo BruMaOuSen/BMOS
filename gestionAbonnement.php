@@ -21,8 +21,11 @@
     </head>
     <body>
       <!--INSERTION DU HEADER-->
-      <?php include ('header.php'); ?>      
-      
+      <?php include ('header.php'); ?>  
+
+      <!--INSERTION DU MENU-->    
+      <?php include('menuClient.php');?>
+
       <!--CORPS DE LA PAGE D'INDEX-->     
       <?php
       try
@@ -34,6 +37,42 @@
             die('Erreur : ' . $e->getMessage());
       }
       ?>
-      Page gestion abonnement
+
+      <?php
+        $login = $_SESSION['membreid'];
+        $reponse = $bdd->query("SELECT abonne FROM client WHERE login = '$login' ");
+        $donnees = $reponse->fetch();
+
+        if($donnees['abonne'] == FALSE)
+        {
+      ?>
+      <div class="container">
+        <div class="alert btn-success alert-dismissable col-md-offset-3 col-md-6" style="margin-bottom: 10px;">
+          <h5 style="margin-bottom: 10px;">Vous n'êtes toujours pas abonné à notre service. N'hésitez plus et profitez dès maintenant de nos tarifs préférentiels.</h5>
+          <form method="post" action="abonnement.php">
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary form-control">Je m'abonne!</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <?php
+      }
+      else
+      {
+      ?>
+      <div class="container">
+        <div class="alert btn-success alert-dismissable col-md-offset-3 col-md-6" style="margin-bottom: 10px;">
+          <h5 style="margin-bottom: 10px;">C'est bien mec t'es abonné!.</h5>
+          <form method="post" action="desabonnement.php">
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary form-control">Je me désabonne!</button>
+            </div>
+          </form>  
+        </div>
+      </div>
+      <?php
+      }
+      ?>
     </body>
 </html>
