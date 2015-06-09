@@ -55,8 +55,8 @@
 				$donnees1A = $reponse1A->fetch();
 				$donnees1M = $reponse1M->fetch();?>
 				<tr>
-				<td><center><?php echo $donnees1M['sum'] ;?></center></td>
-				<td><center><?php echo $donnees1A['sum'] ;?></center></td>
+				<td><center><?php echo $donnees1M['sum'] ;?>€</center></td>
+				<td><center><?php echo $donnees1A['sum'] ;?>€</center></td>
 				<?php $reponse1A->closeCursor(); 
 				$reponse1M->closeCursor();?>
         			</tr>
@@ -128,8 +128,6 @@
 
 <?php 
       $nomzone = $_POST['zone'];
-//      $reponse2 = $bdd->query("SELECT nom_park FROM parking WHERE zone_park = '$nomzone'");
-//      $donnees2 = $reponse2->fetch();
 ?>
 
 <section style="margin-top: 15px;" class="col-md-offset-2 col-md-8 table-responsive">
@@ -163,6 +161,43 @@
 					<?php
 						}
 						$reponse->closeCursor(); // Termine le traitement de la requête
+					?>
+        </tbody>
+      </table>          
+</section>
+
+
+<section style="margin-top: 15px;" class="col-md-offset-2 col-md-8 table-responsive">
+      <table class="table table-bordered table-striped">
+          <caption>
+            <h4 style="text-align: center">Nb de réservations des parkings de <?php echo $nomzone;?></h4>
+          </caption>
+          <thead>
+            <tr>
+                <th style="text-align: center">Nom du parking</th>
+                <th style="text-align: center">Mensuels</th>
+                <th style="text-align: center">Annuels</th>
+            </tr>
+          </thead>
+          <tbody> 
+          <?php
+						$reponse5 = $bdd->query("SELECT * FROM parking WHERE zone_park = '$nomzone'");
+						while ($donnees5 = $reponse5->fetch())
+						{ 
+						$park=$donnees5['nom_park'];
+					?>
+    						<tr>
+        						<td><?php echo $donnees5['nom_park']; ?></td>
+							<?php $reponse5M = $bdd->query("SELECT COUNT(*) FROM transac WHERE date_achat BETWEEN to_timestamp(to_char(Now()::timestamptz, 'YYYY-MM')||'-01', 'YYYY-MM-DD') AND Now() AND nom_park='$park'"); 
+							$donnees5M = $reponse5M->fetch(); ?>
+							<td><?php echo $donnees5M['count']; ?></td>
+							<?php $reponse5A = $bdd->query("SELECT COUNT(*) FROM transac WHERE date_achat BETWEEN to_timestamp(to_char(Now()::timestamptz, 'YYYY')||'-01-01', 'YYYY-MM-DD') AND Now() AND nom_park = '$park'");
+							$donnees5A = $reponse5A->fetch();	?>
+							<td><?php echo $donnees5A['count']; ?></td>
+      						</tr>
+					<?php
+						}
+						$reponse5->closeCursor(); // Termine le traitement de la requête
 					?>
         </tbody>
       </table>          
