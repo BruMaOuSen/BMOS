@@ -64,6 +64,34 @@
  			
  			</table>			    
  </section>
+
+<section style="margin-top: 15px;" class="col-md-offset-2 col-md-8 table-responsive">
+ 			<table class="table table-bordered table-striped">
+   				<caption>
+   					<h4 style="text-align: center">Nb de réservations sur l'ensemble des parkings</h4>
+   				</caption>
+   				<thead>
+     				<tr>
+       					<th style="text-align: center">Mensuels</th>
+       					<th style="text-align: center">Annuels</th>
+     				</tr>
+   				</thead>
+				<tbody>
+				<?php $reponse4A = $bdd->query("SELECT count(*) FROM transac WHERE date_achat BETWEEN to_timestamp(to_char(Now()::timestamptz, 'YYYY')||'-01-01', 'YYYY-MM-DD') AND Now()");
+				$reponse4M = $bdd->query("SELECT count(*) FROM transac WHERE date_achat BETWEEN to_timestamp(to_char(Now()::timestamptz, 'YYYY-MM')||'-01', 'YYYY-MM-DD') AND Now()");
+				$donnees4A = $reponse4A->fetch();
+				$donnees4M = $reponse4M->fetch();?>
+				<tr>
+				<td><center><?php echo $donnees4M['count'] ;?></center></td>
+				<td><center><?php echo $donnees4A['count'] ;?></center></td>
+				<?php $reponse4A->closeCursor(); 
+				$reponse4M->closeCursor();?>
+        			</tr>
+				</tbody>
+ 			
+ 			</table>			    
+ </section>
+
     <div class="container">
         <div id="alertChoixZone"class="alert btn-primary alert-dismissable col-md-offset-2 col-md-8" style="display: none">
           <button type="button" class="close" id="closeChoixZone">×</button>
