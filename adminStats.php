@@ -34,6 +34,34 @@
             die('Erreur : ' . $e->getMessage());
       }
 
+<section style="margin-top: 15px;" class="col-md-offset-2 col-md-8 table-responsive">
+ 			<table class="table table-bordered table-striped">
+   				<caption>
+   					<h4 style="text-align: center">Profits de tous les parkings</h4>
+   				</caption>
+   				<thead>
+     				<tr>
+       					<th style="text-align: center">Mensuels</th>
+       					<th style="text-align: center">Annuels</th>
+     				</tr>
+   				</thead>
++				<tbody>
++				<?php $reponse1A = $bdd->query("SELECT SUM(prix) FROM transac WHERE date_achat BETWEEN to_timestamp(to_char(Now()::timestamptz, 'YYYY')||'-01-01', 'YYYY-MM-DD') AND Now()") ;
++				$reponse1M = $bdd->query("SELECT SUM(prix) FROM transac WHERE date_achat BETWEEN to_timestamp(to_char(Now()::timestamptz, 'YYYY-MM')||'-01', 'YYYY-MM-DD') AND Now()");
++				$donnees1A = $reponse1A->fetch();
++				$donnees1M = $reponse1M->fetch()
++				?>
++				<tr>
++				<td><center><?php echo $donnees1M['sum'] ?></center></td>
++				<td><center><?php echo $donnees1A['sum'] ?></center></td>
++				<?php $reponse1A->closeCursor(); 
++				$reponse1M->closeCursor();
++				?>
++        			</tr>
++				</tbody>
+ 			
+ 			</table>			    
+ </section>
 ///////////////////// Choix d'une zone pour afficher les parkings qui la contiennent
 
       $reponse1 = $bdd->query('SELECT * FROM zone ORDER BY nom_zone');
