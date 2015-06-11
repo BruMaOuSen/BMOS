@@ -14,7 +14,7 @@
 	$immat = $_POST['immatriculation'];
 	$ancienneImmat = $_POST['immatAncienne'];
 	$marque = $_POST['marque'];
-	$typeVeh = $_POST['typeVeh'];
+	$typeVeh = $_POST['typeVehicule'];
 	$dateFab = $_POST['dateFab'];
 
 	if ($immat != NULL) {

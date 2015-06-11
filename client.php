@@ -153,9 +153,6 @@
     				<input id="dateFabrication" name="dateFabrication" type="text" placeholder="Date de Fabrication" class="form-control">	
           </div>
           <div class="form-group">
-            <input id="typeVehicule" name="typeVehicule" type="text" placeholder="Type de véhicule" class="form-control">  
-          </div> 
-          <div class="form-group">
             <select name="typeVehicule" class="selectpicker form-control">
               <option>
                 2  

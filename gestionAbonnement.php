@@ -5,7 +5,7 @@
   }
   else
   {
-    if($_SESSION['roleutil']!='client' && $_SESSION['roleutil']!='administrateur'){
+    if($_SESSION['roleutil']!='client'){
       header("Location: index.php");
       exit;   
     }

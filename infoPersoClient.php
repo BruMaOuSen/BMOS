@@ -1,3 +1,17 @@
+<?php 
+  session_start();
+  if(!isset($_SESSION['authentification'])){
+    header("Location: index.php");  
+  }
+  else
+  {
+    if($_SESSION['roleutil']!='client'){
+      header("Location: index.php");
+      exit;   
+    }
+  }
+?>
+<!DOCTYPE html>
 <div class="container">
     <div class="row">
     	<div class="col-md-offset-2 col-md-8">
@@ -72,26 +86,26 @@
     						?>
     					</td>
     				</tr>
+                    <tr>
+                        <td>Taux de réduction (%)</td>
+                        <td>
+                            <?php 
+                                if($donnees1){
+                                    echo $donnees1['taux_de_reduction'] . ' %' ;
+                                }
+                                else
+                                {
+                                    echo "Non renseigné";
+                                }   
+                            ?>
+                        </td>
+                    </tr> 
                     <?php
                     }
                     else if ($donnees['abonne']== FALSE) 
                     {
                     }
-                    ?>
-    				<tr>
-    					<td>Taux de réduction (%)</td>
-    					<td>
-    						<?php 
-    							if($donnees1){
-	    							echo $donnees1['taux_de_reduction'] . ' %' ;
-    							}
-    							else
-    							{
-    								echo "Non renseigné";
-    							}	
-    						?>
-    					</td>
-    				</tr>    				    					
+                    ?>   				    					
 				</tbody>
 				<?php
 					$reponse->closeCursor(); // Termine le traitement de la requête
