@@ -4,8 +4,8 @@
     		<li> <a href="adminStats.php">Statistiques</a> </li>
 	    	<li> <a href="#">Gestion des clients</a> </li>
     	  	<li> <a href="#">Système de fidélité</a> </li>
-      		<li> <a href="#">Gestion des zones</a> </li>
-      		<li> <a href="#">Gestion des parkings</a> </li>
+      		<li> <a href="gestionZones.php">Gestion des zones</a> </li>
+      		<li> <a href="adminCreation.php">Gestion des parkings</a> </li>
     	</ul>
 	</div>
 </nav>

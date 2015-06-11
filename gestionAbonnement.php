@@ -40,7 +40,7 @@
 
       <?php
         $login = $_SESSION['membreid'];
-        $reponse = $bdd->query("SELECT abonne FROM client WHERE login = '$login' ");
+        $reponse = $bdd->query("SELECT abonne FROM client WHERE login = '$login'");
         $donnees = $reponse->fetch();
 
         if($donnees['abonne'] == FALSE)
