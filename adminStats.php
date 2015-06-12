@@ -90,8 +90,7 @@
 				<?php $reponse4A->closeCursor(); 
 				$reponse4M->closeCursor();?>
         			</tr>
-				</tbody>
- 			
+				</tbody>		
  			</table>			    
  </section>
 

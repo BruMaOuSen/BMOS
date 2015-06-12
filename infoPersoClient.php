@@ -85,7 +85,13 @@
     							}	
     						?>
     					</td>
-    				</tr>
+    				</tr> 
+                    <?php
+                    }
+                    else if ($donnees['abonne']== FALSE) 
+                    {
+                    }
+                    ?>   				    					
                     <tr>
                         <td>Taux de réduction (%)</td>
                         <td>
@@ -99,13 +105,7 @@
                                 }   
                             ?>
                         </td>
-                    </tr> 
-                    <?php
-                    }
-                    else if ($donnees['abonne']== FALSE) 
-                    {
-                    }
-                    ?>   				    					
+                    </tr>
 				</tbody>
 				<?php
 					$reponse->closeCursor(); // Termine le traitement de la requête

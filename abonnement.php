@@ -1,15 +1,6 @@
 <?php
-	session_start();
-    if(!isset($_SESSION['authentification'])){
-        header("Location: index.php");  
-    }
-    else
-    {
-        if($_SESSION['roleutil']!='client'){
-            header("Location: index.php");
-            exit;   
-        }
-    }  
+    session_start();
+      
     try
     {
       $bdd = new PDO('pgsql:host=localhost;dbname=parkingProject', 'admin', 'admin');
@@ -19,75 +10,46 @@
       die('Erreur : ' . $e->getMessage());
     }
     
-    //$login = $_SESSION['membreid'];
+    $login = $_SESSION['membreid'];
+    $periodeAbonnement = $_POST['periodeAbonnement'];
+    $paiement = $_POST['modePaiement'];
+    $tauxDeReduction;
+    $prix;
+    if($periodeAbonnement == '1 mois'){
+        $tauxDeReduction = 5;
+        $prix = 200;
+    }
+    else if($periodeAbonnement == '3 mois'){
+        $tauxDeReduction = 10;
+        $prix = 175;
+    }
+    else if($periodeAbonnement == '6 mois'){
+        $tauxDeReduction = 15;
+        $prix = 150;
+    }
+    else if($periodeAbonnement == '1 an'){
+        $tauxDeReduction = 25;
+        $prix = 100;
+    }
 
-    //$reponse = $bdd->query("UPDATE client SET abonne = 'TRUE' WHERE login ='$login'");
-    //$reponse->closeCursor();
+    $reponse = $bdd->query("UPDATE compte SET taux_de_reduction = '$tauxDeReduction'");
+    $reponse->closeCursor();
+
+    $reponse1 = $bdd->query("UPDATE client SET abonne = 'TRUE' WHERE login ='$login'");
+    $reponse1->closeCursor();
+    
+    $moyenP;
+    if($paiement == 'Carte bancaire'){
+        $moyenP = 'carte';
+    }
+    else if ($paiement == 'Liquide') {
+        $moyenP = 'monnaie';
+    }
+    //$now = date('y-m-d', strtotime('+13 DAY'));
+    //$now1 = $now;
+    //echo $now;
+    //$reponse2 = $bdd->query("INSERT INTO transac (prix, type_t, moyen_p, client, date_debut, date_fin, date_achat) VALUES('$prix', 'abonnement', '$moyenP', '$login', convert(datetime,'18-06-12 10:34:09 PM',5), convert(datetime,'18-06-12 10:34:09 PM',5), convert(datetime,'18-06-12 10:34:09 PM',5))");
+
     //header('Location: gestionAbonnement.php');
     //exit;
 ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-      <link href="style.css" rel="stylesheet">
-      <meta charset="utf-8">
-        <title>UPARK | Abonnement <?php echo $_SESSION['membreid'];?></title>
-    </head>
-    <body>
-      <!--INSERTION DU HEADER-->
-      <?php include ('header.php'); ?> 
-
-      <!--INSERTION DU MENU-->     
-      <?php include('menuAdmin.php');?>           
-      
-      <!--CORPS DE LA PAGE D'ABONNEMENT-->     
-    <div class="container">
-        <div id="alertChoixZone"class="alert btn-primary alert-dismissable col-md-offset-2 col-md-8" style="display: none">
-            <button type="button" class="close" id="closeChoixZone">×</button>
-            <form method="post" action="adminStats.php">
-                <h3 class="panel-title">Choisir une zone</h3>
-                <select name="zone"class="selectpicker">
-                <?php
-                    while ($donnees1 = $reponse1->fetch())
-                    {
-                ?>
-                        <option ><?php echo $donnees1['nom_zone'];?></option>
-                <?php
-                    }
-                    $reponse1->closeCursor();
-                ?>
-                </select>
-                <button type="submit" class="btn btn-primary"> Valider </button>
-            </form> 
-        </div>
-    </div>
-    <div class="col-md-offset-3 col-md-6">
-        <button type="submit" class="btn btn-primary" id="afficherChoixZone">
-            <span class="glyphicon glyphicon-pencil"></span>&nbsp;choisir une zone
-        </button>
-    </div>
-   <script src="bootstrap/js/jquery.js"></script> 
-    <!--SCRIPTS FONCTiONNELS POUR TOUS LES BOUTONS DE LA PAGE-->
-    <script>  
-        $(function (){
-          $("#afficherChoixZone").click(function() {
-              $("#afficherChoixZone").hide();
-              $("#supprPark").hide();
-              $("#ajoutPark").hide();
-              $("#modifPark").hide();
-              $("#alertChoixZone").show("slow");
-          }); 
-          $("#closeChoixZone").click(function() {
-              $("#alertChoixZone").hide("slow");
-              $("#afficherChoixZone").show();
-              $("#supprPark").show();
-              $("#ajoutPark").show();
-              $("#modifPark").show();
-          }); 
-        }); 
-    </script>
-</body>
-</html>
-
-   
