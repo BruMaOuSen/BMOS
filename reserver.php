@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 ?>
 <html>
     <head>
@@ -37,6 +38,16 @@ session_start();
 				echo "<option  value='$row[0]'>$row[0]</option>";
 			}
 			pg_close($request);
+			$sql="select date_fin from occupe";
+			$request_place = pg_query($conn, $sql);
+			while ($row = pg_fetch_row($request_place)) {
+			if(strtotime($row[0])<(time()+9*3600))
+			{
+				$sqll="delete from occupe where date_fin='$row[0]'";
+				$request_delete = pg_query($conn, $sqll);
+			}
+			
+		}
 		?>
 	<br/><br/>	
 	<input type="submit" name ="submitted" value ="submit" class="btn btn-info">
