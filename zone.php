@@ -24,6 +24,20 @@ session_start();
     line-height: 18px;
 }
 		</style>
+		<script type="text/javascript">
+		function valide(){
+			document.getElementById("pay_method").disabled=false;
+		}
+		function unvalide(){
+			document.getElementById("pay_method").disabled=true;
+		}
+		function pay()
+		{
+			$debut=document.getElementById("datedebut").value;
+			$fin=document.getElementById("datefin").value;
+			alert("Vous devez payer "+2*($fin-$debut) +"€" );
+		}
+		</script>
     </head>
 <body style="background-color:#eeeeee">
 <?php include ('header.php'); ?>	
@@ -58,8 +72,8 @@ session_start();
 		if(is_null($parking))
 		{
 			$message = "Il n'y a pas parking dans cette zone!";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-			header("location:resever.php");
+			echo "<script type='text/javascript'>lert('$message');</script>";
+			header("location:reserver.php");
 		}
 		$_SESSION['parking']=$parking;
 		pg_close($request);
@@ -97,9 +111,23 @@ session_start();
 	<label><input type="radio" name="num_place" value="3">3 couvert "4"</label><br/>
 	<label><input type="radio" name="num_place" value="4">4 dehors  "4"</label><br/>
 	<label><input type="radio" name="num_place" value="5">5 dehors  "8"</label><br/>
-	<label>datedebut<input type="text" name="datedebut" >datefin<input type="text" name="datefin" ></label>
-	<br/><br/>
-	<input type="submit" value="Valider" name="choisir_place" class="btn btn-info col-md-offset-5 ">
+	<label>datedebut<input type="text" name="datedebut" id ="datedebut">
+	datefin<input type="text" name="datefin" id ="datefin">
+	<input type="button" onclick=pay() readonly="turn" value="calcul le prix"></label><br/>
+	<label><h5>Moyen de paiement pour le réglemen(2 euros par heure)</h5></label><br/>
+	
+	<label><input type="radio" name="typeTransac" value="abonnement" onclick="unvalide()">abonnement</label><br/>
+	<label><input type="radio" name="typeTransac" value="ticket" onclick="valide()">ticket   
+        <select name="modePaiement" id="pay_method" disabled="ture">
+            <option value="carte">
+             carte 
+            </option>
+            <option value="monnaie">
+             monnaie
+             </option>
+        </select> 
+     </label><br/>
+			<input type="submit" value="Valider" name="choisir_place" class="btn btn-info col-md-offset-5 ">
 	</form>
 	
 </body>

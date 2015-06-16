@@ -20,16 +20,23 @@ session_start();
 		if(is_null($conn))
 			echo "connect error";
 		$parking=$_SESSION['parking'];
+		$num_tran=$_SESSION['nun_tran']+1;
 		if (isset($_POST["choisir_place"])) 
 		{
 			$date_debut=$_POST["datedebut"];
 			$date_fin=$_POST["datefin"];
 			$num=$_POST["num_place"];
+			$type_t=$_POST["typeTransac"];
+			$moyen_p=$_POST["modePaiement"];
 		}
-		
+		if(is_null($moyen_p))
+		{
+			$moyen_p="carte";
+		}
 		/*obtenir immatriculation par login*/
 		$login =$_SESSION['membreid'];
-		
+		$date_achat=$date_fin-$date_debut;
+		$prix=$date_achat*2;
 		$request_login = pg_query($conn, "SELECT immatriculation FROM Vehicule where proprietaire = '$login'   ");
 		$row = pg_fetch_row($request_login);
 		$immatriculation=$row[0];
@@ -37,18 +44,36 @@ session_start();
 		/*insert  le reservation*/
 		$sql="insert into occupe(immatriculation,nom_park,numero,date_debut,date_fin) values ('$immatriculation','$parking','$num','$date_debut','$date_fin')";
 		//echo $sql;
-		$query = pg_query($conn,$sql);
-		
+		$query1 = pg_query($conn,$sql);
+		if(!$query1)
+		{
+			echo "<h1 style='color : #ff0000'>réservation echec</h1>";
+			echo "<h1 style='color : #ff0000'>paiement a échoué</h1>";
+			
+		}
+		/*insert  le transaction*/
+		$sql="insert into Transac(numero_transac,date_achat,date_debut,date_fin,prix,type_t,numero_paiement,moyen_p,client,nom_park,numero_place) 
+					values ('$num_tran','$date_achat','$date_debut','$date_fin','$prix','$type_t','$num_tran','$moyen_p','$login','$parking','$num')";
+					//echo $sql;
+		$query2 = pg_query($conn,$sql);
+		if(!$query2)
+		{
+			echo "<h1 style='color : #ff0000'>réservation echec</h1>";
+			echo "<h1 style='color : #ff0000'>paiement a échoué</h1>";
+			
+			
+		}
 		/*update free_place*/
-		if(!is_null($query))
+		if($query1&&$query2)
 		{
 			echo "<h1 style='color : #ff0000'>réservation succès</h1>";
 			$query = pg_query($conn, "UPDATE parking set free_places=free_places-1 where nom_park='$parking'");
-		}
+		
+		
 		
 		echo "</table><h1>DANS '$parking' LES TEMPS OCCUPE CI-DESOUS</h1>";
 		$request_place = pg_query($conn, "SELECT o.numero,o.date_debut,o.date_fin FROM occupe o where o.nom_park = '$parking'   ");
-		if(is_null($request_place))
+		if(!$request_place)
 			echo "query error";
 		echo "<table class='table table-bordered table-striped'><tr><th>num_place</th><th>date_debut</th><th>date_fin</th></tr>";
 		while ($row = pg_fetch_row($request_place)) {
@@ -59,9 +84,15 @@ session_start();
 			}
 		}
 		echo "</table>";
-		
+		}else{
+			$sql="delete from Transac where numero_transac='$num_tran'";
+			$query1 = pg_query($conn,$sql);
+			$sql="delete from occupe where immatriculation='$immatriculation'";
+			$query1 = pg_query($conn,$sql);
+		}
+		$_SESSION['nun_tran']=$num_tran;
 	?>
 	
-	<label><a href="reserver.php" style='color=#000000'>RETOUNER A PAGE RESEVER</a></label>
+	<label><a href="reserver.php" style='color=#9933ff'><h1>RETOUNER A PAGE RESEVER</h1></a></label>
 </body>
 </html>

@@ -69,7 +69,7 @@
       <!--AJOUTER UN VEHICULE-->  
 			  <div id="infoVeh" class="alert btn-success alert-dismissable col-md-offset-3 col-md-6" style="display: none">
     			<button type="button" class="close" id="closeInfoVeh">×</button>
-      			<form method="post" action="test.php">
+      			<form method="post" action="creationVehicule.php">
   					<legend>Ajouter un véhicule pour <?php echo $_SESSION['membreid'];?></legend>
 						    <div class="form-group">
       							<input id="marque" name="marque" type="text" placeholder="Marque" class="form-control">
@@ -125,7 +125,7 @@
     	<!--FORMULAIRE POUR MODIFIER LES VEHICULES DU CLIENT-->
 	<div id="infoModifVehicule" class="alert btn-warning alert-dismissable col-md-offset-3 col-md-6" style="display: none">
     	<button type="button" class="close" id="closeModifVehicule">×</button>
-      	<form method="post" action="modifInfosVehicule2.php">
+      	<form method="post" action="modifInfosVehicule.php">
   			  <legend>Modifier le véhicule</legend>
   			  <?php
   				  $reponse = $bdd->query("SELECT immatriculation FROM vehicule WHERE proprietaire = '$login'");
@@ -152,9 +152,6 @@
 			    <div class="form-group">
     				<input id="dateFabrication" name="dateFabrication" type="text" placeholder="Date de Fabrication" class="form-control">	
           </div>
-          <div class="form-group">
-            <input id="typeVehicule" name="typeVehicule" type="text" placeholder="Type de véhicule" class="form-control">  
-          </div> 
           <div class="form-group">
             <select name="typeVehicule" class="selectpicker form-control">
               <option>

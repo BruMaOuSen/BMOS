@@ -46,7 +46,7 @@
 				
        if($_SESSION['roleutil']=="administrateur")
         {
-        	header("Location: admin.php");
+        	header("Location: adminStats.php");
         	$reponse->closeCursor();
         	exit;
         }

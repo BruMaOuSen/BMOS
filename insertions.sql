@@ -1,25 +1,27 @@
 ﻿----------Insertions Client----------------------------
 
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('dup', 'dupont', 'dupp', 'personne', 30, 'client', false);
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('kro', 'kromwel', 'krop', 'personne', 0, 'client', false);
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('wan', 'wang', 'wanp', 'personne', 0, 'client', false);
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('voi', 'voinier', 'voip', 'personne', 40, 'client', false);
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('tal', 'talouka', 'talp', 'personne', 10, 'client', false);
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('rai', 'rain', 'raip', 'personne', 0, 'client', false);
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('wi', 'weill', 'weip', 'personne', 0, 'client', false);
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('coh', 'cohen', 'cohp', 'personne', 0, 'client', false);
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('mic', 'michel', 'micp', 'personne', 0, 'client', false);
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('dan', 'daniel', 'danp', 'personne', 10, 'client', false);
+INSERT INTO client (login, nom, mot_de_passe, typeP, role_client, abonne)VALUES
+('dup', 'dupont', 'dupp', 'personne', 'client', false),
+('kro', 'kromwel', 'krop', 'personne', 'client', false),
+('wan', 'wang', 'wanp', 'personne', 'client', false),
+('voi', 'voinier', 'voip', 'personne', 'client', false),
+('tal', 'talouka', 'talp', 'personne', 'client', false),
+('rai', 'rain', 'raip', 'personne', 'client', false),
+('wi', 'weill', 'weip', 'personne', 'client', false),
+('coh', 'cohen', 'cohp', 'personne', 'client', false),
+('mic', 'michel', 'micp', 'personne', 'client', false),
+('dan', 'daniel', 'danp', 'personne', 'client', false),
+('nes', 'nespoli', 'ness', 'societe', 'client', false),
+('gla', 'glass', 'glas', 'societe', 'client', false),
+('gav', 'gavametal', 'gavs', 'societe', 'client', false),
+('exc', 'excellium', 'excs', 'societe', 'client', false),
+('mir', 'mirometrics', 'mirs', 'societe', 'client', false),
+('pro', 'prodel', 'pros', 'societe', 'client', false),
+('cet', 'cetim', 'cets', 'societe', 'client', false),
+('sol', 'solvakem', 'sols', 'societe', 'client', false),
+('met', 'metallerie', 'mets', 'societe', 'client', false),
+('tec', 'technotrans', 'tecs', 'societe', 'client', false);
+
 /*INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction)
 VALUES ('pui', 'puiffe', 'puip', 'personne', 30);
 INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction)
@@ -40,27 +42,6 @@ INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction)
 VALUES ('vua', 'vuatrin', 'vuap', 'personne', 50);
 INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction)
 VALUES ('dio', 'dionisi', 'diop', 'personne', 0); */
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('nes', 'nespoli', 'ness', 'societe', 20, 'client', false);
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('gla', 'glass', 'glas', 'societe', 40, 'client', false);
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('gav', 'gavametal', 'gavs', 'societe', 30, 'client', false);
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('exc', 'excellium', 'excs', 'societe', 10, 'client', false);
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('mir', 'mirometrics', 'mirs', 'societe', 0, 'client', false);
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('pro', 'prodel', 'pros', 'societe', 0, 'client', false);
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('cet', 'cetim', 'cets', 'societe', 50, 'client', false);
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('sol', 'solvakem', 'sols', 'societe', 20, 'client', false);
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('met', 'metallerie', 'mets', 'societe', 20, 'client', false);
-INSERT INTO client (login, nom, mot_de_passe, typeP, taux_de_reduction, role_client, abonne)
-VALUES ('tec', 'technotrans', 'tecs', 'societe', 10, 'client', false);
-
 ----------Insertions Role----------------------------------------------
 INSERT INTO Role (type_role) 
 VALUES
@@ -74,7 +55,7 @@ INSERT INTO Administrateur (login, nom, mot_de_passe, role_admin)
 VALUES 
 ('lyo', 'lyon', 'lyos', 'administrateur'),
 ('upa', 'upark', 'upas', 'administrateur'),
-('dou', 'doudou', 'doup', 'administrateur')
+('administrateur', 'admin', 'admin', 'administrateur')
 ;
 
 
@@ -208,6 +189,12 @@ VALUES
 ('entree','Etats-Unis', 560, 430),
 ('fichier','Voltaire - Part Dieu', 80, 5),
 ('edition','Brotteaux - Bellecombe', 250, 25)
+('papa','Bachut - Transvaal', 13, 13),
+('test','Bachut - Transvaal', 18, 18),
+('test2','Bachut - Transvaal', 18, 18),
+('test3','Bachut - Transvaal', 19, 19),
+('test4','Bachut - Transvaal', 3, 3),
+('toto','Bachut - Transvaal', 4, 4)
 ;
 
 
@@ -317,6 +304,39 @@ VALUES
 (4, 'edition', 'dehors', '4'),
 (5, 'edition', 'dehors', '8')
 ;
+
+
+-----------INSERTION PAGE--------
+INSERT INTO page(ID_page, nom_page)
+VALUES 
+(1, 'admin.php'),
+(2, 'client.php'),
+(3, 'mairies.php'),
+(4, 'mairiesmodif.php'),
+(5, 'deconnexion.php'),
+(6, 'index.php'),
+(8, 'gestionAbonnement.php')
+;
+
+-----------INSERTION ROLEPAGE--------
+INSERT INTO rolepage(numero_page, role_page)
+VALUES 
+(1, 'administrateur'),
+(2, 'administrateur'),
+(2, 'client'),
+(3, 'administrateur'),
+(4, 'administrateur'),
+(4, 'client'),
+(5, 'client'),
+(5, 'administrateur'),
+(6, 'administrateur'),
+(6, 'client'),
+(8, 'client'),
+(8, 'administrateur')
+;
+
+------INSERTION COMPTE--------
+
 
 
 

@@ -5,7 +5,7 @@
 	}
 	else
 	{
-		if($_SESSION['roleutil']!='mairie' && $_SESSION['roleutil']!='administrateur'){
+		if($_SESSION['roleutil']!='administrateur'){
 			header("Location: index.php");
 			exit;		
 		}
@@ -22,8 +22,10 @@
     </head>
     <body>
     	<!--INSERTION DU HEADER-->
-    	<?php include('header.php'); ?>   
-    	
+    	<?php include('header.php'); ?> 
+
+    	<!--INSERTION DU MENU-->  
+    	<?php include('menuAdmin.php')?>
 		<!--CORPS DE LA PAGE MAIRIE-->
 		<?php
 			try
@@ -40,7 +42,7 @@
 		<div class="container">
   			<div class="alert alert-info alert-dismissable col-md-offset-2 col-md-8" style="display: none">
     			<button type="button" class="close">×</button>
-				<form method="post" action="mairiesmodif.php">
+				<form method="post" action="mairies.php">
 					<h3 class="panel-title">Modifier le prix d'une zone</h3>
   					<select name="zone"class="selectpicker">
   					<?php

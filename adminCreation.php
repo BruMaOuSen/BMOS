@@ -21,8 +21,10 @@
     </head>
     <body>
       <!--INSERTION DU HEADER-->
-      <?php include ('header.php'); ?>      
-      
+      <?php include ('header.php'); ?> 
+
+      <!--INSERTION DU MENU-->     
+      <?php include('menuAdmin.php');?>
       <!--CORPS DE LA PAGE D'INDEX-->     
         <?php
       try

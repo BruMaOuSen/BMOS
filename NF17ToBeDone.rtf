@@ -1,0 +1,89 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf210
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 [toujours mettre le script a la fin juste avant la fermeture de la balise body]\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\b \cf0 \ul \ulc0 contraintes:
+\b0 \ulnone \
+pr\'e9ciser identification (personne ou soci\'e9t\'e9)==> changer le input en s\'e9lect\
+\
+pr\'e9ciser v\'e9hicule le type (2, 4 ou 8) ==> faire un select \
+\
+pr\'e9ciser les taux de r\'e9duction (entre 0 et 1 ou en %)==> fonction qui v\'e9rifie sa date d abonnement \
+\
+pr\'e9ciser format de la date de fabrication dans vehicule\
+\
+ajouter une option pour ajouter une 2eme/3 \'85 v\'e9hicule pour un client ou autre\
+modifier \
+\
+peut \'eatre modifier le format des dates en \'91date\'92 plut\'f4t que \'91int\'92\
+\
+le compte est associ\'e9 aux abonn\'e9s seulement ou il y\'92a num\'e9ro p\'e9riode et taux de r\'e9duction \
+\
+utiliser au moins un triggers \
+\
+s assurer que dans \'ab\'a0place\'a0\'bb d un parking, il y le meme nombre que nbplace dans \'ab\'a0parking\'a0\'bb\
+(script apr\'e8s pour compl\'e9ter les places> Kamal) \
+\
+enlever la contrainte d unicite de la fkzone dans la table parking ==> il faut le faire pr tt le monde \
+\
+ajout de parking :revoir places dehors ou couvert , 2 4 8 (done) \
+\
+utiliser le bool\'e9en pour la fonction de calcul du taux de r\'e9duction \
+\
+dans le nouveau uml on precise la raison de fusion de moyen paiement et transaction(voir rapport naudin)\
+\
+\
+\'97> pierre: la classe v\'e9hicule ne sert a rien: redondance\
+                  num du mode de paiement ne sert a rien sauf si trigger\
+\
+\
+\
+lors de la modification d un parking s assurer que places non r\'e9serv\'e9es, idem pour suppression (s assurer que le dernier qui r\'e9serve une place, on cherche sa date et on bloque les r\'e9servations a partir de celle ci, on supprime le parking a cette date )\
+\
+mettredes check dans les d\'e9finitions de tables \
+\
+
+\b \ul verfications
+\b0 \ulnone \
+\
+les doublons dans l insertion \
+if(!$Result) \{\'e9cho \'abpas bon\'a0\'bb\}\
+v\'e9rifier pas insertions de nombre de place <0 , \'a0\
+\
+pour pouvoir reafficher les valeurs dans les motif des parking, mettre les 3 boutons en haut\
+\
+
+\b \ul requ\'eates
+\b0 \ulnone \
+(done) changer le formulaire de connexion pour envoyer les donn\'e9es dans la table client , \
+\
+page admin pour avoir acc\'e8s a la liste des clients et leur profil, pour modification et pr\'e9cision des taux de r\'e9duction \
+\
+repenser l erreur renvoy\'e9 lorsque l immatriculation existe d\'e9j\'e0 \
+\
+afficher le nombre d enlaces dispo de tous les parkings \'e0 int\'e9grer dans les stats \
+\
+check sur les date \
+\
+est ce que r\'e9servation g\'e8re place dispo apr\'e8s avoir lib\'e9r\'e9 la place.\
+
+\b \ul pages:
+\b0 \ulnone \
+\
+soutenance: \
+-type_vehicule n a pas \'e9t\'e9 supprim\'e9 pour garder un minimum le travail des autres, on sait bien que \'e7a induit de la redondance\
+\
+\
+dans le script .alert pour classe et #alert de2s qu on lui attribut une id (c est un truc du css)\
+le div class container est selon un bloc horizontal (une ligne)\
+\
+changer prop projet sur git a la fin\
+\
+\
+}

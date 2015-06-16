@@ -59,7 +59,7 @@ create table Vehicule(
 
 create table Parking(
 	nom_park varchar(50) PRIMARY KEY, 
-	zone_park varchar (50) UNIQUE NOT NULL, 
+	zone_park varchar (50), 
 	nbplaces_park int NOT NULL, 
 	free_places int, 
 	FOREIGN KEY (zone_park) REFERENCES Zone(nom_zone)

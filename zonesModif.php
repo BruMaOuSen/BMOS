@@ -22,7 +22,7 @@
 	$reponse = $bdd->query("UPDATE zone SET $prixAChanger = $tarif WHERE nom_zone = '$zone'");
  	//$bdd->exec("UPDATE zone SET" .$prixAChanger. "=" .$_POST['prix']. "WHERE 
  	//			nom_zone LIKE" .$_POST['zone']"");
-	header("Location: mairies.php");
+	header("Location: gestionZones.php");
 	$reponse->closeCursor();
 	exit;
 ?>
