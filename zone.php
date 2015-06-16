@@ -33,9 +33,7 @@ session_start();
 		}
 		function pay()
 		{
-			$debut=document.getElementById("datedebut").value;
-			$fin=document.getElementById("datefin").value;
-			alert("Vous devez payer "+2*($fin-$debut) +"€" );
+			document.getElementById("ad1").disabled=true
 		}
 		</script>
     </head>
@@ -102,6 +100,9 @@ session_start();
 			}
 		}
 		echo "</table>";
+		
+
+			
 	?>	
 </div></div></div>
 	<h1 style="text-align : center">CHOISIR VOTRE NUMERO DE PLACE RT LE TEMP:</h1>
@@ -111,14 +112,32 @@ session_start();
 	<label><input type="radio" name="num_place" value="3">3 couvert "4"</label><br/>
 	<label><input type="radio" name="num_place" value="4">4 dehors  "4"</label><br/>
 	<label><input type="radio" name="num_place" value="5">5 dehors  "8"</label><br/>
-	<label>datedebut<input type="text" name="datedebut" id ="datedebut">
-	datefin<input type="text" name="datefin" id ="datefin">
-	<input type="button" onclick=pay() readonly="turn" value="calcul le prix"></label><br/>
+	<label>datedebut<input type="text" name="datedebut" id ="datedebut" onclick="pay()">
+	datefin<input type="text" name="datefin" id ="datefin"></label>
+
 	<label><h5>Moyen de paiement pour le réglemen(2 euros par heure)</h5></label><br/>
+	<?php
+	$meb=$_SESSION['membreid'];
+		$sql="select abonne from client where login='$meb'";
+		
+		$request_abo = pg_query($conn, $sql);
+			$row = pg_fetch_row($request_abo);
+		if($row[0]=="t")
+		{
+			echo "<label>Vous avez un abonnement!</label><br/>";
+			echo "<label><input type='radio'  name='typeTransac' value='abonnement' onclick='unvalide()' >abonnement</label><br/>";
+			echo "<label><input type='radio' name=.'typeTransac'. value='ticket' onclick='valide()' disabled='true'>ticket   ";
+		}
+		else
+		{
+			echo "<label>Vous n'avez pas un abonnement!</label><br/>";
+			echo "<label><input type='radio' name='typeTransac' value='abonnement' onclick='unvalide()'  disabled='true'>abonnement</label><br/>";
+			echo "<label><input type='radio' name='typeTransac' value='ticket' onclick='valide()' >ticket   ";
+		}
+	?>
 	
-	<label><input type="radio" name="typeTransac" value="abonnement" onclick="unvalide()">abonnement</label><br/>
-	<label><input type="radio" name="typeTransac" value="ticket" onclick="valide()">ticket   
-        <select name="modePaiement" id="pay_method" disabled="ture">
+	
+        <select name="modePaiement" id="pay_method" disabled="true">
             <option value="carte">
              carte 
             </option>
