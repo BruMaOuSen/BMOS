@@ -77,7 +77,7 @@ session_start();
 		pg_close($request);
 		/*afficher table place*/
 		echo "</table><h1>DANS $parking LES PLACES LIBRE CI-DESOUS</h1>";
-		$request_place = pg_query($conn, "SELECT p.num_place,p.type_place,p.type_veh FROM place p where p.park_place = '$parking'   ");
+		$request_place = pg_query($conn, "SELECT p.num_place,p.type_place,p.type_veh FROM place p where p.park_place = '$parking' and p.num_place not in(SELECT o.numero FROM occupe o where o.nom_park = '$parking')   ");
 		if(is_null($request_place))
 			echo "query error";
 		echo "<table class='table table-bordered table-striped'><tr><th>num_place</th><th>type_veh</th><th>type_place</th></tr>";
@@ -87,7 +87,8 @@ session_start();
 		echo "</table>";
 		pg_close(request_place);
 		/*affichier les temps occupe*/
-		echo "</table><h1>DANS $parking LES TEMPS OCCUPE CI-DESOUS</h1>";
+		echo "</table>";
+		/*echo "<h1>DANS $parking LES TEMPS OCCUPE CI-DESOUS</h1>";
 		$request_place = pg_query($conn, "SELECT o.numero,o.date_debut,o.date_fin FROM occupe o where o.nom_park = '$parking'   ");
 		if(is_null($request_place))
 			echo "query error";
@@ -99,19 +100,27 @@ session_start();
 				echo "TOUTES PLACE SONT LIBRE!";
 			}
 		}
-		echo "</table>";
+		echo "</table>";*/
 		
-
+		
 			
 	?>	
 </div></div></div>
 	<h1 style="text-align : center">CHOISIR VOTRE NUMERO DE PLACE RT LE TEMP:</h1>
 	<form method="post" action = "choisir_place.php">
-	<label><input type="radio" name="num_place" value="1">1 couvert "2"</label><br/>
-	<label><input type="radio" name="num_place" value="2">2 dehors  "4"</label><br/>
-	<label><input type="radio" name="num_place" value="3">3 couvert "4"</label><br/>
-	<label><input type="radio" name="num_place" value="4">4 dehors  "4"</label><br/>
-	<label><input type="radio" name="num_place" value="5">5 dehors  "8"</label><br/>
+	
+	<?php
+		$conn=Connect();
+		$request = pg_query($conn, "SELECT p.num_place,p.type_place,p.type_veh FROM place p where p.park_place = '$parking' and p.num_place not in(SELECT o.numero FROM occupe o where o.nom_park = '$parking')   ");
+		//echo "<label><select name='num_place' class='form-control'>";
+		while ($row = pg_fetch_row($request)) {
+				//echo "<option  value='$row[0]'>$row[0] $row[1] $row[2] </option>";
+				echo "<label><input type='radio' name='num_place' value='$row[0]'>$row[0] $row[1] $row[2] </label><br/>";
+			}
+		//echo "</select></label><br/>"
+	?>
+	
+	
 	<label>datedebut<input type="text" name="datedebut" id ="datedebut" onclick="pay()">
 	datefin<input type="text" name="datefin" id ="datefin"></label>
 
