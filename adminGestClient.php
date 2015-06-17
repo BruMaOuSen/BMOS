@@ -5,10 +5,10 @@
   }
   else
   {
-    //if($_SESSION['roleutil']!='administrateur'){
-    //  header("Location: index.php");
-     // exit;   
-    //}
+    if($_SESSION['roleutil']!='administrateur'){
+      header("Location: index.php");
+      exit;   
+    }
   }
 ?>
 <!DOCTYPE html>
@@ -23,11 +23,12 @@
       <!--INSERTION DU HEADER-->
       <?php include ('header.php'); ?>      
       
-      <!--CORPS DE LA PAGE D'INDEX-->     
+      <!--CORPS DE LA PAGE D'INDEX-->
+      <?php include('menuAdmin.php');?>     
         <?php
       try
       {
-        $bdd = new PDO('pgsql:host=localhost;dbname=parkingProject', 'admin', 'admin');
+        $bdd = new PDO('pgsql:host=localhost;dbname=dbnf17p136', 'nf17p136', '6hQyKlYO');
         
       }
       catch (Exception $e)
@@ -46,7 +47,8 @@
           <button type="button" class="close" id="closeChoixType">×</button>
         <form method="post" action="adminGestClient.php">
           <h3 class="panel-title">Choisir un type de client </h3>
-            <select name="typep"class="selectpicker">
+          <div class="form-group">
+            <select name="type"class="selectpicker form-control">
             <?php
             while ($donnees1 = $reponse1->fetch())
             {
@@ -56,7 +58,6 @@
             }
             
             $reponse1->closeCursor();
-            $typep = $_POST['typep'];
           ?>
             </select>
             </div>  
@@ -74,13 +75,16 @@
 
 <!--///////////////////Affichage des clients du type selectionné/////////////-->
 
-<?php
-  $typep = $_POST['typep'];
+<?php 
+  if(isset($_POST['type'])){
+          $type = $_POST['type'];
+  }
 ?>
+
 <section style="margin-top: 15px;" class="col-md-offset-2 col-md-8 table-responsive">
       <table class="table table-bordered table-striped">
           <caption>
-            <h4 style="text-align: center">Les clients de type <?php echo $typep;?></h4>
+            <h4 style="text-align: center">Les clients de type <?php if(isset($_POST['type'])){echo $type;}?></h4>
           </caption>
           <thead>
             <tr>
@@ -89,8 +93,9 @@
             </tr>
           </thead>
           <tbody> 
-            <?php
-            $reponse2 = $bdd->query("SELECT login,nom FROM client where typep='$typep' ORDER BY login, nom");
+  <?php
+    if(isset($_POST['type'])){
+            $reponse2 = $bdd->query("SELECT login, nom FROM client where typep='$type' ORDER BY login, nom");
             while ($donnees2 = $reponse2->fetch())
             {
           ?>
@@ -102,7 +107,8 @@
             }
             
             $reponse2->closeCursor();
-          ?>
+    }
+  ?>
             </tbody>
       </table>          
 </section>
@@ -117,16 +123,18 @@
           <div class="form-group">
             <select name="clientsuppr"class="selectpicker form-control">
             <?php
-              $reponse3= $bdd->query("SELECT login FROM client where typep='$typep' ORDER BY login");
+    if(isset($_POST['type'])){
+              $reponse3= $bdd->query("SELECT login FROM client where typep='$type' ORDER BY login");
             while ($donnees3 = $reponse3->fetch())
             {
           ?>
-                <option ><?php echo $donnees3['login'];?></option>
+                <option ><?php if(isset($_POST['type'])){echo $donnees3['login'];}?></option>
             <?php
             }
             
             $reponse3->closeCursor();
-          ?>
+    }
+   ?>
             </select>
             </div>
             <div class="form-group">
@@ -136,10 +144,11 @@
         </div>
 
 <?php
+  if(isset($_POST['clientsuppr'])){
     $client = $_POST['clientsuppr'];
-    $reponse4 = $bdd->query("DELETE FROM Client WHERE login = '$client'");
+    $reponse4 = $bdd->query("DELETE FROM client WHERE login = '$client'");
     $reponse4->closeCursor();
-    
+  }
 ?>
 
 
