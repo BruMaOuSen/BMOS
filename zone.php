@@ -26,10 +26,14 @@ session_start();
 		</style>
 		<script type="text/javascript">
 		function valide(){
-			document.getElementById("pay_method").disabled=false;
+			document.getElementById("datedebut1").disabled=false;
+			document.getElementById("datedebut").disabled=true;
+			document.getElementById("datefin").disabled=true;
 		}
 		function unvalide(){
-			document.getElementById("pay_method").disabled=true;
+			document.getElementById("datedebut1").disabled=true;
+			document.getElementById("datedebut").disabled=false;
+			document.getElementById("datefin").disabled=false;
 		}
 		function pay()
 		{
@@ -50,6 +54,9 @@ session_start();
 		if (isset($_POST["submitted"])) 
 		{
 			$zone=$_POST["zone"];
+			$vehicule=$_POST["vehicule"];
+			$_SESSION['zone']=$zone;
+			$_SESSION['vehicule']=$vehicule;
 		}
 		else
 		echo "choisir zone error";
@@ -58,6 +65,7 @@ session_start();
 		
 		if(is_null($conn))
 			echo "connect error";
+		
 		/*afficher table parking*/
 		$request = pg_query($conn, "SELECT nom_park,free_places,nbplaces_park FROM parking where zone_park='$zone' and free_places > 0 ");
 		if(is_null($request))
@@ -77,7 +85,9 @@ session_start();
 		pg_close($request);
 		/*afficher table place*/
 		echo "</table><h1>DANS $parking LES PLACES LIBRE CI-DESOUS</h1>";
-		$request_place = pg_query($conn, "SELECT p.num_place,p.type_place,p.type_veh FROM place p where p.park_place = '$parking' and p.num_place not in(SELECT o.numero FROM occupe o where o.nom_park = '$parking')   ");
+		$request_place = pg_query($conn, "SELECT p.num_place,p.type_place,p.type_veh FROM place p where p.park_place = '$parking' 
+				
+					and p.type_veh in (select type_veh from Vehicule where immatriculation='$vehicule')");
 		if(is_null($request_place))
 			echo "query error";
 		echo "<table class='table table-bordered table-striped'><tr><th>num_place</th><th>type_veh</th><th>type_place</th></tr>";
@@ -88,20 +98,21 @@ session_start();
 		pg_close(request_place);
 		/*affichier les temps occupe*/
 		echo "</table>";
-		/*echo "<h1>DANS $parking LES TEMPS OCCUPE CI-DESOUS</h1>";
+		echo "<h1>DANS $parking LES TEMPS OCCUPE CI-DESOUS</h1>";
 		$request_place = pg_query($conn, "SELECT o.numero,o.date_debut,o.date_fin FROM occupe o where o.nom_park = '$parking'   ");
-		if(is_null($request_place))
-			echo "query error";
+		if(!$request_place)
+			echo "TOUTES PLACE SONT LIBRE!";
+		else{
 		echo "<table class='table table-bordered table-striped'><tr><th>num_place</th><th>date_debut</th><th>date_fin</th></tr>";
 		while ($row = pg_fetch_row($request_place)) {
 			echo "<tr><td>$row[0]</td><td>$row[1]</td><td>$row[2]</td></tr>";
-			if(is_null($row))
+			if(!$row)
 			{
 				echo "TOUTES PLACE SONT LIBRE!";
 			}
 		}
-		echo "</table>";*/
-		
+		echo "</table>";
+		}
 		
 			
 	?>	
@@ -111,22 +122,35 @@ session_start();
 	
 	<?php
 		$conn=Connect();
-		$request = pg_query($conn, "SELECT p.num_place,p.type_place,p.type_veh FROM place p where p.park_place = '$parking' and p.num_place not in(SELECT o.numero FROM occupe o where o.nom_park = '$parking')   ");
+		$request = pg_query($conn, "SELECT p.num_place,p.type_place,p.type_veh FROM place p where p.park_place = '$parking' 
+			
+				and p.type_veh in (select type_veh from Vehicule where immatriculation='$vehicule')");
 		//echo "<label><select name='num_place' class='form-control'>";
+		echo "<label>num  type </label><br/>";
 		while ($row = pg_fetch_row($request)) {
-				//echo "<option  value='$row[0]'>$row[0] $row[1] $row[2] </option>";
+				//echo "<option  value='$row[0]'>$row[0] $row[1]  </option>";
 				echo "<label><input type='radio' name='num_place' value='$row[0]'>$row[0] $row[1] $row[2] </label><br/>";
 			}
 		//echo "</select></label><br/>"
+		
+		$request_login = pg_query($conn, "SELECT prix_h_zone,prix_m_zone FROM zone where nom_zone = '$zone'   ");
+		$row = pg_fetch_row($request_login);
+		$prixheure=$row[0];
+		$prixmois=$row[1];
+		echo "<label><h3>reservation par heure sont :'$prixheure' €</h3></label>";
+		echo "<label><h3>reservation par mois sont :'$prixmois' €</h3></label>";
 	?>
 	
 	
-	<label>datedebut<input type="text" name="datedebut" id ="datedebut" onclick="pay()">
-	datefin<input type="text" name="datefin" id ="datefin"></label>
+	<label id="mois"><input type="radio" name="temp" value ="heure" onclick='unvalide()'>reservation par heure<br/>
+	datedebut<input type="text" name="datedebut" id ="datedebut" disabled="true" > datefin<input type="text" name="datefin" id ="datefin" disabled="true"></label>
+	
+	<label id="heure"><input type="radio" name="temp" value ="mois" onclick='valide()' >reservation 1 mois <br/> 
+	datedebut<input type="text" name="datedebut_m" id ="datedebut1" disabled="true"></label><br/>
 
-	<label><h5>Moyen de paiement pour le réglemen(2 euros par heure)</h5></label><br/>
+	
 	<?php
-	$meb=$_SESSION['membreid'];
+	/*$meb=$_SESSION['membreid'];
 		$sql="select abonne from client where login='$meb'";
 		
 		$request_abo = pg_query($conn, $sql);
@@ -142,11 +166,11 @@ session_start();
 			echo "<label>Vous n'avez pas un abonnement!</label><br/>";
 			echo "<label><input type='radio' name='typeTransac' value='abonnement' onclick='unvalide()'  disabled='true'>abonnement</label><br/>";
 			echo "<label><input type='radio' name='typeTransac' value='ticket' onclick='valide()' >ticket   ";
-		}
+		}*/
 	?>
 	
 	
-        <select name="modePaiement" id="pay_method" disabled="true">
+        <label><select name="modePaiement" id="pay_method" >
             <option value="carte">
              carte 
             </option>
