@@ -31,7 +31,7 @@ session_start();
 			if(is_null($conn))
 			echo "connect error";
 		
-		//echo "</select></label><br/>"
+		
 			$request = pg_query($conn, "SELECT nom_zone FROM zone ");
 			if(is_null($request))
 			echo "query error";
@@ -39,6 +39,7 @@ session_start();
 			while ($row = pg_fetch_row($request)) {
 				echo "<option  value='$row[0]'>$row[0]</option>";
 			}
+			 echo "</select>";
 			pg_close($request);
 			$sql="select date_fin from occupe";
 			$request_place = pg_query($conn, $sql);
@@ -49,19 +50,21 @@ session_start();
 				$request_delete = pg_query($conn, $sqll);
 			}
 			
-			echo "</select>";
+			
 		}
 		$login =$_SESSION['membreid'];
 		$request = pg_query($conn, "SELECT * FROM Vehicule where proprietaire = '$login' ");
 		echo "<h2 style='color:#cc99ff'>Choisez votre Vehicule</h2>";
-		echo "<label><select name='vehicule' class='form-control'>";
+		echo "<select name='vehicule' class='form-control'>";
+		
+	
 		while ($row = pg_fetch_row($request)) {
 				
 				echo "<option value='$row[0]'>immatriculation:$row[0] marque:$row[2] type_veh:$row[4]</option>";
 			}
 			
 		?>
-		</select>
+		</select>;
 	<input type="submit" name ="submitted" value ="submit" class="btn btn-info">
 	</select>
 	</form>
