@@ -23,25 +23,65 @@ session_start();
 		$num_tran=$_SESSION['nun_tran']+1;
 		if (isset($_POST["choisir_place"])) 
 		{
+			
+			
+			$num=$_POST["num_place"];
+			$type_t="ticket";
+			$moyen_p=$_POST["modePaiement"];
+			$temp=$_POST["temp"];
+			//echo $temp;
+			if($temp=="heure"){
 			$date_debut=$_POST["datedebut"];
 			$date_fin=$_POST["datefin"];
-			$num=$_POST["num_place"];
-			$type_t=$_POST["typeTransac"];
-			$moyen_p=$_POST["modePaiement"];
+			}
+			else
+			{
+				$date_debut=$_POST["datedebut_m"];
+				//echo $date_debut;
+				$date_fin_date=strtotime($date_debut)+9*3600+30*24*3600;
+				//echo $date_fin_date;
+				$date_fin=date("Y-m-d H:i:s",$date_fin_date);
+				//echo $date_fin;
+			}
+			
 		}
-		if($type_t=="abonnement")
+		
+		/*if($type_t=="abonnement")
 		{
 			$moyen_p="carte";
-		}
+		}*/
+		$zone=$_SESSION['zone'];
+		$request_login = pg_query($conn, "SELECT prix_h_zone,prix_m_zone FROM zone where nom_zone = '$zone'   ");
+		$row = pg_fetch_row($request_login);
+		$prixheure=$row[0];
+		$prixmois=$row[1];
 		/*obtenir immatriculation par login*/
 		$login =$_SESSION['membreid'];
+		$request_login = pg_query($conn, "SELECT taux_de_reduction FROM compte where loginC = '$login'   ");
+		$row = pg_fetch_row($request_login);
+		$taux=$row[0];
+		
+		
+		
+		
 		$date_achat=date("Y-m-d H:i:s",(time()+9*3600));
+		/*--------------------------------------------*/
+		
+		
 		$duree=(strtotime($date_fin)-strtotime($date_debut))/3600;
-		if($type_t=="abonnement"){
+		if($temp=="mois")
+		{
+			$prix=$prixmois*(1-$taux/100);
+		}
+		else
+		{
+			$prix=$duree*$prixheure*(1-$taux/100);
+		}
+		/*if($type_t=="abonnement"){
 			$prix=0;
 		}else{
 		$prix=$duree*2;
-		}
+		}*/
 		$request_login = pg_query($conn, "SELECT immatriculation FROM Vehicule where proprietaire = '$login'   ");
 		$row = pg_fetch_row($request_login);
 		$immatriculation=$row[0];
