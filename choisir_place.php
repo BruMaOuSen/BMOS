@@ -38,13 +38,30 @@ session_start();
 			{
 				$date_debut=$_POST["datedebut_m"];
 				//echo $date_debut;
-				$date_fin_date=strtotime($date_debut)+9*3600+30*24*3600;
+				$date_fin_date=strtotime($date_debut)+30*24*3600;
 				//echo $date_fin_date;
 				$date_fin=date("Y-m-d H:i:s",$date_fin_date);
 				//echo $date_fin;
 			}
 			
 		}
+		$request_da = pg_query($conn, "SELECT date_debut,date_fin FROM occupe where numero='$num' and nom_park='$parking'");
+		while ($row = pg_fetch_row($request_da)) {
+			//echo $row[0];
+			$debut=strtotime($row[0]);
+			$fin=strtotime($row[1]);
+			$nouv_debut=strtotime($date_debut);
+			$nouv_fin=strtotime($date_fin);
+			if($nouv_debut>$fin || $nouv_fin<$nouv_debut){}
+			else
+			{
+				echo "<h1 style='color : #ff0000'>réservation echec</h1>";
+				echo "<h1 style='color : #ff0000'>place déjà  occupe</h1>";
+				$date_debut=0;
+				
+			}
+		}
+		
 		
 		/*if($type_t=="abonnement")
 		{
@@ -60,8 +77,6 @@ session_start();
 		$request_login = pg_query($conn, "SELECT taux_de_reduction FROM compte where loginC = '$login'   ");
 		$row = pg_fetch_row($request_login);
 		$taux=$row[0];
-		
-		
 		
 		
 		$date_achat=date("Y-m-d H:i:s",(time()+9*3600));
@@ -82,9 +97,9 @@ session_start();
 		}else{
 		$prix=$duree*2;
 		}*/
-		$request_login = pg_query($conn, "SELECT immatriculation FROM Vehicule where proprietaire = '$login'   ");
-		$row = pg_fetch_row($request_login);
-		$immatriculation=$row[0];
+		/*$request_login = pg_query($conn, "SELECT immatriculation FROM Vehicule where proprietaire = '$login'   ");
+		$row = pg_fetch_row($request_login);*/
+		$immatriculation=$_SESSION['vehicule'];
 		
 		/*insert  le reservation*/
 		$sql="insert into occupe(immatriculation,nom_park,numero,date_debut,date_fin) values ('$immatriculation','$parking','$num','$date_debut','$date_fin')";
@@ -144,7 +159,7 @@ session_start();
 		}else{
 			$sql="delete from Transac where numero_transac='$num_tran'";
 			$query1 = pg_query($conn,$sql);
-			$sql="delete from occupe where immatriculation='$immatriculation'";
+			$sql="delete from occupe where immatriculation='$immatriculation' AND date_debut=$date_debut and date_fin=$date_fin";
 			$query1 = pg_query($conn,$sql);
 		}
 		$_SESSION['nun_tran']=$num_tran;
