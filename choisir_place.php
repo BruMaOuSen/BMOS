@@ -13,7 +13,10 @@ session_start();
 		</style>
     </head>
 <body>
-<?php include ('header.php'); ?>	
+<?php 
+	include ('header.php');
+	include ('menuClient.php');
+ ?>	
 	<?php
 		include "connect.php";
 		$conn=Connect();
@@ -83,7 +86,7 @@ session_start();
 		/*--------------------------------------------*/
 		
 		
-		$duree=(strtotime($date_fin)-strtotime($date_debut))/3600;
+		$duree=(date_default_timezone_set($date_fin)-date_default_timezone_set($date_debut))/3600;
 		if($temp=="mois")
 		{
 			$prix=$prixmois*(1-$taux/100);
