@@ -33,6 +33,17 @@ if(!isset($_SESSION['authentification'])){
 				corrigé les warnings des deux premieres pages<br> 
 				la page choisir_place à revoir, elle n'a pas fonctionné pour moi dans le cas de la reservation par heure(bcp d'erreurs)</h3>
 		
+		<p> pour le trigger: CREATE TRIGGER placesrest
+			                  AFTER DELETE OR INSERT ON place
+			                  FOR EACH ROW
+			                  BEGIN
+			                  	IF DELETING THEN
+			                  		UPDATE parking SET free_places=free_places+1 WHERE parking.nom= :new.park_place;
+			                  	ELSEIF INSERTING THEN
+			                  		UPDATE parking SET free_places=free_places-1 WHERE parking.nom= :new.park_place;
+			                  	END IF;
+			                  END;
+		</p>
 
 </br></br></br></br></br>
 <h3 style="panel-title">Choisir une zone:</h3>
