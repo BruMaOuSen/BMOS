@@ -86,7 +86,7 @@ session_start();
 		/*--------------------------------------------*/
 		
 		
-		$duree=(date_default_timezone_set($date_fin)-date_default_timezone_set($date_debut))/3600;
+		$duree=(strtotime($date_fin)-strtotime($date_debut))/3600;
 		if($temp=="mois")
 		{
 			$prix=$prixmois*(1-$taux/100);
