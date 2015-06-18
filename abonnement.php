@@ -3,7 +3,7 @@
       
     try
     {
-      $bdd = new PDO('pgsql:host=localhost;dbname=parkingProject', 'admin', 'admin');
+      $bdd = new PDO('pgsql:host=tuxa.sme.utc;dbname=dbnf17p136', 'nf17p136', '6hQyKlYO');
     }
     catch (Exception $e)
     {
@@ -15,21 +15,26 @@
     $paiement = $_POST['modePaiement'];
     $tauxDeReduction;
     $prix;
+    $dateDeFin;
     if($periodeAbonnement == '1 mois'){
         $tauxDeReduction = 5;
         $prix = 200;
+        @$dateDeFin = date('Y-m-d H:i', strtotime('+1 month'));
     }
     else if($periodeAbonnement == '3 mois'){
         $tauxDeReduction = 10;
         $prix = 175;
+        @$dateDeFin = date('Y-m-d H:i', strtotime('+3 month'));
     }
     else if($periodeAbonnement == '6 mois'){
         $tauxDeReduction = 15;
         $prix = 150;
+        @$dateDeFin = date('Y-m-d H:i', strtotime('+6 month'));
     }
     else if($periodeAbonnement == '1 an'){
         $tauxDeReduction = 25;
         $prix = 100;
+        @$dateDeFin = date('Y-m-d H:i', strtotime('+12 month'));
     }
 
     $reponse = $bdd->query("UPDATE compte SET taux_de_reduction = '$tauxDeReduction'");
@@ -45,11 +50,11 @@
     else if ($paiement == 'Liquide') {
         $moyenP = 'monnaie';
     }
-    //$now = date('y-m-d', strtotime('+13 DAY'));
-    //$now1 = $now;
-    //echo $now;
-    //$reponse2 = $bdd->query("INSERT INTO transac (prix, type_t, moyen_p, client, date_debut, date_fin, date_achat) VALUES('$prix', 'abonnement', '$moyenP', '$login', convert(datetime,'18-06-12 10:34:09 PM',5), convert(datetime,'18-06-12 10:34:09 PM',5), convert(datetime,'18-06-12 10:34:09 PM',5))");
+    
+    $reponse2 = $bdd->query("INSERT INTO transac (prix, type_t, moyen_p, client, date_debut, date_fin, date_achat) 
+    VALUES('$prix', 'abonnement', '$moyenP', '$login', now(), '$dateDeFin'::timestamp, now())");
+    $reponse2->closeCursor();
 
-    //header('Location: gestionAbonnement.php');
-    //exit;
+    header('Location: gestionAbonnement.php');
+    exit;
 ?>

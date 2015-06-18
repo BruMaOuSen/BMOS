@@ -3,7 +3,11 @@
     	<ul>
     		<li> <a href="adminStats.php">Statistiques</a> </li>
 	    	<li> <a href="adminGestClient.php">Gestion des clients</a> </li>
+<<<<<<< Updated upstream
     	  	<li> <a href="adminFid.php">Système de fidélité</a> </li>
+=======
+    	  	<li> <a href="#">Système de fidélité</a> </li>
+>>>>>>> Stashed changes
       		<li> <a href="gestionZones.php">Gestion des zones</a> </li>
       		<li> <a href="adminCreation.php">Gestion des parkings</a> </li>
     	</ul>
